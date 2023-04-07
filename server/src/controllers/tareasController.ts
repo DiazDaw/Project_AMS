@@ -1,45 +1,58 @@
 import { Request, Response } from "express";
 
+import connection from "../db/connection";
+
+
 
 //METODOS ACCESO REST API TABLA DE TAREAS DE VOLUNTARIOS
 export const getTarea = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getTarea"
+    connection.query('SELECT * FROM tarea', (err,data) => {
+        if(err) throw err;
+        res.json(data);
     })
 }
 
 export const getOneTarea = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getOneTarea"
+    const { id } = req.params;
+
+    connection.query('SELECT * FROM tarea WHERE idTarea = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json(data[0]);
     })
 }
 
 export const deleteTarea = (req: Request, res: Response) => {
-    console.log(req.params);
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo deleteTarea",
-        id: req.params
+    connection.query('DELETE FROM tarea WHERE idTarea = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Tarea eliminada con éxito."
+        });
     })
 }
 
 export const postTarea = (req: Request, res: Response) => {
-    console.log(req.body);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo postTarea",
-        body: req.body
+    connection.query('INSERT INTO tarea set ?',[body], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Tarea creada con éxito."
+        });
     })
 }
 
 export const updateTarea = (req: Request, res: Response) => {
-    console.log(req.body);
-    console.log(req.params);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo updateTarea",
-        body: req.body,
-        id: req.params
+    connection.query('UPDATE tarea set ? WHERE idTarea = ?',[body, id], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Tarea actualizada con éxito."
+        });
     })
 }
 

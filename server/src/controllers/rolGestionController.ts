@@ -1,43 +1,58 @@
 import { Request, Response } from "express";
 
+import connection from "../db/connection";
+
+
 
 //METODOS ACCESO REST API TABLA DE ROLES DE GESTIÓN
 export const getRolGestion = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getRolGestion"
+    connection.query('SELECT * FROM roles_gestion', (err,data) => {
+        if(err) throw err;
+        res.json(data);
     })
 }
 
 export const getOneRolGestion = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getOneRolGestion"
+    const { id } = req.params;
+
+    connection.query('SELECT * FROM roles_gestion WHERE idRolGestion = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json(data[0]);
     })
 }
 
 export const deleteRolGestion = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo deleteRolGestion",
-        id: req.params
+    const { id } = req.params;
+
+    connection.query('DELETE FROM roles_gestion WHERE idRolGestion = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Rol para gestionar la BBDD eliminado con éxito."
+        });
     })
 }
 
 export const postRolGestion = (req: Request, res: Response) => {
-    console.log(req.body);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo postRolGestion",
-        body: req.body
+    connection.query('INSERT INTO roles_gestion set ?',[body], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Rol para gestionar la BBDD creado con éxito."
+        });
     })
 }
 
 export const updateRolGestion = (req: Request, res: Response) => {
-    console.log(req.body);
-    console.log(req.params);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo updateRolGestion",
-        body: req.body,
-        id: req.params
+    connection.query('UPDATE roles_gestion set ? WHERE idRolGestion = ?',[body, id], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Rol para gestionar la BBDD actualizado con éxito."
+        });
     })
 }
 

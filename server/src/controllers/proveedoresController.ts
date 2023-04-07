@@ -1,42 +1,56 @@
 import { Request, Response } from "express";
 
+import connection from "../db/connection";
+
 //METODOS ACCESO REST API TABLA DE PROVEEDORES
 export const getProveedor = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getProveedor"
+    connection.query('SELECT * FROM proveedor', (err,data) => {
+        if(err) throw err;
+        res.json(data);
     })
 }
 
 export const getOneProveedor = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getOneProveedor"
+    const { id } = req.params;
+
+    connection.query('SELECT * FROM proveedor WHERE idProveedor = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json(data[0]);
     })
 }
 
 export const deleteProveedor = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo deleteProveedor",
-        id: req.params
+    const { id } = req.params;
+
+    connection.query('DELETE FROM proveedor WHERE idProveedor = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Proveedor para eventos eliminado con éxito."
+        });
     })
 }
 
 export const postProveedor = (req: Request, res: Response) => {
-    console.log(req.body);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo postProveedor",
-        body: req.body
+    connection.query('INSERT INTO proveedor set ?',[body], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Proveedor para eventos creado con éxito."
+        });
     })
 }
 
 export const updateProveedor = (req: Request, res: Response) => {
-    console.log(req.body);
-    console.log(req.params);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo updateProveedor",
-        body: req.body,
-        id: req.params
+    connection.query('UPDATE proveedor set ? WHERE idProveedor = ?',[body, id], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Proveedor para eventos actualizado con éxito."
+        });
     })
 }
 

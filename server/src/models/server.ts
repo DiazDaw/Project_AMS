@@ -5,14 +5,17 @@ import routesFalleros from '../routes/falleroRoutes';
 import routesEventos from '../routes/eventoRoutes';
 import routesLugares from '../routes/lugaresRoutes';
 import routesProveedores from '../routes/proveedoresRoutes';
-import routesComentarios from '../routes/comentarioRoutes';
 import routesAsistentes from '../routes/asistenteRoutes';
-import routesEntradas from '../routes/entradaRoutes';
 import routesRolesFalleros from '../routes/rolFallerosRoutes';
 import routesRolesGestion from '../routes/rolGestionRoutes';
 import routesTareas from '../routes/tareaRoutes';
 import routesActividades from '../routes/actividadesRoutes';
 import routesEstados from '../routes/estadosRoutes';
+import routesRelacionActividadTarea from '../routes/relacionActividadTareaRoutes';
+import routesRelacionActividadProveedor from '../routes/relacionActividadProveedorRoutes';
+import routesEntradasComentarios from '../routes/entradasComentariosRoutes';
+import routesFalleroActividad from '../routes/relacionFalleroActividadRoutes';
+import routesFalleroTareas from '../routes/relacionFalleroTareasRoutes';
 
 import connection from '../db/connection';
 
@@ -41,18 +44,21 @@ class Server {
         this.app.use('/api/falleros', routesFalleros);
         this.app.use('/api/falleros/roles/gestion', routesRolesGestion);
         this.app.use('/api/falleros/roles/comision', routesRolesFalleros);
+        this.app.use('/api/falleros/tareas', routesFalleroTareas);
 
         //RUTAS PARA EVENTOS
         this.app.use('/api/eventos', routesEventos);
         this.app.use('/api/actividades', routesActividades);
+        this.app.use('/api/actividades/tareas', routesRelacionActividadTarea);
+        this.app.use('/api/actividades/proveedor', routesRelacionActividadProveedor);
         this.app.use('/api/asistentes', routesAsistentes);
         this.app.use('/api/tareas', routesTareas);
         this.app.use('/api/lugares', routesLugares);
         this.app.use('/api/proveedores', routesProveedores);
+        this.app.use('/api/actividades/falleros', routesFalleroActividad);
 
         //RUTAS PARA BLOG
-        this.app.use('/api/blog/entradas', routesEntradas);
-        this.app.use('/api/blog/entradas/comentarios', routesComentarios);
+        this.app.use('/api/blog/entradas', routesEntradasComentarios);
         this.app.use('/api/blog/estado', routesEstados);
 
     }

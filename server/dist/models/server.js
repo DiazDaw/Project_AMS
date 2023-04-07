@@ -9,12 +9,17 @@ const falleroRoutes_1 = __importDefault(require("../routes/falleroRoutes"));
 const eventoRoutes_1 = __importDefault(require("../routes/eventoRoutes"));
 const lugaresRoutes_1 = __importDefault(require("../routes/lugaresRoutes"));
 const proveedoresRoutes_1 = __importDefault(require("../routes/proveedoresRoutes"));
-const entradaRoutes_1 = __importDefault(require("../routes/entradaRoutes"));
+const asistenteRoutes_1 = __importDefault(require("../routes/asistenteRoutes"));
 const rolFallerosRoutes_1 = __importDefault(require("../routes/rolFallerosRoutes"));
 const rolGestionRoutes_1 = __importDefault(require("../routes/rolGestionRoutes"));
 const tareaRoutes_1 = __importDefault(require("../routes/tareaRoutes"));
 const actividadesRoutes_1 = __importDefault(require("../routes/actividadesRoutes"));
 const estadosRoutes_1 = __importDefault(require("../routes/estadosRoutes"));
+const relacionActividadTareaRoutes_1 = __importDefault(require("../routes/relacionActividadTareaRoutes"));
+const relacionActividadProveedorRoutes_1 = __importDefault(require("../routes/relacionActividadProveedorRoutes"));
+const entradasComentariosRoutes_1 = __importDefault(require("../routes/entradasComentariosRoutes"));
+const relacionFalleroActividadRoutes_1 = __importDefault(require("../routes/relacionFalleroActividadRoutes"));
+const relacionFalleroTareasRoutes_1 = __importDefault(require("../routes/relacionFalleroTareasRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     constructor() {
@@ -35,16 +40,19 @@ class Server {
         this.app.use('/api/falleros', falleroRoutes_1.default);
         this.app.use('/api/falleros/roles/gestion', rolGestionRoutes_1.default);
         this.app.use('/api/falleros/roles/comision', rolFallerosRoutes_1.default);
+        this.app.use('/api/falleros/tareas', relacionFalleroTareasRoutes_1.default);
         //RUTAS PARA EVENTOS
         this.app.use('/api/eventos', eventoRoutes_1.default);
         this.app.use('/api/actividades', actividadesRoutes_1.default);
-        // this.app.use('/api/asistentes', routesAsistentes);
+        this.app.use('/api/actividades/tareas', relacionActividadTareaRoutes_1.default);
+        this.app.use('/api/actividades/proveedor', relacionActividadProveedorRoutes_1.default);
+        this.app.use('/api/asistentes', asistenteRoutes_1.default);
         this.app.use('/api/tareas', tareaRoutes_1.default);
         this.app.use('/api/lugares', lugaresRoutes_1.default);
         this.app.use('/api/proveedores', proveedoresRoutes_1.default);
+        this.app.use('/api/actividades/falleros', relacionFalleroActividadRoutes_1.default);
         //RUTAS PARA BLOG
-        this.app.use('/api/blog/entradas', entradaRoutes_1.default);
-        // this.app.use('/api/blog/entradas/comentarios', routesComentarios);
+        this.app.use('/api/blog/entradas', entradasComentariosRoutes_1.default);
         this.app.use('/api/blog/estado', estadosRoutes_1.default);
     }
     //METODOS PARA EJECUTAR ANTES DE QUE LA PETICION LLEGUE AL SERVIDOR Y EVITAR FALLO. SE USA EN EL CONSTRUCTOR ANTES DE USAR EL METODO ROUTES

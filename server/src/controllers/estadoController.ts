@@ -1,43 +1,57 @@
 import { Request, Response } from "express";
 
+import connection from "../db/connection";
+
 
 //METODOS ACCESO REST API TABLA DE ESTADOS DE ENTRADAS Y COMENTARIOS
 export const getEstado = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getEstado"
+    connection.query('SELECT * FROM estado', (err,data) => {
+        if(err) throw err;
+        res.json(data);
     })
 }
 
 export const getOneEstado = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getOneEstado"
+    const { id } = req.params;
+
+    connection.query('SELECT * FROM estado WHERE idEstado = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json(data[0]);
     })
 }
 
 export const deleteEstado = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo deleteEstado",
-        id: req.params
+    const { id } = req.params;
+
+    connection.query('DELETE FROM estado WHERE idEstado = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Estado de post o comentario eliminado con éxito."
+        });
     })
 }
 
 export const postEstado = (req: Request, res: Response) => {
-    console.log(req.body);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo postEstado",
-        body: req.body
+    connection.query('INSERT INTO estado set ?',[body], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Estado de post o comentario creado con éxito."
+        });
     })
 }
 
 export const updateEstado = (req: Request, res: Response) => {
-    console.log(req.body);
-    console.log(req.params);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo updateEstado",
-        body: req.body,
-        id: req.params
+    connection.query('UPDATE estado set ? WHERE idEstado = ?',[body, id], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Estado de post o comentario actualizado con éxito."
+        });
     })
 }
 

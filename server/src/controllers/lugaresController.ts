@@ -1,42 +1,56 @@
 import { Request, Response } from "express";
 
+import connection from "../db/connection";
+
 //METODOS ACCESO REST API TABLA DE LUGARES
 export const getLugar = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getLugar"
+    connection.query('SELECT * FROM lugar', (err,data) => {
+        if(err) throw err;
+        res.json(data);
     })
 }
 
 export const getOneLugar = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo getOneLugar"
+    const { id } = req.params;
+
+    connection.query('SELECT * FROM lugar WHERE idLugar = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json(data[0]);
     })
 }
 
 export const deleteLugar = (req: Request, res: Response) => {
-    res.json({
-        msg: "Metodo deleteLugar",
-        id: req.params
+    const { id } = req.params;
+
+    connection.query('DELETE FROM lugar WHERE idLugar = ?',id, (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Lugar para eventos eliminado con éxito."
+        });
     })
 }
 
 export const postLugar = (req: Request, res: Response) => {
-    console.log(req.body);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo postLugar",
-        body: req.body
+    connection.query('INSERT INTO lugar set ?',[body], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Lugar para eventos creado con éxito."
+        });
     })
 }
 
 export const updateLugar = (req: Request, res: Response) => {
-    console.log(req.body);
-    console.log(req.params);
+    const { body } = req;
+    const { id } = req.params;
 
-    res.json({
-        msg: "Metodo updateLugar",
-        body: req.body,
-        id: req.params
+    connection.query('UPDATE lugar set ? WHERE idLugar = ?',[body, id], (err,data) => {
+        if(err) throw err;
+        res.json({
+            msg: "Lugar para eventos actualizado con éxito."
+        });
     })
 }
 
