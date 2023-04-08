@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateComentario = exports.postComentario = exports.deleteComentario = exports.getOneComentario = exports.getComentario = exports.updateEntrada = exports.postEntrada = exports.deleteEntrada = exports.getOneEntrada = exports.getEntrada = void 0;
+exports.updateComentario = exports.postComentario = exports.deleteComentario = exports.getOneComentario = exports.getComentarioFromEntrada = exports.getAllComentario = exports.updateEntrada = exports.postEntrada = exports.deleteEntrada = exports.getOneEntrada = exports.getEntrada = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ENTRADAS
 const getEntrada = (req, res) => {
@@ -59,17 +59,27 @@ const updateEntrada = (req, res) => {
 };
 exports.updateEntrada = updateEntrada;
 //METODOS ACCESO REST API PARA LA TABLA DE COMENTARIO
-const getComentario = (req, res) => {
+const getAllComentario = (req, res) => {
     connection_1.default.query('SELECT * FROM comentario', (err, data) => {
         if (err)
             throw err;
         res.json(data);
     });
 };
-exports.getComentario = getComentario;
+exports.getAllComentario = getAllComentario;
+const getComentarioFromEntrada = (req, res) => {
+    const { id_Entrada } = req.params;
+    connection_1.default.query('SELECT * FROM comentario WHERE id_Entrada = ?', id_Entrada, (err, data) => {
+        if (err)
+            throw err;
+        res.json(data);
+    });
+};
+exports.getComentarioFromEntrada = getComentarioFromEntrada;
 const getOneComentario = (req, res) => {
-    const { id } = req.params;
-    connection_1.default.query('SELECT * FROM comentario WHERE idComentario = ? and id_Entrada = ?', id, (err, data) => {
+    const { id_Entrada } = req.params;
+    const { idComentario } = req.params;
+    connection_1.default.query('SELECT * FROM comentario WHERE id_Entrada = ? and idComentario = ?', [id_Entrada, idComentario], (err, data) => {
         if (err)
             throw err;
         res.json(data[0]);

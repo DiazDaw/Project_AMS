@@ -10,9 +10,10 @@ router.delete('/:id', entradasComentariosController_1.deleteEntrada);
 router.post('/', entradasComentariosController_1.postEntrada);
 router.put('/:id', entradasComentariosController_1.updateEntrada);
 //RUTAS CRUD COMENTARIOS
-router.get('/comentario/', entradasComentariosController_1.getComentario);
-router.get(':idEntrada/comentario/:id', entradasComentariosController_1.getOneComentario);
+router.get('/comentario', entradasComentariosController_1.getAllComentario); //NO FUNCIONA
+router.get('/:id_Entrada/comentario', entradasComentariosController_1.getComentarioFromEntrada);
+router.get('/:id_Entrada/comentario/:idComentario', entradasComentariosController_1.getOneComentario);
 router.delete('/comentario/:id', entradasComentariosController_1.deleteComentario);
-router.post('/comentario/', entradasComentariosController_1.postComentario);
+router.post('/comentario', entradasComentariosController_1.postComentario);
 router.put('/comentario/:id', entradasComentariosController_1.updateComentario);
 exports.default = router;
