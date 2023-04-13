@@ -1,13 +1,35 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Falla Padre Santonja</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
+<mat-toolbar color="primary"style="background-color: black;">
+  <img src="../../../assets/img/escudo-valencia-removebg-preview.png" class="img-fluid" alt="Descripción de la imagen"
+    width="35px">
+
+  
+  <a mat-button href="" class="ms-3">Inicio</a>
+
+  <a mat-button href="/inscripcion">Inscripción</a>
+
+  <a mat-button href="/blog">Blog</a>
+
+  <button mat-button [matMenuTriggerFor]="belowMenu">Sobre nosotros</button>
+  <mat-menu #belowMenu="matMenu" xPosition="after">
+    <a mat-menu-item href="/nosotros/historia">Historia</a>
+    <a mat-menu-item href="/nosotros/premios">Premios</a>
+    <a mat-menu-item href="/nosotros/comision">Comisión</a>
+    <a mat-menu-item href="/nosotros/colaboradores">Colaboradores</a>
+  </mat-menu>
+
+  <a mat-button href="/contacto">Contacto</a>
+
+  <span class="example-spacer"></span>
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button (click)="loginNavigate()">
+    <span class="material-icons-outlined">
+      account_circle
+    </span>
+  </button>
+  <form class="d-flex" role="search">
+    <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Search">
+    <button class="btn" type="submit" style="background-color: #fca311;">Buscar</button>
+  </form>
+
 </mat-toolbar>
