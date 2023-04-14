@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  loginForm = new FormGroup({
+    dni : new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
+
+  dni!: string;
+  password!: string;
+  error: boolean = false;
+
+  constructor() { }
 
 }
