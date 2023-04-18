@@ -1,0 +1,13 @@
+.formularioLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%
+}
+
+.imgLogin{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1%;
+}

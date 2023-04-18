@@ -1,11 +1,17 @@
-<div class="d-flex justify-content-center align-items-center">
+
+
+<div class="row formularioLogin">
+    <div class="imgLogin">
+        <img src="../../../assets/img/escudo-valencia-removebg-preview.png" alt="Escudo" width="10%" height="10%">
+    </div>
     <div class="card" style="width: 30rem;">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <form>
-                <div>
-                    <form class="row" [formGroup]="loginForm">
-                    <mat-form-field appearance="fill">
+            <div>
+                <h1 class="card-title text-center m-5">Inicia sesión</h1>
+            </div>
+            <div>
+                <form class="row p-3" [formGroup]="loginForm">
+                    <mat-form-field appearance="fill" class="mb-4">
                         <mat-label>Usuario</mat-label>
                         <input matInput type="text" formControlName="dni">
                     </mat-form-field>
@@ -14,15 +20,14 @@
                         <input matInput type="password" formControlName="password">
                     </mat-form-field>
                 </form>
-                </div>
-                <div>
-                    <button class="btn btn-primary" type="submit">Iniciar sesion</button>
-                </div>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <button class="btn btn-primary" type="submit">Iniciar sesion</button>
+            </div>
 
-                <div *ngIf="error">
-                    {{error}}
-                  </div>
-            </form>
+            <div *ngIf="error">
+                {{error}}
+            </div>
         </div>
     </div>
 </div>
