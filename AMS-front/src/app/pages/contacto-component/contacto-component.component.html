@@ -1,16 +1,105 @@
 <div class="p-5 text-center bg-image" style="
-        background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
+        background-image: url('../../../assets/img/AI-Capital-Contact-Us.jpg');
         height: 300px;
+        background-repeat: no-repeat;
+        background-size: cover;
       ">
-    <div>
-        <div class="d-flex justify-content-center align-items-center h-100">
-            <div class="text-white">
-                <h1 class="mb-3">Heading</h1>
-                <h4 class="mb-3">Subheading</h4>
-                <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
+</div>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="d-flex justify-content-center align-content-center h1Contact">
+            <h1>
+                CONTACTA CON NOSOTROS
+            </h1>
+        </div>
+    </div>
+    <div class="row divContact">
+        <div class="col-6">
+            <div class="mt-5">
+                <h1 class="text-center m-5">Ven a visitarnos</h1>
+            </div>
+            <div id="map-container-google-1" class="z-depth-1-half map-container d-flex justify-content-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12320.906016334826!2d-0.4178403281065124!3d39.464211411597304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd604f262548d3a3%3A0xefdd4266c0593159!2sFalla%20Doctor%20Mara%C3%B1%C3%B3n-Mestre%20Palau!5e0!3m2!1ses!2ses!4v1682002107842!5m2!1ses!2ses"
+                    width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <div class="col-6 text-center">
+            <div class="row formularioLogin mt-5">
+                <div class="w-75">
+                    <div>
+                        <div>
+                            <h1 class="text-center mb-5">Mándanos un email</h1>
+                        </div>
+                        <div class="card">
+                            <form class="row m-5" [formGroup]="loginForm">
+                                <div>
+                                    <mat-form-field appearance="fill" class="mb-4 w-75">
+                                        <mat-label>Nombre</mat-label>
+                                        <input matInput type="text" formControlName="dni">
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field appearance="fill" class="mb-4 w-75">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput type="password" formControlName="password">
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field class="w-75">
+                                        <mat-label>Mensaje</mat-label>
+                                        <textarea matInput name="msg" cols="20" rows="5" required
+                                            formControlName="msg"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button [disabled]="loginForm.invalid" class="btn btn-primary w-25" type="submit">Enviar</button>
+                                </div>
+                                <div class="alert alert-danger mt-2" *ngIf="loginForm.invalid">
+                                    Por favor rellene el cuestionario correctamente.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<p>contacto-component works!</p>
+
+
+
+
+<!-- <div class="container-fluid" style="background-color: aquamarine;">
+    <div class="row justify-content-center">
+        <div class="row text-center">
+            <h1>Monumentos 2023</h1>
+        </div>
+        <div class="col-6">
+            <div class="row g-0 justify-content-end">
+                <div class="col-md-4">
+                    
+                    <div id="map-container-google-1" class="z-depth-1-half map-container">
+                        <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row g-0 justify-content-start">
+                <div class="col-md-4">
+                    <img src="../../../assets/img/falla-grande.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

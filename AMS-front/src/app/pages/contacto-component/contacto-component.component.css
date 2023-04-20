@@ -1,0 +1,31 @@
+
+body{
+    font-family: 'OpenSans';
+}
+
+.map-container {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.map-container iframe {
+
+    height: 75%;
+    width: 75%;
+    position: absolute;
+}
+
+h1 {
+    font-size: 2.48832em;
+}
+
+.h1Contact {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.divContact {
+    background-color: #edede9;
+}

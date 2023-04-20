@@ -43,7 +43,7 @@ const routes: Routes = [
     },
     {
         path: 'contacto',
-        component: ContactoComponentComponent
+        loadChildren: () => import('../app/pages/contacto-component/contacto-component.module').then(m => m.ContactoComponentModule)
     },
     {
         path: 'login', loadChildren: () => import('../app/pages/login/login.module').then(m => m.LoginModule)
