@@ -1,52 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ContactoComponentComponent } from './pages/contacto-component/contacto-component.component';
-import { InscripcionComponent } from './pages/inscripcion/inscripcion.component';
-import { LoginComponent } from './pages/login/login.component';
-import { HystoryComponentComponent } from './pages/about-us/pages/hystory-component/hystory-component.component';
-import { TrophiesComponent } from './pages/about-us/pages/trophies/trophies.component';
-import { PeopleComponent } from './pages/about-us/pages/people/people.component';
-import { HomeComponent } from './pages/home/home.component';
-import { BlogComponent } from './pages/blog/blog.component';
-import { PartnersComponent } from './pages/about-us/pages/partners/partners.component';
-
 const routes: Routes = [
 
     {
         path: '',
-        component: HomeComponent
+        loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomeComponentModule)
     },
     {
         path: 'inscripcion',
-        component: InscripcionComponent
+        loadChildren: () => import('../app/pages/inscripcion/inscripcion.module').then(m => m.InscripcionComponentModule)
     },
     {
         path: 'blog',
-        component: BlogComponent
+        loadChildren: () => import('../app/pages/blog/blog.module').then(m => m.BlogComponentModule)
     },
     {
-        path: 'nosotros/historia',
-        component: HystoryComponentComponent
-    },
-    {
-        path: 'nosotros/premios',
-        component: TrophiesComponent
-    },
-    {
-        path: 'nosotros/comision',
-        component: PeopleComponent
-    },
-    {
-        path: 'nosotros/colaboradores',
-        component: PartnersComponent
+        path: 'nosotros',
+        loadChildren: () => import('../app/pages/about-us/about-us.module').then(m => m.AboutUsComponentModule)
     },
     {
         path: 'contacto',
         loadChildren: () => import('../app/pages/contacto-component/contacto-component.module').then(m => m.ContactoComponentModule)
     },
     {
-        path: 'login', loadChildren: () => import('../app/pages/login/login.module').then(m => m.LoginModule)
+        path: 'login', loadChildren: () => import('../app/pages/login/login.module').then(m => m.LoginComponentModule)
     }
 ]
 @NgModule({

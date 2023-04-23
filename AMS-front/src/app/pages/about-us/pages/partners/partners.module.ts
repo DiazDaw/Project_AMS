@@ -1,27 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { LoginRoutingModule } from './login-routing.module';
 import { MatInputModule } from '@angular/material/input';
-import { LoginComponent } from './login.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { PartnersComponent } from './partners.component';
+import { PartnersRoutingModule } from './partners-routing.module';
 
 
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [PartnersComponent],
   imports: [
     CommonModule,
-    LoginRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
-  ],
-  exports: [LoginComponent]
+    HttpClientModule,
+    PartnersRoutingModule
+  ]
 })
-export class LoginComponentModule { }
+export class PartnersComponentModule { }

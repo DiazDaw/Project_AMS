@@ -4,3 +4,13 @@ h1 {
     font-size: 50px;
     font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
+
+p {
+    font-size: large;
+}
+
+
+.scrollOver {
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
