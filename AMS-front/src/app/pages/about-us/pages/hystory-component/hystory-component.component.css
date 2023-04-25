@@ -6,3 +6,18 @@ p {
     font-size: medium;
     text-align: justify;
 }
+
+.circleImg {
+    background-color: #edede9;
+    border-radius: 40%;
+}
+
+.yearMoment {
+    font-size: medium;
+    font-weight: bold;
+}
+
+
+/* .horizontal-gradient {
+    background: linear-gradient(to right, blue, pink);
+} */

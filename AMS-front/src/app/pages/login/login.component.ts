@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserLoginService } from './services/user-login.service';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
     dni : new FormControl('', Validators.required),
@@ -18,6 +19,15 @@ export class LoginComponent {
   password!: string;
   error: boolean = false;
 
-  constructor() { }
+  constructor( private login: UserLoginService) { }
+
+  ngOnInit(): void {
+    const userData = {
+      username: '54289226A',
+      password: 'vicmorgar12'
+    }
+
+    this.login.login(userData).subscribe((res) => console.log('Logueado'));
+  }
 
 }
