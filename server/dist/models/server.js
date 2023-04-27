@@ -20,6 +20,7 @@ const relacionActividadProveedorRoutes_1 = __importDefault(require("../routes/re
 const entradasComentariosRoutes_1 = __importDefault(require("../routes/entradasComentariosRoutes"));
 const relacionFalleroActividadRoutes_1 = __importDefault(require("../routes/relacionFalleroActividadRoutes"));
 const relacionFalleroTareasRoutes_1 = __importDefault(require("../routes/relacionFalleroTareasRoutes"));
+const loginRoutes_1 = __importDefault(require("../routes/loginRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     constructor() {
@@ -54,6 +55,7 @@ class Server {
         //RUTAS PARA BLOG
         this.app.use('/api/blog/entradas', entradasComentariosRoutes_1.default);
         this.app.use('/api/blog/estado', estadosRoutes_1.default);
+        this.app.use('/api/login', loginRoutes_1.default);
     }
     //METODOS PARA EJECUTAR ANTES DE QUE LA PETICION LLEGUE AL SERVIDOR Y EVITAR FALLO. SE USA EN EL CONSTRUCTOR ANTES DE USAR EL METODO ROUTES
     middlewares() {

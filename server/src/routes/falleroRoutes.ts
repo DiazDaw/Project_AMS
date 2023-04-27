@@ -4,7 +4,7 @@ import { deleteFallero, getFallero, getOne, postFallero, updateFallero } from '.
 const router = Router();
 
 // RUTAS CRUD FALLEROS
-router.post('/', getFallero);
+router.get('/', getFallero);
 router.get('/:id', getOne);
 router.delete('/:id', deleteFallero);
 router.post('/update', postFallero);

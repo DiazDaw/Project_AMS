@@ -16,6 +16,7 @@ import routesRelacionActividadProveedor from '../routes/relacionActividadProveed
 import routesEntradasComentarios from '../routes/entradasComentariosRoutes';
 import routesFalleroActividad from '../routes/relacionFalleroActividadRoutes';
 import routesFalleroTareas from '../routes/relacionFalleroTareasRoutes';
+import routesLogin from '../routes/loginRoutes';
 
 import connection from '../db/connection';
 
@@ -60,6 +61,7 @@ class Server {
         //RUTAS PARA BLOG
         this.app.use('/api/blog/entradas', routesEntradasComentarios);
         this.app.use('/api/blog/estado', routesEstados);
+        this.app.use('/api/login', routesLogin);
 
     }
 
