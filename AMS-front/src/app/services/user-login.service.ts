@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { UserResponse } from 'src/app/shared/models/user.interface';
-import { User } from 'src/app/shared/models/user.interface';
+import { Observable, throwError } from 'rxjs';
 
 
 import { environment } from 'src/environment';

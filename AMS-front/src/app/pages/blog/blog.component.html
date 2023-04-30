@@ -1,1 +1,19 @@
-<p>blog works!</p>
+<div class="container-fluid">
+    <div class="row justify-content-center align-content-center m-3">
+        <div class="col-auto">
+            <h1>Blog</h1>
+        </div>
+        <div class="row justify-content-start align-content-start mt-3">
+            <div class="col-12">
+                <div class="card mb-2" *ngFor="let post of postsBlog">
+                    <div class="card-header">
+                        <h2><a href="#">{{ post.titulo }}</a></h2>
+                        <p>Escrito por: {{ post.autor}}</p>
+                    </div>
+                    <!-- <div class="card-body">
+                        <p>{{ post.contenido }}</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
