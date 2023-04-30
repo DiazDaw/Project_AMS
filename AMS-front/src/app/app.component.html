@@ -1,8 +1,14 @@
 <div>
-
-    <div>
-        <app-header></app-header>
+    <div *ngIf="isLoggedIn">
+        <app-header
+        [dashboardIcon]="dashboardIcon"></app-header>
     </div>
+
+    <div *ngIf="!isLoggedIn">
+        <app-header [dashboardIcon]="dashboardIcon"></app-header>
+    </div>
+
+    
 
     <div>
         <router-outlet></router-outlet>

@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HystoryComponentComponent } from './hystory-component.component';
+import { HeaderModule } from 'src/app/components/header/header.module';
 
 
 

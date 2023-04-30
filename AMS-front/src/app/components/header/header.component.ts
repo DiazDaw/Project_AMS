@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +8,16 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) { }
+  @Input()
+  dashboardIcon!: string;
 
+  @Output() showContent = new EventEmitter<boolean>();
+
+  constructor(private router: Router) { }
+  
   loginNavigate() {
     this.router.navigate(['/login']);
   }
+
 
 }

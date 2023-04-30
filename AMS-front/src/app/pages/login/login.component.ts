@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserLoginService } from './services/user-login.service';
 
 import { Router } from '@angular/router';
+import { UserResponse } from 'src/app/shared/models/user.interface';
 
 
 @Component({
@@ -18,21 +19,26 @@ export class LoginComponent implements OnInit {
 
   logueado?: boolean;
 
+  myForm: FormGroup;
 
-  loginForm = new FormGroup({
-    dni: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
 
-  
 
-  constructor(private _loginService: UserLoginService, private route: Router) { }
+     
+
+  constructor(private _loginService: UserLoginService, private route: Router, private formBuilder: FormBuilder) { 
+    this.myForm = this.formBuilder.group({
+      dni: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
+  }
 
   ngOnInit(): void { }
 
-  login(dni: string, password:string){
+  login(){
 
-    this._loginService.login(dni, password).subscribe(
+    //console.log(this.myForm.controls['dni'].value, this.myForm.controls['password'].value)
+
+    this._loginService.login(this.myForm.controls['dni'].value, this.myForm.controls['password'].value).subscribe(
       response => {
         // Si la respuesta es verdadera, el usuario se autenticó correctamente
         if (response.length > 0) {

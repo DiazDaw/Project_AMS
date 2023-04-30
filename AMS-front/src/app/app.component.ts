@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserLoginService } from './pages/login/services/user-login.service';
 
 
 @Component({
@@ -9,5 +10,19 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   title = 'AMS-front';
+
+  dashboardIcon = "account_circle";
+
+  constructor(private _loginService: UserLoginService){}
+
+  get isLoggedIn() {
+    if(this._loginService.isLoggedIn === true){
+      this.dashboardIcon = "menu";
+      return true;
+    } else{
+      return false;
+    }
+    
+  }
 
 }

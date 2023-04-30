@@ -7,10 +7,10 @@ export interface User{
 }
 
 
-// export interface UserResponse {
-//     message: string;
-//     token: string;
-//     userId: number;
-//     role: Roles;
-//     contrasenia: string;
-// }
+export interface UserResponse {
+    message: string;
+    token: string;
+    userId: number;
+    role: Roles;
+    contrasenia: string;
+}

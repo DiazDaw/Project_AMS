@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { UserResponse } from 'src/app/shared/models/user.interface';
 import { User } from 'src/app/shared/models/user.interface';
+
 
 import { environment } from 'src/environment';
 
@@ -13,6 +15,9 @@ export class UserLoginService {
   private myAppUrl: string;
   private myApiUrl: string;
 
+  isLoggedIn = false;
+
+
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.api_url;
     this.myApiUrl = 'api/login/';
@@ -20,9 +25,12 @@ export class UserLoginService {
    }
 
 
-  login(user: string, contra: string): Observable<User[]>{
+  login(dni: string, contrasenia: string): Observable<any>{
 
-    return this.http.get<User[]>(`${this.myAppUrl}${this.myApiUrl}${user}/${contra}`);
+    this.isLoggedIn = true;
+    // console.log(dni, contrasenia);
+
+    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, { dni, contrasenia });
   
   }
 

@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from '../home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { HeaderModule } from 'src/app/components/header/header.module';
+import { LoginComponentModule } from '../login/login.module';
 
 
 
@@ -18,7 +20,10 @@ import { HomeRoutingModule } from './home-routing.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    HomeRoutingModule
-  ]
+    HomeRoutingModule,
+    HeaderModule,
+    LoginComponentModule
+  ],
+  exports:[]
 })
 export class HomeComponentModule { }

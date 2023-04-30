@@ -18,14 +18,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HeaderModule } from './components/header/header.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    HeaderComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,16 +7,24 @@ exports.login = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ACTIVIDADES
 const login = (req, res) => {
-    const { dni } = req.params;
-    const { contrasenia } = req.params;
+    const { dni } = req.body;
+    const { contrasenia } = req.body;
+    //  EL PROBLEMA ESTA AQUI
+    // const dni  = '54289226A'
+    // const contrasenia  = 'vicmorgar12'
     connection_1.default.query('SELECT * FROM fallero WHERE dni = ? and contrasenia = ?', [dni, contrasenia], (err, data) => {
         if (err)
             throw err;
+        console.log(dni);
+        console.log(contrasenia);
         res.json(data);
         console.log(data);
     });
 };
 exports.login = login;
+function generateAuthToken(user) {
+    throw new Error("Function not implemented.");
+}
 // export const getOneActividad = (req: Request, res: Response) => {
 //     const { id } = req.params;
 //     connection.query('SELECT * FROM actividad WHERE idActividad = ?',id, (err,data) => {

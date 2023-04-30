@@ -2,22 +2,40 @@ import { Request, Response } from "express";
 
 import connection from "../db/connection";
 
+interface LoginRequest {
+    dni: string;
+    password: string;
+}
 
+  interface LoginResponse {
+    token: string;
+}
 
 //METODOS ACCESO REST API TABLA DE ACTIVIDADES
 export const login = (req: Request, res: Response) => {
 
-    const { dni } = req.params;
-    const { contrasenia } = req.params;
+    const { dni } = req.body;
+    const { contrasenia } = req.body;
+    
+    //  EL PROBLEMA ESTA AQUI
+
+    // const dni  = '54289226A'
+    // const contrasenia  = 'vicmorgar12'
 
 
     connection.query('SELECT * FROM fallero WHERE dni = ? and contrasenia = ?',[dni, contrasenia], (err,data) => {
         if(err) throw err;
+        console.log(dni);
+        console.log(contrasenia);
         res.json(data);
         console.log(data);
     })
 }
 
+
+function generateAuthToken(user: any) {
+    throw new Error("Function not implemented.");
+}
 // export const getOneActividad = (req: Request, res: Response) => {
     
 //     const { id } = req.params;

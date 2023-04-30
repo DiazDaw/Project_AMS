@@ -4,6 +4,6 @@ import { login } from '../controllers/loginController';
 const router = Router();
 
 // RUTA LOGIN
-router.get('/:dni/:contrasenia', login);
+router.post('/', login);
 
 export default router;
