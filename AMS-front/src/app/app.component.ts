@@ -15,12 +15,14 @@ export class AppComponent {
 
   constructor(private _loginService: UserLoginService){}
 
-  get isLoggedIn() {
-    if(this._loginService.isLoggedIn === true){
+  getToken(){
+    const token = localStorage.getItem('token');
+
+    if(token == undefined){
+      return false;
+    } else {
       this.dashboardIcon = "menu";
       return true;
-    } else{
-      return false;
     }
     
   }

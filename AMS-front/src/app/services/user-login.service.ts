@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, throwError } from 'rxjs';
+import { Observable, map, tap, throwError } from 'rxjs';
 
 
 import { environment } from 'src/environment';
@@ -24,14 +24,21 @@ export class UserLoginService {
   }
 
 
-  login(dni: string, contrasenia: string): Observable<FalleroModel[]> {
+  login(dni: string, contrasenia: string): Observable<any> {
 
     this.isLoggedIn = true;
 
-    return this.http.post<Fallero[]>(`${this.myAppUrl}${this.myApiUrl}`, { dni, contrasenia }).pipe(
-      map(response => response.map(fallero => new FalleroModel(fallero)))
+    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, { dni, contrasenia }).pipe(
+      tap(response => {
+        const token = response.token;
+        this.saveToken(token);
+      })
     );
-
+  
+  }
+  
+  private saveToken(token: string): void {
+    localStorage.setItem('token', token);
   }
 
   logout() {
@@ -40,10 +47,6 @@ export class UserLoginService {
 
   private readToken() {
 
-  }
-
-  private saveToken(token: string): void {
-    localStorage.setItem('token', token);
   }
 
   private handleError(err: { message: any; }): Observable<never> {
