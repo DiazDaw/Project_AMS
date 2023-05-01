@@ -24,6 +24,7 @@ class Server {
 
     private app: express.Application;
     private port: string;
+    // private jwt = require('jsonwebtoken');
 
     constructor(){
         this.app = express();

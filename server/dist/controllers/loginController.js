@@ -7,16 +7,16 @@ exports.login = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ACTIVIDADES
 const login = (req, res) => {
+    // const jwt = require('jsonwebtoken');
     const { dni } = req.body;
     const { contrasenia } = req.body;
-    //  EL PROBLEMA ESTA AQUI
-    // const dni  = '54289226A'
-    // const contrasenia  = 'vicmorgar12'
     connection_1.default.query('SELECT * FROM fallero WHERE dni = ? and contrasenia = ?', [dni, contrasenia], (err, data) => {
         if (err)
             throw err;
         console.log(dni);
         console.log(contrasenia);
+        // const token = jwt.sign(dni, "my_secret_token")
+        // res.json(token);
         res.json(data);
         console.log(data);
     });

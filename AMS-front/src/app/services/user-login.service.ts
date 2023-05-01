@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 
 
 import { environment } from 'src/environment';
+import { Fallero } from '../interfaces/fallero.interface';
+import { FalleroModel } from '../models/fallero.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +17,21 @@ export class UserLoginService {
 
   isLoggedIn = false;
 
-
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.api_url;
     this.myApiUrl = 'api/login/';
 
-   }
+  }
 
 
-  login(dni: string, contrasenia: string): Observable<any>{
+  login(dni: string, contrasenia: string): Observable<FalleroModel[]> {
 
     this.isLoggedIn = true;
-    // console.log(dni, contrasenia);
 
-    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, { dni, contrasenia });
-  
+    return this.http.post<Fallero[]>(`${this.myAppUrl}${this.myApiUrl}`, { dni, contrasenia }).pipe(
+      map(response => response.map(fallero => new FalleroModel(fallero)))
+    );
+
   }
 
   logout() {
@@ -40,15 +42,15 @@ export class UserLoginService {
 
   }
 
-  private saveToken( token: string): void {
+  private saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
   private handleError(err: { message: any; }): Observable<never> {
 
     let errorMsg = 'Ha ocurrido un error';
-    
-    if(err){
+
+    if (err) {
       errorMsg = `Error code: ${err.message}`;
     }
 

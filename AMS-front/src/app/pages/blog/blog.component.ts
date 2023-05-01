@@ -22,7 +22,6 @@ export class BlogComponent implements OnInit {
     this._blogService.getPost().subscribe(
       response => {
         this.postsBlog = response;
-        console.log(this.postsBlog[0].titulo)
     });
   }
 

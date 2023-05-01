@@ -2,31 +2,24 @@ import { Request, Response } from "express";
 
 import connection from "../db/connection";
 
-interface LoginRequest {
-    dni: string;
-    password: string;
-}
 
-  interface LoginResponse {
-    token: string;
-}
+
+
 
 //METODOS ACCESO REST API TABLA DE ACTIVIDADES
 export const login = (req: Request, res: Response) => {
 
+    // const jwt = require('jsonwebtoken');
+
     const { dni } = req.body;
     const { contrasenia } = req.body;
-    
-    //  EL PROBLEMA ESTA AQUI
-
-    // const dni  = '54289226A'
-    // const contrasenia  = 'vicmorgar12'
-
 
     connection.query('SELECT * FROM fallero WHERE dni = ? and contrasenia = ?',[dni, contrasenia], (err,data) => {
         if(err) throw err;
         console.log(dni);
         console.log(contrasenia);
+        // const token = jwt.sign(dni, "my_secret_token")
+        // res.json(token);
         res.json(data);
         console.log(data);
     })

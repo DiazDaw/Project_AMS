@@ -23,6 +23,7 @@ const relacionFalleroTareasRoutes_1 = __importDefault(require("../routes/relacio
 const loginRoutes_1 = __importDefault(require("../routes/loginRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
+    // private jwt = require('jsonwebtoken');
     constructor() {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '4000';
