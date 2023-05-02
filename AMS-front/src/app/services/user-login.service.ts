@@ -4,8 +4,7 @@ import { Observable, map, tap, throwError } from 'rxjs';
 
 
 import { environment } from 'src/environment';
-import { Fallero } from '../interfaces/fallero.interface';
-import { FalleroModel } from '../models/fallero.model';
+import { LoginResponseModel } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class UserLoginService {
   }
 
 
-  login(dni: string, contrasenia: string): Observable<any> {
+  login(dni: string, contrasenia: string): Observable<LoginResponseModel> {
 
     this.isLoggedIn = true;
 
@@ -32,7 +31,8 @@ export class UserLoginService {
       tap(response => {
         const token = response.token;
         this.saveToken(token);
-      })
+      }),
+       map(response => new LoginResponseModel(response))
     );
   
   }
