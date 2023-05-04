@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   myForm: FormGroup;
 
-  loginResponse?: LoginResponseModel; 
+  loginResponse?: LoginResponseModel;
 
 
   constructor(private _loginService: UserLoginService, private _infoUserService: InfoUserService, private route: Router, private formBuilder: FormBuilder) {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     this._loginService.login(this.myForm.controls['dni'].value, this.myForm.controls['password'].value).subscribe(
       response => {
-        // Si la respuesta es mayor que 1, el usuario se autentificó correctamente
+        // Si el servidor da respuesta, el usuario se identificó correctamente
         if (response) {
           this.logueado = true;
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this.loginResponse = new LoginResponseModel(response);
 
           //Almacenamos nuestro modelo en localstorage para que no se borre al recargar pagina
-          localStorage.setItem('loginResponse', JSON.stringify(this.loginResponse));
+          sessionStorage.setItem('loginResponse', JSON.stringify(this.loginResponse));
 
           //Pasamos nuestro modelo al servicio para poder exportarlo a otros componentes
           this._infoUserService.loginUser = this.loginResponse;

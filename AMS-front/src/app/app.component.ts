@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserLoginService } from '../app/services/user-login.service';
 
 
@@ -7,7 +7,7 @@ import { UserLoginService } from '../app/services/user-login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'AMS-front';
 
@@ -15,8 +15,10 @@ export class AppComponent {
 
   constructor(private _loginService: UserLoginService){}
 
+  ngOnInit(): void {}
+
   getToken(){
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
 
     if(token == undefined){
       return false;

@@ -13,10 +13,10 @@ import { LoginResponseModel } from 'src/app/models/login.model';
 export class BlogComponent implements OnInit {
 
   postsBlog: Post[] = [];
-  token = localStorage.getItem('token');
+  token = sessionStorage.getItem('token');
   dni: string = '';
 
-  localStorageResponse?: any;
+  sessionStorageResponse?: any;
 
   loginResponseModel?: LoginResponseModel;
 
@@ -29,11 +29,11 @@ export class BlogComponent implements OnInit {
 
   getUserInfo() {
     //Recuperamos la info del local storage
-    this.localStorageResponse = localStorage.getItem('loginResponse');
+    this.sessionStorageResponse = sessionStorage.getItem('loginResponse');
 
     // Si se encontraron datos en local storage, convertirlos a un objeto LoginResponseModel
-    if (this.localStorageResponse) {
-      this.loginResponseModel = new LoginResponseModel(JSON.parse(this.localStorageResponse));
+    if (this.sessionStorageResponse) {
+      this.loginResponseModel = new LoginResponseModel(JSON.parse(this.sessionStorageResponse));
     }
   }
 

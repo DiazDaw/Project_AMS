@@ -38,7 +38,7 @@ export class UserLoginService {
   }
   
   private saveToken(token: string): void {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   logout() {

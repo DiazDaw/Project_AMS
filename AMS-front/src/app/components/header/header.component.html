@@ -22,11 +22,17 @@
   <span class="example-spacer"></span>
   <span class="example-spacer"></span>
 
+  <button mat-icon-button *ngIf="loginResponseModel?.usuario?.id_Rol_Gestion === 1" (click)="loginNavigate()">
+    <span class="material-icons">settings</span>
+  </button>
+
   <button mat-icon-button (click)="loginNavigate()">
     <span class="material-icons-outlined">
       {{dashboardIcon}}
     </span>
   </button>
+
+
   <form class="d-flex" role="search">
     <input class="form-control me-1" type="search" placeholder="Buscar" aria-label="Search">
     <button class="btn" type="submit" style="background-color: #fca311;">Buscar</button>
