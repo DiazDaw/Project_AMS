@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderModule } from './components/header/header.module';
+import { UserAdminComponent } from './pages/user-admin/user-admin.component';
 
 
 

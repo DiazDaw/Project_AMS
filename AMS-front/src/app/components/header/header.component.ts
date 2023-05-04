@@ -30,6 +30,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  adminNavigate(){
+    this.router.navigate(['/admin']);
+  }
+  
+
   getUserInfo() {
     //Recuperamos la info del local storage
     this.sessionStorageResponse = sessionStorage.getItem('loginResponse');
