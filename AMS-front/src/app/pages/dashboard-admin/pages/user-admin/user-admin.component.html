@@ -41,13 +41,13 @@
 
             <ng-container matColumnDef="fechaNac">
                 <th mat-header-cell *matHeaderCellDef> Fecha nacimiento </th>
-                <td mat-cell *matCellDef="let element"> {{element.fechaNac}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.fechaNac | date: 'dd/MM/yyyy' }} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="fechaReg">
                 <th mat-header-cell *matHeaderCellDef> Fecha registro </th>
-                <td mat-cell *matCellDef="let element"> {{element.fechaRegistro}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.fechaRegistro | date: 'dd/MM/yyyy'}} </td>
             </ng-container>
 
 
@@ -76,7 +76,7 @@
 
     <div class="row justify-content-end align-content-end">
         <div class="col-2 text-end mt-5">
-            <button mat-raised-button color="primary">Agregar un fallero</button>
+            <button mat-raised-button color="primary" (click)="apuntarEditar()">Apuntar un fallero nuevo</button>
         </div>
     </div>
 

@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,14 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { UserAdminComponent } from './user-admin.component';
-import { UserAdminRoutingModule } from './user-admin-routing.module';
 import { MatButtonModule } from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card'; 
-import {MatTableModule} from '@angular/material/table'; 
-import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator'; 
-import {MatSortModule} from '@angular/material/sort'; 
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip'; 
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { DashboardAdminRoutingModule } from '../../dashboard-admin-routing.module';
+import { UserAdminRoutingModule } from './user.admin.routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AgregarEditarFalleroModule } from '../../agregar-editar-fallero/agregar-editar-fallero.module';
 
 
 
@@ -27,14 +32,18 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    UserAdminRoutingModule,
+    DashboardAdminRoutingModule,
     MatButtonModule,
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    UserAdminRoutingModule,
+    MatDialogModule,
+    AgregarEditarFalleroModule
+
   ],
   providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }]
 })
