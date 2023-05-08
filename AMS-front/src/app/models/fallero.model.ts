@@ -2,7 +2,7 @@ import { FalleroResponse } from "../interfaces/fallero.interface";
 
 export class FalleroModel {
 
-    idFallero: number;
+    idFallero?: number;
     nombre: string;
     apellidos: string;
     dni: string;
@@ -10,6 +10,7 @@ export class FalleroModel {
     fechaRegistro: Date;
     id_Rol_Fallero: number;
     id_Rol_Gestion: number;
+    contrasenia: string;
     telefono: string;
 
     constructor(response: FalleroResponse) {
@@ -21,6 +22,7 @@ export class FalleroModel {
         this.fechaRegistro = response.fechaRegistro;
         this.id_Rol_Fallero = response.id_Rol_Fallero;
         this.id_Rol_Gestion = response.id_Rol_Gestion;
+        this.contrasenia = response.contrasenia;
         this.telefono = response.telefono;
     }
 }

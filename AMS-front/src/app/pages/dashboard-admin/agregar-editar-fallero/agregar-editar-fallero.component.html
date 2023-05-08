@@ -1,8 +1,129 @@
-<h2 mat-dialog-title>Agregar fallero</h2>
+<h1 mat-dialog-title class="text-center">Agregar fallero/a </h1>
 <mat-dialog-content>
-  
+  <div>
+    <form [formGroup]="form" class="row" (ngSubmit)="agregarEditarPersona()">
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" formControlName="nombre">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('nombre')?.hasError('maxlength')">Máximo 20 caracteres</span>
+          <span *ngIf="form.get('nombre')?.hasError('pattern')">Este campo sólo admite letras</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Apellidos</mat-label>
+          <input matInput type="text" formControlName="apellidos">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('apellidos')?.hasError('required') && form.get('apellidos')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('apellidos')?.hasError('maxlength')">Máximo 20 caracteres</span>
+          <span *ngIf="form.get('apellidos')?.hasError('pattern')">Este campo sólo admite letras</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Tipo de documento</mat-label>
+          <mat-select formControlName="documentType">
+            <mat-option *ngFor="let document of documentos" [value]="document">
+              {{document}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="error">
+          <span  *ngIf="form.get('documentType')?.hasError('required') && form.get('documentType')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('documentType')?.hasError('maxlength')">Máximo 20 caracteres</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Número de documento</mat-label>
+          <input matInput type="text" formControlName="documento">
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Contraseña</mat-label>
+          <input autocomplete="off" matInput type="password" formControlName="contrasenia">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched" >Campo obligatorio</span>
+          <span *ngIf="form.get('contrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Repetir contraseña</mat-label>
+          <input autocomplete="off" matInput type="password" formControlName="confirmContrasenia">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo obligatorio<br></span>
+          <span *ngIf="form.get('confirmContrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
+          <span *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('confirmContrasenia')?.touched ">Las contraseñas no coinciden</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label> Telefono</mat-label>
+          <input matInput type="text" formControlName="telefono">
+        </mat-form-field>
+        <div class="error" >
+          <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">Campo obligatorio<br></span>
+          <span *ngIf="form.get('telefono')?.hasError('maxlength')">Máximo 9 caracteres</span>
+          <span *ngIf="form.get('telefono')?.hasError('pattern')">Este campo solo admite números</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input autocomplete="off" [max]="maxDate" matInput formControlName="fechaNac" [matDatepicker]="pickerNacimiento">
+          <mat-datepicker-toggle matIconSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerNacimiento></mat-datepicker>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('fechaNac')?.hasError('required') && form.get('fechaNac')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('fechaNac')?.hasError('maxlength')">Máximo 20 caracteres</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
+          <mat-label>Fecha de registro</mat-label>
+          <input autocomplete="off" [max]="maxDate" matInput formControlName="fechaReg" [matDatepicker]="pickerRegistro">
+          <mat-datepicker-toggle matIconSuffix [for]="pickerRegistro"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerRegistro></mat-datepicker>
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('fechaReg')?.hasError('required') && form.get('fechaReg')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('fechaReg')?.hasError('maxlength')">Máximo 20 caracteres</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Comisión</mat-label>
+          <input matInput type="text" formControlName="comision">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('comision')?.hasError('required') && form.get('comision')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('comision')?.hasError('maxlength')">Máximo 20 caracteres</span>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" class="mb-2 w-100">
+          <mat-label>Rol gestión</mat-label>
+          <input autocomplete="off" matInput type="text" formControlName="gestion">
+        </mat-form-field>
+        <div class="error">
+          <span *ngIf="form.get('gestion')?.hasError('required') && form.get('gestion')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('gestion')?.hasError('maxlength')">Máximo 20 caracteres</span>
+        </div>
+      </div>
+      <mat-dialog-actions align="end">
+        <button type="button" mat-button (click)="cancelar()">Cancelar</button>
+        <button type="submit" [disabled]="form.invalid" mat-button cdkFocusInitial>Agregar</button>
+      </mat-dialog-actions>
+    </form>
+  </div>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-button cdkFocusInitial>Agregar</button>
-</mat-dialog-actions>

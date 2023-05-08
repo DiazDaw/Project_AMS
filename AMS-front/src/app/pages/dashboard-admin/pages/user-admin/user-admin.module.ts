@@ -42,6 +42,7 @@ import { AgregarEditarFalleroModule } from '../../agregar-editar-fallero/agregar
     MatTooltipModule,
     UserAdminRoutingModule,
     MatDialogModule,
+    MatFormFieldModule,
     AgregarEditarFalleroModule
 
   ],
