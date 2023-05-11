@@ -17,6 +17,7 @@ import routesEntradasComentarios from '../routes/entradasComentariosRoutes';
 import routesFalleroActividad from '../routes/relacionFalleroActividadRoutes';
 import routesFalleroTareas from '../routes/relacionFalleroTareasRoutes';
 import routesLogin from '../routes/loginRoutes';
+import routesDNI from '../routes/dniRoutes';
 
 import connection from '../db/connection';
 
@@ -47,6 +48,7 @@ class Server {
         this.app.use('/api/falleros/roles/gestion', routesRolesGestion);
         this.app.use('/api/falleros/roles/comision', routesRolesFalleros);
         this.app.use('/api/falleros/tareas', routesFalleroTareas);
+        this.app.use('/api/dni', routesDNI);
 
         //RUTAS PARA EVENTOS
         this.app.use('/api/eventos', routesEventos);

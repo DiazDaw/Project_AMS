@@ -11,6 +11,7 @@ export const getFallero = (req: Request, res: Response) => {
     })
 }
 
+
 export const getOne = (req: Request, res: Response) => {
 
     const { id } = req.params;

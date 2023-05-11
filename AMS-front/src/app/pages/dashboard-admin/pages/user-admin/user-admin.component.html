@@ -6,8 +6,11 @@
         </div>
     </div>
 
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
-    <mat-card>
+
+
+    <mat-card *ngIf="!loading">
 
         <mat-form-field>
             <mat-label>Búsqueda por nombre</mat-label>
@@ -16,6 +19,10 @@
 
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
+            <!-- <ng-container matColumnDef="idFallero">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Id fallero </th>
+                <td mat-cell *matCellDef="let element"> {{element.idFallero}} </td>
+            </ng-container> -->
 
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
@@ -59,8 +66,8 @@
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-icon class="buttonEdit" matTooltip="Editar información del fallero">edit</mat-icon>
-                    <mat-icon class="buttonDelete" matTooltip="Eliminar fallero">delete</mat-icon>
+                    <mat-icon class="buttonEdit" matTooltip="Editar información del fallero" (click)="apuntarEditar(element.idFallero)">edit</mat-icon>
+                    <mat-icon class="buttonDelete" matTooltip="Eliminar fallero" (click)="deleteFallero(element.idFallero)">delete</mat-icon>
                 </td>
             </ng-container>
 

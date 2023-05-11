@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FalleroResponse } from 'src/app/interfaces/fallero.interface';
 import { FallerosService } from 'src/app/services/falleros.service';
 import { AgregarEditarFalleroComponent } from '../../agregar-editar-fallero/agregar-editar-fallero.component';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -19,11 +20,16 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
 
   dataSource: MatTableDataSource<FalleroResponse>;
 
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   displayedColumns: string[] = ['nombre', 'apellidos', 'dni', 'telefono', 'fechaNac', 'fechaReg', 'comision', 'acciones'];
 
   falleros: FalleroResponse[] = [];
 
-  constructor(private _falleroService: FallerosService, public dialog: MatDialog) {
+  loading: boolean = true;
+
+  constructor(private _falleroService: FallerosService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
   }
@@ -47,27 +53,50 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
   }
 
   getAllFalleros() {
-    this._falleroService.getFalleros().subscribe(
-      response => {
-        this.dataSource.data = response;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    );
-    
+    this.loading = true;
+
+    setTimeout(() => {
+      this._falleroService.getFalleros().subscribe(
+        response => {
+          this.loading = false;
+          this.dataSource.data = response;
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      );
+    }, 500);
+
   }
 
-  apuntarEditar() {
+  apuntarEditar(id?: number) {
     const dialogRef = this.dialog.open(AgregarEditarFalleroComponent, {
       width: '50%',
-      disableClose: true
+      disableClose: true,
+      data: { id: id}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialogo cerrado');
-      // this.animal = result;
+      if (result) {
+        this.getAllFalleros();
+      }
     });
 
+  }
+
+  deleteFallero(id: number) {
+    this.loading = true;
+    this._falleroService.deleteFalleros(id).subscribe(() => {
+      this.getAllFalleros();
+      this.deleteExit();
+    })
+  }
+
+  deleteExit() {
+    this._snackBar.open('El fallero/a ha sido eliminado con éxito ', '', {
+      duration: 5000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition
+    });
   }
 
 

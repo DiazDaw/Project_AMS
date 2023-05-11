@@ -21,6 +21,7 @@ const entradasComentariosRoutes_1 = __importDefault(require("../routes/entradasC
 const relacionFalleroActividadRoutes_1 = __importDefault(require("../routes/relacionFalleroActividadRoutes"));
 const relacionFalleroTareasRoutes_1 = __importDefault(require("../routes/relacionFalleroTareasRoutes"));
 const loginRoutes_1 = __importDefault(require("../routes/loginRoutes"));
+const dniRoutes_1 = __importDefault(require("../routes/dniRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     // private jwt = require('jsonwebtoken');
@@ -43,6 +44,7 @@ class Server {
         this.app.use('/api/falleros/roles/gestion', rolGestionRoutes_1.default);
         this.app.use('/api/falleros/roles/comision', rolFallerosRoutes_1.default);
         this.app.use('/api/falleros/tareas', relacionFalleroTareasRoutes_1.default);
+        this.app.use('/api/dni', dniRoutes_1.default);
         //RUTAS PARA EVENTOS
         this.app.use('/api/eventos', eventoRoutes_1.default);
         this.app.use('/api/actividades', actividadesRoutes_1.default);

@@ -19,6 +19,9 @@ import { DashboardAdminRoutingModule } from '../../dashboard-admin-routing.modul
 import { UserAdminRoutingModule } from './user.admin.routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AgregarEditarFalleroModule } from '../../agregar-editar-fallero/agregar-editar-fallero.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 
@@ -43,7 +46,10 @@ import { AgregarEditarFalleroModule } from '../../agregar-editar-fallero/agregar
     UserAdminRoutingModule,
     MatDialogModule,
     MatFormFieldModule,
-    AgregarEditarFalleroModule
+    AgregarEditarFalleroModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    
 
   ],
   providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }]

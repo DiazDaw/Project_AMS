@@ -1,4 +1,8 @@
-<h1 mat-dialog-title class="text-center">Agregar fallero/a </h1>
+<div class="container d-flex justify-content-between">
+      <h1 class=" mt-2" mat-dialog-title>{{ tipo }} fallero/a </h1>
+      <mat-spinner *ngIf="loading" [diameter]="50" class="me-4 mt-3"></mat-spinner>
+</div>
+
 <mat-dialog-content>
   <div>
     <form [formGroup]="form" class="row" (ngSubmit)="agregarEditarPersona()">
@@ -19,12 +23,13 @@
           <input matInput type="text" formControlName="apellidos">
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('apellidos')?.hasError('required') && form.get('apellidos')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('apellidos')?.hasError('required') && form.get('apellidos')?.touched">Campo
+            obligatorio</span>
           <span *ngIf="form.get('apellidos')?.hasError('maxlength')">Máximo 20 caracteres</span>
           <span *ngIf="form.get('apellidos')?.hasError('pattern')">Este campo sólo admite letras</span>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Tipo de documento</mat-label>
           <mat-select formControlName="documentType">
@@ -34,15 +39,20 @@
           </mat-select>
         </mat-form-field>
         <div class="error">
-          <span  *ngIf="form.get('documentType')?.hasError('required') && form.get('documentType')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('documentType')?.hasError('required') && form.get('documentType')?.touched">Campo
+            obligatorio</span>
           <span *ngIf="form.get('documentType')?.hasError('maxlength')">Máximo 20 caracteres</span>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Número de documento</mat-label>
           <input matInput type="text" formControlName="documento">
         </mat-form-field>
+        <div class="error">
+          <span *ngIf="checkDNIS() && form.get('documento')?.touched">El dni ya está asociado a un usuario</span>
+          <span *ngIf="form.get('documento')?.hasError('pattern')">Este campo solo admite mayúsculas</span>
+        </div>
       </div>
       <div class="col-6">
         <mat-form-field appearance="fill" class="mb-2 w-100">
@@ -50,7 +60,8 @@
           <input autocomplete="off" matInput type="password" formControlName="contrasenia">
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched" >Campo obligatorio</span>
+          <span *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched">Campo
+            obligatorio</span>
           <span *ngIf="form.get('contrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
         </div>
       </div>
@@ -60,9 +71,13 @@
           <input autocomplete="off" matInput type="password" formControlName="confirmContrasenia">
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo obligatorio<br></span>
+          <span
+            *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo
+            obligatorio<br></span>
           <span *ngIf="form.get('confirmContrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
-          <span *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('confirmContrasenia')?.touched ">Las contraseñas no coinciden</span>
+          <span
+            *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('confirmContrasenia')?.touched ">Las
+            contraseñas no coinciden</span>
         </div>
       </div>
       <div class="col-6">
@@ -70,8 +85,9 @@
           <mat-label> Telefono</mat-label>
           <input matInput type="text" formControlName="telefono">
         </mat-form-field>
-        <div class="error" >
-          <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">Campo obligatorio<br></span>
+        <div class="error">
+          <span *ngIf="form.get('telefono')?.hasError('required') && form.get('telefono')?.touched">Campo
+            obligatorio<br></span>
           <span *ngIf="form.get('telefono')?.hasError('maxlength')">Máximo 9 caracteres</span>
           <span *ngIf="form.get('telefono')?.hasError('pattern')">Este campo solo admite números</span>
         </div>
@@ -79,25 +95,29 @@
       <div class="col-6">
         <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
           <mat-label>Fecha de nacimiento</mat-label>
-          <input autocomplete="off" [max]="maxDate" matInput formControlName="fechaNac" [matDatepicker]="pickerNacimiento">
+          <input autocomplete="off" [max]="maxDate" matInput formControlName="fechaNac"
+            [matDatepicker]="pickerNacimiento">
           <mat-datepicker-toggle matIconSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
           <mat-datepicker touchUi #pickerNacimiento></mat-datepicker>
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('fechaNac')?.hasError('required') && form.get('fechaNac')?.touched">Campo obligatorio</span>
-          <span *ngIf="form.get('fechaNac')?.hasError('maxlength')">Máximo 20 caracteres</span>
+          <span *ngIf="form.get('fechaNac')?.hasError('required') && form.get('fechaNac')?.touched">Campo
+            obligatorio</span>
+          
         </div>
       </div>
       <div class="col-6">
         <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
           <mat-label>Fecha de registro</mat-label>
-          <input autocomplete="off" [max]="maxDate" matInput formControlName="fechaReg" [matDatepicker]="pickerRegistro">
+          <input autocomplete="off" [max]="maxDate" matInput formControlName="fechaReg"
+            [matDatepicker]="pickerRegistro">
           <mat-datepicker-toggle matIconSuffix [for]="pickerRegistro"></mat-datepicker-toggle>
           <mat-datepicker touchUi #pickerRegistro></mat-datepicker>
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('fechaReg')?.hasError('required') && form.get('fechaReg')?.touched">Campo obligatorio</span>
-          <span *ngIf="form.get('fechaReg')?.hasError('maxlength')">Máximo 20 caracteres</span>
+          <span *ngIf="form.get('fechaReg')?.hasError('required') && form.get('fechaReg')?.touched">Campo
+            obligatorio</span>
+          
         </div>
       </div>
       <div class="col-6">
@@ -106,7 +126,8 @@
           <input matInput type="text" formControlName="comision">
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('comision')?.hasError('required') && form.get('comision')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('comision')?.hasError('required') && form.get('comision')?.touched">Campo
+            obligatorio</span>
           <span *ngIf="form.get('comision')?.hasError('maxlength')">Máximo 20 caracteres</span>
         </div>
       </div>
@@ -116,13 +137,14 @@
           <input autocomplete="off" matInput type="text" formControlName="gestion">
         </mat-form-field>
         <div class="error">
-          <span *ngIf="form.get('gestion')?.hasError('required') && form.get('gestion')?.touched">Campo obligatorio</span>
+          <span *ngIf="form.get('gestion')?.hasError('required') && form.get('gestion')?.touched">Campo
+            obligatorio</span>
           <span *ngIf="form.get('gestion')?.hasError('maxlength')">Máximo 20 caracteres</span>
         </div>
       </div>
       <mat-dialog-actions align="end">
         <button type="button" mat-button (click)="cancelar()">Cancelar</button>
-        <button type="submit" [disabled]="form.invalid" mat-button cdkFocusInitial>Agregar</button>
+        <button type="submit" [disabled]="form.invalid || checkDNIS()" mat-button cdkFocusInitial>Confirmar</button>
       </mat-dialog-actions>
     </form>
   </div>
