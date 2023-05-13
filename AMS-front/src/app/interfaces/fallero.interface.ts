@@ -5,7 +5,7 @@ export interface FalleroResponse {
     apellidos: string;
     dni: string;
     fechaNac: Date;
-    fechaRegistro: Date;
+    fechaRegistro: string;
     id_Rol_Fallero: number;
     id_Rol_Gestion: number;
     telefono: string;

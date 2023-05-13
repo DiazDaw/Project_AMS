@@ -19,6 +19,8 @@
 
   <a mat-button href="/contacto">Contacto</a>
 
+  <a mat-button *ngIf="loginResponseModel?.usuario?.id_Rol_Gestion" href="/actividades">Actividades</a>
+
   <span class="example-spacer"></span>
   <span class="example-spacer"></span>
 

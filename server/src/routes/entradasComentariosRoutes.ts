@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { deleteEntrada, getEntrada, getOneEntrada, postEntrada, updateEntrada, deleteComentario, getAllComentario, getComentarioFromEntrada, getOneComentario, postComentario, updateComentario } from '../controllers/entradasComentariosController';
+import { deleteEntrada, getEntrada, getOneEntrada, postEntrada, updateEntrada, deleteComentario, getAllComentario, getComentarioFromEntrada, getOneComentario, postComentario, updateComentario, getByUser } from '../controllers/entradasComentariosController';
 
 const router = Router();
 
 // RUTAS CRUD ENTRADAS DE BLOG
 router.get('/', getEntrada);
 router.get('/:id', getOneEntrada);
+router.get('/autores/:id', getByUser);
 router.delete('/:id', deleteEntrada);
 router.post('/', postEntrada);
 router.put('/:id', updateEntrada);

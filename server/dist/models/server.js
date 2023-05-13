@@ -22,6 +22,7 @@ const relacionFalleroActividadRoutes_1 = __importDefault(require("../routes/rela
 const relacionFalleroTareasRoutes_1 = __importDefault(require("../routes/relacionFalleroTareasRoutes"));
 const loginRoutes_1 = __importDefault(require("../routes/loginRoutes"));
 const dniRoutes_1 = __importDefault(require("../routes/dniRoutes"));
+const changePasswordRoutes_1 = __importDefault(require("../routes/changePasswordRoutes"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     // private jwt = require('jsonwebtoken');
@@ -59,6 +60,8 @@ class Server {
         this.app.use('/api/blog/entradas', entradasComentariosRoutes_1.default);
         this.app.use('/api/blog/estado', estadosRoutes_1.default);
         this.app.use('/api/login', loginRoutes_1.default);
+        //RUTA PARA CAMBIAR PASSWORD
+        this.app.use('/api/contrasenia', changePasswordRoutes_1.default);
     }
     //METODOS PARA EJECUTAR ANTES DE QUE LA PETICION LLEGUE AL SERVIDOR Y EVITAR FALLO. SE USA EN EL CONSTRUCTOR ANTES DE USAR EL METODO ROUTES
     middlewares() {

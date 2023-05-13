@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateComentario = exports.postComentario = exports.deleteComentario = exports.getOneComentario = exports.getComentarioFromEntrada = exports.getAllComentario = exports.updateEntrada = exports.postEntrada = exports.deleteEntrada = exports.getOneEntrada = exports.getEntrada = void 0;
+exports.updateComentario = exports.postComentario = exports.deleteComentario = exports.getOneComentario = exports.getComentarioFromEntrada = exports.getAllComentario = exports.updateEntrada = exports.postEntrada = exports.deleteEntrada = exports.getByUser = exports.getOneEntrada = exports.getEntrada = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ENTRADAS
 const getEntrada = (req, res) => {
@@ -23,6 +23,15 @@ const getOneEntrada = (req, res) => {
     });
 };
 exports.getOneEntrada = getOneEntrada;
+const getByUser = (req, res) => {
+    const { id } = req.params;
+    connection_1.default.query('SELECT * FROM entrada WHERE autor = ?', id, (err, data) => {
+        if (err)
+            throw err;
+        res.json(data);
+    });
+};
+exports.getByUser = getByUser;
 const deleteEntrada = (req, res) => {
     const { id } = req.params;
     connection_1.default.query('DELETE FROM entrada WHERE idBlog = ?', id, (err, data) => {

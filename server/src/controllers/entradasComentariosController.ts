@@ -23,6 +23,16 @@ export const getOneEntrada = (req: Request, res: Response) => {
     })
 }
 
+export const getByUser = (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    connection.query('SELECT * FROM entrada WHERE autor = ?', id, (err, data) => {
+        if (err) throw err;
+        res.json(data);
+    })
+}
+
 export const deleteEntrada = (req: Request, res: Response) => {
 
     const { id } = req.params;

@@ -1,0 +1,15 @@
+h1{
+    font-size: 50px;
+}
+
+.divUserBlog{
+    height: 400px;
+    overflow-y: hidden;
+    
+}
+
+
+.divUserBlog:hover{
+    overflow-y: auto;   
+
+}

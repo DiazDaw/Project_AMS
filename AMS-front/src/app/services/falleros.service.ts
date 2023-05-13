@@ -6,6 +6,8 @@ import { FalleroModel } from '../models/fallero.model';
 import { FalleroResponse } from '../interfaces/fallero.interface';
 import { DNIModel } from '../models/dni.model';
 import { DNIResponse } from '../interfaces/dni.interface';
+import { PasswordModel } from '../models/password.model';
+import { Password } from '../interfaces/password.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -47,5 +49,10 @@ export class FallerosService{
         return this.http.get<DNIResponse[]>(`${this.myAppUrl}api/dni/`).pipe(
             map(response=> response.map(dniAll=> new DNIModel(dniAll)))
         );
+    }
+
+    updatePassword(id: number, contrasenia: string): Observable<void>{
+        const body = { contrasenia }
+        return this.http.put<void>(`${this.myAppUrl}api/contrasenia/${id}`, body);
     }
 }  

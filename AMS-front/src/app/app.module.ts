@@ -12,21 +12,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 
-import { HeaderComponent } from './components/header/header.component';
-
 import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderModule } from './components/header/header.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ActivitiesComponent } from './pages/activities/activities.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent
+    FooterComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     FormsModule,
     HeaderModule,
-    MatDialogModule
+    MatDialogModule,
+    FullCalendarModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

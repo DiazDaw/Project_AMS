@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     const token = sessionStorage.getItem('token');
 
     if(token == undefined){
+      this.dashboardIcon = "account_circle";
       return false;
     } else {
       this.dashboardIcon = "menu";

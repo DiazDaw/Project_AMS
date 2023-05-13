@@ -5,6 +5,7 @@ export interface LoginResponse {
       nombre: string;
       apellidos: string;
       dni: string;
+      contrasenia: string;
       fechaNac: string;
       fechaRegistro: string;
       id_Rol_Fallero: number;

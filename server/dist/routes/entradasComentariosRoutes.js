@@ -6,6 +6,7 @@ const router = (0, express_1.Router)();
 // RUTAS CRUD ENTRADAS DE BLOG
 router.get('/', entradasComentariosController_1.getEntrada);
 router.get('/:id', entradasComentariosController_1.getOneEntrada);
+router.get('/autores/:id', entradasComentariosController_1.getByUser);
 router.delete('/:id', entradasComentariosController_1.deleteEntrada);
 router.post('/', entradasComentariosController_1.postEntrada);
 router.put('/:id', entradasComentariosController_1.updateEntrada);

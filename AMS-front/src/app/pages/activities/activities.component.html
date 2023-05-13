@@ -1,0 +1,18 @@
+<div class="container-fluid">
+
+    <div class="row m-3 mt-5">
+        <div class="col-12 text-center">
+            <h1>Calendario de actividades</h1>
+            <!-- <button (click)="toggleWeekends()">toggle weekends</button> -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <full-calendar [options]="calendarOptions">
+        <ng-template #eventContent let-arg>
+            <h1>{{ arg.event.title }}</h1>
+            <h1>{{ arg.event.description }}</h1>
+            <h1>{{ this.description }}</h1>
+          </ng-template>          
+      </full-calendar>
+</div>

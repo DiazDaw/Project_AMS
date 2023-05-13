@@ -28,6 +28,12 @@ const routes: Routes = [
     },
     {
         path: 'admin', loadChildren: () => import('./pages/dashboard-admin/dashboard-admin.module').then(m => m.DashboardAdminComponentModule)
+    },
+    {
+        path: 'user', loadChildren: () => import('./pages/dashboard-user/dashboard-user.module').then(m => m.DashboardUserModule)
+    },
+    {
+        path: 'actividades', loadChildren: () => import('./pages/activities/activities.module').then(m => m.ActivitiesModule)
     }
 ]
 @NgModule({

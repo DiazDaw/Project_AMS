@@ -43,7 +43,7 @@ export class AgregarEditarFalleroComponent implements OnInit {
     this.form = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")]],
       apellidos: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")]],
-      documentType: ['', Validators.maxLength(20)],
+      // documentType: ['', Validators.maxLength(20)],
       documento: ['', Validators.pattern("^[0-9A-Z]+$")],
       telefono: ['', [Validators.required, Validators.maxLength(9), Validators.pattern("^[0-9]*$")]],
       fechaNac: ['', [Validators.required]],
@@ -108,7 +108,7 @@ export class AgregarEditarFalleroComponent implements OnInit {
     this.loading = true;
 
     if (this.idModal === undefined) {
-      //Ejecuta agregar fallero
+      //Ejecuta modal agregar fallero
       setTimeout(() => {
         this._falleroService.addFalleros(newFallero).subscribe(() => {
           this.loading = false;
@@ -117,7 +117,7 @@ export class AgregarEditarFalleroComponent implements OnInit {
         })
       }, 1000);
     } else {
-      //Es editar
+      //Es editar el modal
       setTimeout(() => {
         this._falleroService.updateFallero(this.idModal, newFallero).subscribe(() => {
           this.loading = false;

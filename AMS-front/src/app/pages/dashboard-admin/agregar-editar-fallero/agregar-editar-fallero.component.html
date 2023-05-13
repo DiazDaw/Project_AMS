@@ -29,7 +29,7 @@
           <span *ngIf="form.get('apellidos')?.hasError('pattern')">Este campo sólo admite letras</span>
         </div>
       </div>
-      <div class="col-6" *ngIf="tipo == 'Agregar '">
+      <!-- <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Tipo de documento</mat-label>
           <mat-select formControlName="documentType">
@@ -43,7 +43,7 @@
             obligatorio</span>
           <span *ngIf="form.get('documentType')?.hasError('maxlength')">Máximo 20 caracteres</span>
         </div>
-      </div>
+      </div> -->
       <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Número de documento</mat-label>

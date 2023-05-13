@@ -18,6 +18,7 @@ import routesFalleroActividad from '../routes/relacionFalleroActividadRoutes';
 import routesFalleroTareas from '../routes/relacionFalleroTareasRoutes';
 import routesLogin from '../routes/loginRoutes';
 import routesDNI from '../routes/dniRoutes';
+import routesPassword from '../routes/changePasswordRoutes';
 
 import connection from '../db/connection';
 
@@ -65,6 +66,9 @@ class Server {
         this.app.use('/api/blog/entradas', routesEntradasComentarios);
         this.app.use('/api/blog/estado', routesEstados);
         this.app.use('/api/login', routesLogin);
+
+        //RUTA PARA CAMBIAR PASSWORD
+        this.app.use('/api/contrasenia', routesPassword);
 
     }
 

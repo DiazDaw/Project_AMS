@@ -23,4 +23,10 @@ export class BlogService {
       map(response=> response.map(post=> new PostModel(post)))
     );
   }
+
+  getByUser(id?: number): Observable<PostModel[]>{
+    return this.http.get<Post[]>(`${this.myAppUrl}${this.myApiUrl}/autores/${id}`).pipe(
+      map(response=> response.map(post=> new PostModel(post)))
+    );
+  }
 }

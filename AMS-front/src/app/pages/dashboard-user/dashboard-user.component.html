@@ -1,0 +1,119 @@
+<div class="container-fluid">
+
+    <div class="row m-3 mt-5">
+        <div class="col-12 text-center">
+            <h1>Panel de control</h1>
+        </div>
+    </div>
+
+    <mat-tab-group fitInkBarToContent>
+        <mat-tab label="Usuario">
+
+            <mat-card>
+                <mat-card-content class="mt-3">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <form class="p-3">
+                                <div class="row d-inline-flex w-100">
+                                    <div class="col-6">
+                                        <label for="">Nombre</label><br>
+                                        <mat-form-field appearance="fill" class="w-100" disabled="true">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.nombre}}">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="">Apellidos</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.apellidos}}">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row d-inline-flex w-100">
+                                    <div class="col-6">
+                                        <label for="">DNI</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.dni}}">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="">Fecha nacimiento</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.fechaNac | date: 'dd/MM/yyyy'}}">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row d-inline-flex w-100">
+                                    <div class="col-6">
+                                        <label for="">Telefono</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.telefono}}">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="">Fecha registro</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.fechaRegistro | date: 'dd/MM/yyyy'}}">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row d-inline-flex w-100">
+                                    <div class="col-6">
+                                        <label for="">Rol comisión</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.id_Rol_Fallero}}">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="">Rol gestión</label><br>
+                                        <mat-form-field appearance="fill" class="w-100">
+                                            <input matInput disabled type="text"
+                                                placeholder="{{loginResponseModel?.usuario?.id_Rol_Gestion}}">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-10 pe-5 d-flex justify-content-end">
+                            <div class="col-auto d-inline-flex">
+                                <button mat-raised-button color="warn" class="m-1" (click)="logout()">Cerrar
+                                    sesión</button><br>
+                                <button mat-raised-button color="primary" class="m-1" (click)="changePass()">Cambiar
+                                    contraseña</button><br>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+        </mat-tab>
+        <mat-tab label="Mis actividades">
+
+        </mat-tab>
+        <mat-tab label="Mis posts">
+            <mat-card>
+                <mat-card-content>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-12 divUserBlog">
+                                <div class="card mb-2" *ngFor="let post of postsBlog">
+                                    <div class="card-header">
+                                        <h2><a href="#">{{ post.titulo }}</a></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

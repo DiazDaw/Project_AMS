@@ -27,11 +27,19 @@ export class HeaderComponent implements OnInit {
   }
   
   loginNavigate() {
-    this.router.navigate(['/login']);
+    if(sessionStorage.getItem('loginResponse')){
+      this.router.navigate(['/user']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   adminNavigate(){
-    this.router.navigate(['/admin']);
+    if(sessionStorage.getItem('loginResponse')){
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
   
 
