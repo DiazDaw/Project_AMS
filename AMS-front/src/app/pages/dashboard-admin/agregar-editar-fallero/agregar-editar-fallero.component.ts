@@ -105,6 +105,10 @@ export class AgregarEditarFalleroComponent implements OnInit {
       id_Rol_Gestion: this.form.value.gestion
     }
 
+    console.log(newFallero.fechaNac.toISOString().slice(0, 10));
+
+    
+
     this.loading = true;
 
     if (this.idModal === undefined) {

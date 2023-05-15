@@ -22,7 +22,7 @@ export class ActivitiesComponent implements OnInit {
   description: string = 'Hola mundo';
   eventsModel: Activities[] = [];
   currentDate: Date = new Date();
-  
+
   filteredEvents: Activities[] = [];
 
   calendarOptions: CalendarOptions = {
@@ -49,7 +49,9 @@ export class ActivitiesComponent implements OnInit {
       response => {
         this.eventsModel = response;
         this.filteredEvents = this.filterEvents();
-        this.updateCalendarOptions();
+        setTimeout(() => {
+          this.updateCalendarOptions();
+        }, 0);
       }
     );
   }
@@ -76,7 +78,7 @@ export class ActivitiesComponent implements OnInit {
     const randomIndex = Math.floor(Math.random() * arrayColors.length);
     return arrayColors[randomIndex];
   }
-  
+
 
 };
 

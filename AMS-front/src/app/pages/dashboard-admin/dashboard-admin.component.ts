@@ -16,5 +16,9 @@ export class DashboardAdminComponent {
   usersAdminNavigate() {
     this.route.navigate(['/admin/users']);
   }
+
+  activitiesAdminNavigate() {
+    this.route.navigate(['/admin/actividades']);
+  }
 }
 
