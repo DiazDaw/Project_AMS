@@ -20,6 +20,7 @@ import { HeaderModule } from './components/header/header.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { BackgroundColorDirective } from './directives/background-color.directive';
 
 
 
@@ -27,7 +28,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   declarations: [
     AppComponent,
     FooterComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    BackgroundColorDirective
   ],
   imports: [
     BrowserModule,

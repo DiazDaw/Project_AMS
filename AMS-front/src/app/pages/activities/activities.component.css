@@ -1,3 +1,6 @@
-.calendarContent{
+.calendarContent {
+    color:black;
     overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
