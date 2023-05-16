@@ -19,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EventsAdminComponent } from './events-admin.component';
-import { EventsAdminRoutingModule } from './events-admin-routing,module';
+import { EventsAdminRoutingModule } from './events-admin-routing.module';
+import { AgregarEditarActividadModule } from '../../agregar-editar-actividad/agregar-editar-actividad.module';
 
 @NgModule({
   declarations: [EventsAdminComponent],
@@ -42,7 +43,7 @@ import { EventsAdminRoutingModule } from './events-admin-routing,module';
     MatDialogModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    MatSnackBarModule,
+    MatSnackBarModule
     
 
   ],

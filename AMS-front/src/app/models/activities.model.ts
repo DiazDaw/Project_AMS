@@ -3,11 +3,11 @@ import { Activities } from "../interfaces/activities.interface";
 
 export class ActivitiesModel implements Activities {
 
-    idActividad: number;
+    idActividad?: number;
     title: string;
     start: Date;
     end: Date;
-    color: string;
+    color?: string;
     id_Lugar: number;
     coordinador: number;
 
@@ -20,4 +20,6 @@ export class ActivitiesModel implements Activities {
         this.id_Lugar = response.id_Lugar;
         this.coordinador = response.coordinador;
     }
+
+    
 }

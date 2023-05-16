@@ -11,16 +11,35 @@ import { Activities } from '../interfaces/activities.interface';
 export class ActivitiesService {
 
   private myAppUrl: string;
-    private myApiUrl: string;
-    
-    constructor(private http: HttpClient){
-        this.myAppUrl = environment.api_url;
-        this.myApiUrl = 'api/actividades'
-    }
+  private myApiUrl: string;
 
-    getEvents(): Observable<ActivitiesModel[]>{
-      return this.http.get<Activities[]>(`${this.myAppUrl}${this.myApiUrl}/`).pipe(
-        map(response=> response.map(actividad=> new ActivitiesModel(actividad)))
-      );
-    }
+  constructor(private http: HttpClient) {
+    this.myAppUrl = environment.api_url;
+    this.myApiUrl = 'api/actividades'
+  }
+
+  getEvents(): Observable<ActivitiesModel[]> {
+    return this.http.get<Activities[]>(`${this.myAppUrl}${this.myApiUrl}/`).pipe(
+      map(response => response.map(actividad => new ActivitiesModel(actividad)))
+    );
+  }
+
+  getOneActivity(id: number): Observable<ActivitiesModel> {
+    return this.http.get<Activities>(`${this.myAppUrl}${this.myApiUrl}/${id}`).pipe(
+        map((response: Activities) => new ActivitiesModel(response))
+    );
+}
+
+
+  addEvents(activity: Activities): Observable<void> {
+    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}/`, activity);
+  }
+
+  updateEvent(id: number, fallero: Activities): Observable<void> {
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, fallero);
+  }
+
+  deleteActivity(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
+}
 }

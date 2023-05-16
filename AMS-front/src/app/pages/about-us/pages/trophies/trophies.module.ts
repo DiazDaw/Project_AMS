@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TrophiesComponent } from './trophies.component';
-import { TrophiesRoutingModule } from './trophies-routing,module';
+import { TrophiesRoutingModule } from './trophies-routing.module';
 
 
 

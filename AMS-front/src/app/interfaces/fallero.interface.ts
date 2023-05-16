@@ -10,5 +10,6 @@ export interface FalleroResponse {
     id_Rol_Gestion: number;
     telefono: string;
     contrasenia: string;
+    rolFalleroText: string;
 
 }

@@ -25,4 +25,12 @@ export class FalleroModel {
         this.contrasenia = response.contrasenia;
         this.telefono = response.telefono;
     }
+
+    get rolFalleroText(): string {
+        if (this.id_Rol_Fallero === 1) {
+          return 'Adulto';
+        } else {
+          return 'Infantil';
+        }
+      }
 }

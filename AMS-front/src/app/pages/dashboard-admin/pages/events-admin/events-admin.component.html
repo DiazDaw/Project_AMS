@@ -1,1 +1,79 @@
-<p>events-admin works!</p>
+<div class="container-fluid">
+
+    <div class="row justify-content-center align-content-center m-3">
+        <div class="text-center">
+            <h1><u>Listado de falleros</u></h1>
+        </div>
+    </div>
+
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+
+
+    <mat-card *ngIf="!loading">
+
+        <mat-form-field>
+            <mat-label>Búsqueda por nombre</mat-label>
+            <input matInput (keyup)="applyFilter($event)" autocomplete="off" #input>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+            <!-- <ng-container matColumnDef="idFallero">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Id fallero </th>
+                <td mat-cell *matCellDef="let element"> {{element.idFallero}} </td>
+            </ng-container> -->
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de la actividad </th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fechaInicio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de inicio </th>
+                <td mat-cell *matCellDef="let element"> {{element.start | date: 'dd/MM/yyyy - HH:MM' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fechaFin">
+                <th mat-header-cell *matHeaderCellDef> Fecha de fin </th>
+                <td mat-cell *matCellDef="let element"> {{element.end | date: 'dd/MM/yyyy - HH:MM' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lugar">
+                <th mat-header-cell *matHeaderCellDef> Lugar </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_Lugar}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="coordinador">
+                <th mat-header-cell *matHeaderCellDef> Coordinador </th>
+                <td mat-cell *matCellDef="let element"> {{element.coordinador }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon class="buttonEdit" matTooltip="Editar información de la actividad" (click)="apuntarEditar(element.idActividad)">edit</mat-icon>
+                    <mat-icon class="buttonDelete" matTooltip="Eliminar actividad" (click)="deleteActivity(element.idActividad)">delete</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleciona página"></mat-paginator>
+
+    </mat-card>
+
+    <div class="row justify-content-end align-content-end">
+        <div class="col-2 text-end mt-5">
+            <button mat-raised-button color="primary" (click)="apuntarEditar()" >Añadir una actividad nueva</button>
+        </div>
+    </div>
+
+</div>
