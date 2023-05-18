@@ -30,7 +30,9 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
 
   loading: boolean = true;
 
-  constructor(private _activitiesService: ActivitiesService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+  constructor(private _activitiesService: ActivitiesService, 
+    public dialog: MatDialog, 
+    private _snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
   }

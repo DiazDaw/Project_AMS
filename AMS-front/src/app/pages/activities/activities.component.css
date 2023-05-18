@@ -1,6 +1,41 @@
 .calendarContent {
-    color:black;
+    color: black;
     overflow: hidden;
     white-space: pre-wrap;
     word-wrap: break-word;
+    cursor: pointer;
+}
+
+:host ::ng-deep .fc .fc-daygrid-day-number {
+    padding: 8px;
+    position: relative;
+    z-index: 4;
+    color: black;
+    /* Agrega aquí tus estilos personalizados */
+}
+
+:host ::ng-deep .fc .fc-col-header-cell-cushion {
+    display: inline-block;
+    padding: 2px 4px;
+    color: black;
+    text-decoration: none;
+}
+
+/* :host ::ng-deep .fc, .fc *, .fc ::after, .fc ::before {
+    box-sizing: border-box;
+    background-color: bisque;
+  } */
+
+:host ::ng-deep .fc-theme-standard td,
+:host ::ng-deep .fc-theme-standard th,
+:host ::ng-deep .fc-theme-standard .fc-scrollgrid {
+    border: 1px solid black;
+}
+
+:host ::ng-deep .fc .fc-daygrid-day {
+    background-color: blue;
+}
+
+:host ::ng-deep .fc .fc-daygrid-day.fc-day-today {
+    background-color: red;
 }

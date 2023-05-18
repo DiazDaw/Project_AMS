@@ -101,12 +101,11 @@ export class AgregarEditarFalleroComponent implements OnInit {
       fechaNac: this.form.value.fechaNac,
       fechaRegistro: this.form.value.fechaReg.toISOString().slice(0, 10),
       contrasenia: this.form.value.contrasenia,
-      id_Rol_Fallero: this.form.value.comision,
-      id_Rol_Gestion: this.form.value.gestion,
+      id_Rol_Fallero: this.form.value.comision.toLowerCase() === 'adulto' ? 1 : 2,
+      id_Rol_Gestion: this.form.value.gestion.toLowerCase() === 'admin' ? 1 : 2,
       rolFalleroText: this.form.value.comision === 1 ? 'Adulto' : 'Infantil'
     }
 
-    console.log(newFallero.fechaNac.toISOString().slice(0, 10));
 
     
 

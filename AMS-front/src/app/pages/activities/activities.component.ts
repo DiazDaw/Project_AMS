@@ -6,10 +6,10 @@ import timeGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/daygrid';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { Activities } from 'src/app/interfaces/activities.interface';
-import { BackgroundColorDirective } from '../../directives/background-color.directive';
-
-
-
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { ModalFalleroActivityComponent } from './modal-fallero-activity/modal-fallero-activity.component';
 
 @Component({
   selector: 'app-activities',
@@ -22,6 +22,9 @@ export class ActivitiesComponent implements OnInit {
   description: string = 'Hola mundo';
   eventsModel: Activities[] = [];
   currentDate: Date = new Date();
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   filteredEvents: Activities[] = [];
 
@@ -38,7 +41,9 @@ export class ActivitiesComponent implements OnInit {
     }
   }
 
-  constructor(private _activitiesService: ActivitiesService) { }
+  constructor(private _activitiesService: ActivitiesService, private router: Router,
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getActivities();
@@ -66,6 +71,7 @@ export class ActivitiesComponent implements OnInit {
   updateCalendarOptions(): void {
     this.calendarOptions.events = this.filteredEvents.map((event, index) => {
       return {
+        idActividad: event.idActividad,
         title: event.title,
         start: event.start,
         end: event.end
@@ -79,18 +85,34 @@ export class ActivitiesComponent implements OnInit {
     return arrayColors[randomIndex];
   }
 
+  apuntarEditar(id?: number) {
+    const idActividad = id// Acceder al ID de la actividad
+    console.log('ID de la actividad:', idActividad);
+    const dialogRef = this.dialog.open(ModalFalleroActivityComponent, {
+      width: '50%',
+      disableClose: true,
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getActivities();
+      }
+    });
+
+  }
+
+
+  deleteExit() {
+    this._snackBar.open('La actividad ha sido eliminada con éxito ', '', {
+      duration: 5000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition
+    });
+  }
+
+
+
+
 
 };
-
-
-  // addEvent() {
-  //   this.filteredEvents.push({ title: 'Nuevo evento', start: '2023-05-15' });
-  //   this.calendarOptions.events = this.filteredEvents.map((event, index) => {
-  //     return {
-  //       ...event,
-  //       color: this.arrayColors[index % this.arrayColors.length]
-  //     };
-  //   }),
-  //     this.calendarOptions = { ...this.calendarOptions };
-  //   console.log(this.arrayEvents);
-  // }

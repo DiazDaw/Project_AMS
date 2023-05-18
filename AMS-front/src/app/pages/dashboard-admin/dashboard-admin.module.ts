@@ -18,7 +18,6 @@ import { DashboardAdminRoutingModule } from './dashboard-admin-routing.module';
 import { UserAdminComponentModule } from './pages/user-admin/user-admin.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EventsAdminComponentModule } from './pages/events-admin/events-admin.module';
-import { AgregarEditarActividadComponent } from './agregar-editar-actividad/agregar-editar-actividad.component';
 
 
 

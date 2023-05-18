@@ -4,7 +4,9 @@ import { DateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Activities } from 'src/app/interfaces/activities.interface';
+import { AsistantsByActivity } from 'src/app/interfaces/asistantsByActivity.interface';
 import { ActivitiesService } from 'src/app/services/activities.service';
+import { AsistantsService } from 'src/app/services/asistants.service';
 
 @Component({
   selector: 'app-agregar-editar-actividad',
@@ -29,10 +31,15 @@ export class AgregarEditarActividadComponent implements OnInit {
   dniIntroducido: any;
   disableButton: boolean = false;
 
+  asistants: AsistantsByActivity[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<AgregarEditarActividadComponent>,
-    private formBuilder: FormBuilder, private _activitiesService: ActivitiesService,
-    private _snackBar: MatSnackBar, private dateAdapter: DateAdapter<any>,
+    private formBuilder: FormBuilder,
+    private _activitiesService: ActivitiesService,
+    private _asistantsService: AsistantsService,
+    private _snackBar: MatSnackBar,
+    private dateAdapter: DateAdapter<any>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.form = this.formBuilder.group({
@@ -51,6 +58,7 @@ export class AgregarEditarActividadComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar(this.idModal);
+    this.getAsistantsByActivity(this.idModal);
   }
 
 
@@ -81,7 +89,7 @@ export class AgregarEditarActividadComponent implements OnInit {
         this._activitiesService.addEvents(newActivity).subscribe(() => {
           this.loading = false;
           this.dialogRef.close(true);
-          this.addExit('añadido/a');
+          this.addExit('añadida');
         })
       }, 1000);
     } else {
@@ -90,7 +98,7 @@ export class AgregarEditarActividadComponent implements OnInit {
         this._activitiesService.updateEvent(this.idModal, newActivity).subscribe(() => {
           this.loading = false;
           this.dialogRef.close(true);
-          this.addExit('actualizado/a');
+          this.addExit('actualizada');
         })
       }, 1000);
     }
@@ -102,7 +110,7 @@ export class AgregarEditarActividadComponent implements OnInit {
   }
 
   addExit(tipo: string) {
-    this._snackBar.open(`El fallero/a ha sido ${tipo} con éxito `, '', {
+    this._snackBar.open(`La actividad ha sido ${tipo} con éxito `, '', {
       duration: 5000
     });
   }
@@ -117,6 +125,18 @@ export class AgregarEditarActividadComponent implements OnInit {
         coordinador: data.coordinador
       })
     })
+  }
+
+  getAsistantsByActivity(idActividad: number) {
+    if (idActividad) {
+      this._asistantsService.getByActivity(idActividad).subscribe(
+        response => {
+          this.asistants = response;
+          console.log(response);
+        });
+    } else {
+      console.log("ID no encontrado");
+    }
   }
 }
 

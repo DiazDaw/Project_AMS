@@ -1,0 +1,27 @@
+<mat-dialog-content>
+    <div>
+        <h2>¿Desea apuntarse a esta actividad?</h2>
+
+        <div class="container-fluid">
+            <div class="row justify-content-center align-content-center m-3">
+                <div class="col-auto">
+                    <h2>Asistentes</h2>
+                </div>
+                <div class="row justify-content-start align-content-start mt-3">
+                    <div class="col-12 asistantsDiv">
+                        <div class="card mb-2" *ngFor="let asistente of asistants; let i = index">
+                            <div class="card-header">
+                                <h5>{{ i + 1 }} - {{asistente.nombre}} {{asistente.apellidos}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <mat-dialog-actions align="end">
+                <button type="button" mat-button (click)="cancelar()">Cancelar</button>
+                <button type="submit"mat-button (click)="agregarEditarPersona()" cdkFocusInitial>Confirmar</button>
+            </mat-dialog-actions>
+        
+    </div>
+</mat-dialog-content>

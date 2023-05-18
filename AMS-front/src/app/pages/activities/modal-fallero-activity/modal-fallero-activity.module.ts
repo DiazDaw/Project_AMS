@@ -9,15 +9,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AgregarEditarActividadComponent } from './agregar-editar-actividad.component';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { ModalFalleroActivityComponent } from './modal-fallero-activity.component';
 
 
 
 @NgModule({
-  declarations: [AgregarEditarActividadComponent],
+  declarations: [ModalFalleroActivityComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -29,10 +26,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatIconModule,
-    MatTooltipModule,
+    MatProgressSpinnerModule
+
+
   ]
 })
-export class AgregarEditarActividadModule { }
+export class ModalFalleroActivityModule { }

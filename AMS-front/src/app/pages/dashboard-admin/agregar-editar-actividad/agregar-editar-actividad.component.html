@@ -4,80 +4,116 @@
 </div>
 
 <mat-dialog-content>
-    <div>
-        <form [formGroup]="form" class="row" (ngSubmit)="agregarEditarPersona()">
-            <div class="col-6">
-                <mat-form-field appearance="fill" class="mb-2 w-100">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput type="text" formControlName="nombre">
-                </mat-form-field>
-                <div class="error">
-                    <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">Campo
-                        obligatorio</span>
-                    <span *ngIf="form.get('nombre')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                    <span *ngIf="form.get('nombre')?.hasError('pattern')">Este campo sólo admite letras</span>
-                </div>
+    <mat-tab-group fitInkBarToContent>
+        <mat-tab label="Información">
+            <div class="tab-content">
+                <form [formGroup]="form" class="row mt-3" (ngSubmit)="agregarEditarPersona()">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput type="text" formControlName="nombre">
+                        </mat-form-field>
+                        <div class="error">
+                            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">Campo
+                                obligatorio</span>
+                            <span *ngIf="form.get('nombre')?.hasError('maxlength')">Máximo 20 caracteres</span>
+                            <span *ngIf="form.get('nombre')?.hasError('pattern')">Este campo sólo admite letras</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
+                            <mat-label>Fecha de inicio</mat-label>
+                            <input autocomplete="off" matInput formControlName="fechaInicio"
+                                [matDatepicker]="pickerNacimiento">
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #pickerNacimiento></mat-datepicker>
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('fechaInicio')?.hasError('required') && form.get('fechaInicio')?.touched">Campo
+                                obligatorio</span>
+
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
+                            <mat-label>Fecha de fin</mat-label>
+                            <input autocomplete="off" matInput formControlName="fechaFin"
+                                [matDatepicker]="pickerRegistro">
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerRegistro"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #pickerRegistro></mat-datepicker>
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('fechaFin')?.hasError('required') && form.get('fechaFin')?.touched">Campo
+                                obligatorio</span>
+
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Lugar</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="lugar">
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched">Campo
+                                obligatorio</span>
+                            <span *ngIf="form.get('contrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Coordinador</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="coordinador">
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo
+                                obligatorio<br></span>
+                            <span *ngIf="form.get('confirmContrasenia')?.hasError('maxlength')">Máximo 20
+                                caracteres</span>
+                            <span
+                                *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('confirmContrasenia')?.touched ">Las
+                                contraseñas no coinciden</span>
+                        </div>
+                    </div>
+                    <mat-dialog-actions align="end">
+                        <button type="button" mat-button (click)="cancelar()">Cancelar</button>
+                        <button type="submit" [disabled]="form.invalid" mat-button cdkFocusInitial>Confirmar</button>
+                    </mat-dialog-actions>
+                </form>
             </div>
-            <div class="col-6">
-                <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
-                  <mat-label>Fecha de inicio</mat-label>
-                  <input autocomplete="off" matInput formControlName="fechaInicio"
-                    [matDatepicker]="pickerNacimiento">
-                  <mat-datepicker-toggle matIconSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
-                  <mat-datepicker touchUi #pickerNacimiento></mat-datepicker>
-                </mat-form-field>
-                <div class="error">
-                  <span *ngIf="form.get('fechaInicio')?.hasError('required') && form.get('fechaInicio')?.touched">Campo
-                    obligatorio</span>
-                  
-                </div>
-              </div>
-              <div class="col-6">
-                <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
-                  <mat-label>Fecha de fin</mat-label>
-                  <input autocomplete="off" matInput formControlName="fechaFin"
-                    [matDatepicker]="pickerRegistro">
-                  <mat-datepicker-toggle matIconSuffix [for]="pickerRegistro"></mat-datepicker-toggle>
-                  <mat-datepicker touchUi #pickerRegistro></mat-datepicker>
-                </mat-form-field>
-                <div class="error">
-                  <span *ngIf="form.get('fechaFin')?.hasError('required') && form.get('fechaFin')?.touched">Campo
-                    obligatorio</span>
-                  
-                </div>
-              </div>
-            <div class="col-6">
-                <mat-form-field appearance="fill" class="mb-2 w-100">
-                    <mat-label>Lugar</mat-label>
-                    <input autocomplete="off" matInput type="text" formControlName="lugar">
-                </mat-form-field>
-                <div class="error">
-                    <span
-                        *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched">Campo
-                        obligatorio</span>
-                    <span *ngIf="form.get('contrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                </div>
-            </div>
-            <div class="col-6">
-                <mat-form-field appearance="fill" class="mb-2 w-100">
-                    <mat-label>Coordinador</mat-label>
-                    <input autocomplete="off" matInput type="text" formControlName="coordinador">
-                </mat-form-field>
-                <div class="error">
-                    <span
-                        *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo
-                        obligatorio<br></span>
-                    <span *ngIf="form.get('confirmContrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                    <span
-                        *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('confirmContrasenia')?.touched ">Las
-                        contraseñas no coinciden</span>
+        </mat-tab>
+        <mat-tab label="Asistentes" *ngIf="tipo == 'Editar '">
+            <div class="container-fluid">
+                <div class="row justify-content-center align-content-center m-3">
+                    <div class="col-auto">
+                        <h2>Asistentes</h2>
+                    </div>
+                    <div class="row justify-content-start align-content-start mt-3">
+                        <div class="col-12 asistantsDiv">
+                            <div class="card mb-2" *ngFor="let asistente of asistants; let i = index">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <h5>{{ i + 1 }} - {{asistente.nombre}} {{asistente.apellidos}}</h5>
+                                        </div>
+                                        <div class="col-1">
+                                            <mat-icon class="buttonDelete" matTooltip="Eliminar asistente">delete</mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <mat-dialog-actions align="end">
                 <button type="button" mat-button (click)="cancelar()">Cancelar</button>
-                <button type="submit" [disabled]="form.invalid" mat-button
-                    cdkFocusInitial>Confirmar</button>
+                <button type="submit" [disabled]="form.invalid" mat-button cdkFocusInitial>Confirmar</button>
             </mat-dialog-actions>
-        </form>
-    </div>
+        </mat-tab>
+    </mat-tab-group>
 </mat-dialog-content>

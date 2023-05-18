@@ -26,9 +26,9 @@ export class ActivitiesService {
 
   getOneActivity(id: number): Observable<ActivitiesModel> {
     return this.http.get<Activities>(`${this.myAppUrl}${this.myApiUrl}/${id}`).pipe(
-        map((response: Activities) => new ActivitiesModel(response))
+      map((response: Activities) => new ActivitiesModel(response))
     );
-}
+  }
 
 
   addEvents(activity: Activities): Observable<void> {
@@ -41,5 +41,5 @@ export class ActivitiesService {
 
   deleteActivity(id: number): Observable<void> {
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
-}
+  }
 }

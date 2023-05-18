@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ActivitiesComponent } from './pages/activities/activities.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { BackgroundColorDirective } from './directives/background-color.directive';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -45,7 +46,8 @@ import { BackgroundColorDirective } from './directives/background-color.directiv
     FormsModule,
     HeaderModule,
     MatDialogModule,
-    FullCalendarModule 
+    FullCalendarModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

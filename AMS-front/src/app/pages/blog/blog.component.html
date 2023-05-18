@@ -9,7 +9,8 @@
                     <div class="card-header">
                         <h2><a href="#">{{ post.titulo }}</a></h2>
                         <p>Escrito por: {{ post.autor}}</p>
-                        <p *ngIf="sessionStorageResponse" >El DNI del usuario es: {{loginResponseModel?.usuario?.dni}}</p>
+                        <p *ngIf="sessionStorageResponse">El DNI del usuario es: {{loginResponseModel?.usuario?.dni}}
+                        </p>
                     </div>
                     <!-- <div class="card-body">
                         <p>{{ post.contenido }}</p>
@@ -18,5 +19,4 @@
             </div>
         </div>
     </div>
-
-   
+</div>
