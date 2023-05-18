@@ -4,7 +4,7 @@ import { deleteAsistente, getAsistente, getOneAsistente, postAsistente, updateAs
 const router = Router();
 
 // RUTAS CRUD ASISTENTES
-router.get('/', getAsistente);
+router.get('/actividad/:id', getAsistente);
 router.get('/:id', getOneAsistente);
 router.delete('/:id', deleteAsistente);
 router.post('/', postAsistente);

@@ -20,6 +20,7 @@ export const getOneRelacionFalleroActividad = (req: Request, res: Response) => {
     })
 }
 
+
 export const deleteRelacionFalleroActividad = (req: Request, res: Response) => {
     const { id } = req.params;
 
