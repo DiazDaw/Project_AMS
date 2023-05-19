@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { AgregarEditarFalleroModule } from '../dashboard-admin/agregar-editar-fallero/agregar-editar-fallero.module';
+import { AgregarEditarFalleroModule } from '../dashboard-admin/components/agregar-editar-fallero/agregar-editar-fallero.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.component';

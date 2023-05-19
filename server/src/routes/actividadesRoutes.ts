@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { deleteActividad, getActividad, getOneActividad, postActividad, updateActividad } from '../controllers/actividadController';
+import { deleteActividad, getActividad, getCoordinador, getOneActividad, postActividad, updateActividad } from '../controllers/actividadController';
 import { deleteAsistente, getAsistente, getOneAsistente, postAsistente, updateAsistente } from '../controllers/asistenteController';
 
 const router = Router();
@@ -7,6 +7,7 @@ const router = Router();
 // RUTAS CRUD ACTIVIDADES
 router.get('/', getActividad);
 router.get('/:id', getOneActividad);
+router.get('/coordinador/:id', getCoordinador);
 router.delete('/:id', deleteActividad);
 router.post('/', postActividad);
 router.put('/:id', updateActividad);

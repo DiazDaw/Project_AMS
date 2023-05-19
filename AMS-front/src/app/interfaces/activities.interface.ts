@@ -6,4 +6,6 @@ export interface Activities {
     color?: string;
     id_Lugar: number;
     coordinador: number;
+    nombre_coordinador?: string;
+    nombre_lugar?: string;
 }

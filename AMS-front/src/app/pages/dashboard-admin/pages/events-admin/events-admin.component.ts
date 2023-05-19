@@ -5,9 +5,11 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Activities } from 'src/app/interfaces/activities.interface';
-import { AgregarEditarFalleroComponent } from '../../agregar-editar-fallero/agregar-editar-fallero.component';
+import { AgregarEditarFalleroComponent } from '../../components/agregar-editar-fallero/agregar-editar-fallero.component';
 import { ActivitiesService } from 'src/app/services/activities.service';
-import { AgregarEditarActividadComponent } from '../../agregar-editar-actividad/agregar-editar-actividad.component';
+import { AgregarEditarActividadComponent } from '../../components/agregar-editar-actividad/agregar-editar-actividad.component';
+import { Router } from '@angular/router';
+import { Coordinators } from 'src/app/interfaces/coordinators.interface';
 
 @Component({
   selector: 'app-events-admin',
@@ -28,11 +30,14 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
 
   actividades: Activities[] = [];
 
+  coordinadores: Coordinators[] = [];
+
   loading: boolean = true;
 
   constructor(private _activitiesService: ActivitiesService, 
     public dialog: MatDialog, 
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar,
+    private route: Router) {
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
   }
@@ -71,6 +76,7 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
 
   }
 
+  
   apuntarEditar(id?: number) {
     const dialogRef = this.dialog.open(AgregarEditarActividadComponent, {
       width: '50%',
@@ -100,5 +106,9 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition
     });
+  }
+  
+  goBack(){
+    this.route.navigate(['/admin'])
   }
 }

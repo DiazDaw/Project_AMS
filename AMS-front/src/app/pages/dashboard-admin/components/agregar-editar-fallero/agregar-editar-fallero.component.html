@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-between">
-      <h1 class=" mt-2" mat-dialog-title>{{ tipo }} fallero/a </h1>
-      <mat-spinner *ngIf="loading" [diameter]="50" class="me-4 mt-3"></mat-spinner>
+  <h1 class=" mt-2" mat-dialog-title>{{ tipo }} fallero/a </h1>
+  <mat-spinner *ngIf="loading" [diameter]="50" class="me-4 mt-3"></mat-spinner>
 </div>
 
 <mat-dialog-content>
@@ -103,7 +103,7 @@
         <div class="error">
           <span *ngIf="form.get('fechaNac')?.hasError('required') && form.get('fechaNac')?.touched">Campo
             obligatorio</span>
-          
+
         </div>
       </div>
       <div class="col-6">
@@ -117,13 +117,17 @@
         <div class="error">
           <span *ngIf="form.get('fechaReg')?.hasError('required') && form.get('fechaReg')?.touched">Campo
             obligatorio</span>
-          
+
         </div>
       </div>
       <div class="col-6">
-        <mat-form-field appearance="fill" class="mb-2 w-100">
-          <mat-label>Comisión</mat-label>
-          <input matInput type="text" formControlName="comision">
+        <mat-form-field  appearance="fill" class="mb-2 w-100">
+          <mat-label>Comision</mat-label>
+          <mat-select name="rolesFallero" formControlName="comision">
+            <mat-option *ngFor="let rolFallero of rolesFallero" [value]="rolFallero.idRolFallero">
+              {{rolFallero.nombreRolFallero}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <div class="error">
           <span *ngIf="form.get('comision')?.hasError('required') && form.get('comision')?.touched">Campo
@@ -132,9 +136,13 @@
         </div>
       </div>
       <div class="col-6">
-        <mat-form-field appearance="fill" class="mb-2 w-100">
+        <mat-form-field  appearance="fill" class="mb-2 w-100">
           <mat-label>Rol gestión</mat-label>
-          <input autocomplete="off" matInput type="text" formControlName="gestion">
+          <mat-select name="roles" formControlName="gestion">
+            <mat-option *ngFor="let rol of rolesGestion" [value]="rol.idRolGestion">
+              {{rol.nombreRolGestion}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <div class="error">
           <span *ngIf="form.get('gestion')?.hasError('required') && form.get('gestion')?.touched">Campo

@@ -5,8 +5,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FalleroResponse } from 'src/app/interfaces/fallero.interface';
 import { FallerosService } from 'src/app/services/falleros.service';
-import { AgregarEditarFalleroComponent } from '../../agregar-editar-fallero/agregar-editar-fallero.component';
+import { AgregarEditarFalleroComponent } from '../../components/agregar-editar-fallero/agregar-editar-fallero.component';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
 
   loading: boolean = true;
 
-  constructor(private _falleroService: FallerosService, public dialog: MatDialog, private _snackBar: MatSnackBar) {
+  constructor(private _falleroService: FallerosService, public dialog: MatDialog, private _snackBar: MatSnackBar, private route: Router) {
     this.dataSource = new MatTableDataSource();
     this.dataSource.sort = this.sort;
   }
@@ -99,6 +100,9 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
     });
   }
 
+  goBack(){
+    this.route.navigate(['/admin'])
+  }
 
 
 }

@@ -51,10 +51,14 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field  appearance="fill" class="mb-2 w-100">
                             <mat-label>Lugar</mat-label>
-                            <input autocomplete="off" matInput type="text" formControlName="lugar">
-                        </mat-form-field>
+                            <mat-select name="lugares" formControlName="lugar">
+                              <mat-option *ngFor="let lugar of lugares" [value]="lugar.idLugar">
+                                {{lugar.nombre}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         <div class="error">
                             <span
                                 *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched">Campo
@@ -63,10 +67,14 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field  appearance="fill" class="mb-2 w-100">
                             <mat-label>Coordinador</mat-label>
-                            <input autocomplete="off" matInput type="text" formControlName="coordinador">
-                        </mat-form-field>
+                            <mat-select name="rolesFallero" formControlName="coordinador">
+                              <mat-option *ngFor="let fallero of falleros" [value]="fallero.idFallero">
+                                {{fallero.nombre}} {{fallero.apellidos}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         <div class="error">
                             <span
                                 *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo

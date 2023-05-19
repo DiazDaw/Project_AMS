@@ -1,0 +1,56 @@
+<div class="container d-flex justify-content-between">
+    <h1 class=" mt-2" mat-dialog-title>{{ tipo }} lugar </h1>
+    <mat-spinner *ngIf="loading" [diameter]="50" class="me-4 mt-3"></mat-spinner>
+</div>
+
+<mat-dialog-content>
+            <div class="tab-content">
+                <form [formGroup]="form" class="row mt-3" (ngSubmit)="agregarEditarLugar()">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput type="text" formControlName="nombre">
+                        </mat-form-field>
+                        <div class="error">
+                            <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">Campo
+                                obligatorio</span>
+                            <span *ngIf="form.get('nombre')?.hasError('maxlength')">Máximo 20 caracteres</span>
+                            <span *ngIf="form.get('nombre')?.hasError('pattern')">Este campo sólo admite letras</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Dirección</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="direccion">
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('direccion')?.hasError('required') && form.get('direccion')?.touched">Campo
+                                obligatorio</span>
+                            <span *ngIf="form.get('direccion')?.hasError('maxlength')">Máximo 20 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Aforo</mat-label>
+                            <input autocomplete="off" matInput type="text" formControlName="aforo">
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('aforo')?.hasError('required') && form.get('aforo')?.touched">Campo
+                                obligatorio<br></span>
+                            <span *ngIf="form.get('aforo')?.hasError('maxlength')">Máximo 20
+                                caracteres</span>
+                            <span
+                                *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('aforo')?.touched ">Las
+                                contraseñas no coinciden</span>
+                        </div>
+                    </div>
+                    <mat-dialog-actions align="end">
+                        <button type="button" mat-button (click)="cancelar()">Cancelar</button>
+                        <button type="submit" mat-button cdkFocusInitial>Confirmar</button>
+                    </mat-dialog-actions>
+                </form>
+            </div>
+            
+</mat-dialog-content>

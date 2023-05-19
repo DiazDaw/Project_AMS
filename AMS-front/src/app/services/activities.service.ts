@@ -4,6 +4,8 @@ import { environment } from 'src/environment';
 import { ActivitiesModel } from '../models/activities.model';
 import { Observable, map } from 'rxjs';
 import { Activities } from '../interfaces/activities.interface';
+import { CoordinatorsModel } from '../models/coordinators.model';
+import { Coordinators } from '../interfaces/coordinators.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,11 @@ export class ActivitiesService {
     );
   }
 
+  getCoordinador(id: number): Observable<CoordinatorsModel[]> {
+    return this.http.get<Coordinators[]>(`${this.myAppUrl}${this.myApiUrl}/coordinador/${id}`).pipe(
+      map(response => response.map(coordinador => new CoordinatorsModel(coordinador)))
+    );
+  }
 
   addEvents(activity: Activities): Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}/`, activity);

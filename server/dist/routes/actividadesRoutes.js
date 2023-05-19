@@ -7,6 +7,7 @@ const router = (0, express_1.Router)();
 // RUTAS CRUD ACTIVIDADES
 router.get('/', actividadController_1.getActividad);
 router.get('/:id', actividadController_1.getOneActividad);
+router.get('/coordinador/:id', actividadController_1.getCoordinador);
 router.delete('/:id', actividadController_1.deleteActividad);
 router.post('/', actividadController_1.postActividad);
 router.put('/:id', actividadController_1.updateActividad);

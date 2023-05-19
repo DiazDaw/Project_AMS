@@ -5,8 +5,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Activities } from 'src/app/interfaces/activities.interface';
 import { AsistantsByActivity } from 'src/app/interfaces/asistantsByActivity.interface';
+import { FalleroModel } from 'src/app/models/fallero.model';
+import { PlacesModel } from 'src/app/models/places.model';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { AsistantsService } from 'src/app/services/asistants.service';
+import { FallerosService } from 'src/app/services/falleros.service';
+import { PlacesService } from 'src/app/services/places.service';
 
 @Component({
   selector: 'app-agregar-editar-actividad',
@@ -24,6 +28,10 @@ export class AgregarEditarActividadComponent implements OnInit {
   form: FormGroup;
   maxDate = new Date();
 
+  falleros: FalleroModel[] = [];
+  
+  lugares: PlacesModel[] = [];
+
   loading: boolean = false;
   tipo: string = 'Agregar ';
   idModal: number;
@@ -38,8 +46,10 @@ export class AgregarEditarActividadComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _activitiesService: ActivitiesService,
     private _asistantsService: AsistantsService,
+    private _placesService: PlacesService,
     private _snackBar: MatSnackBar,
     private dateAdapter: DateAdapter<any>,
+    private _fallerosService: FallerosService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.form = this.formBuilder.group({
@@ -59,6 +69,21 @@ export class AgregarEditarActividadComponent implements OnInit {
   ngOnInit(): void {
     this.esEditar(this.idModal);
     this.getAsistantsByActivity(this.idModal);
+    this.getFalleros();
+    this.getPlaces();
+  }
+
+  getFalleros() {
+    this._fallerosService.getFalleros().subscribe((fallerosResponse: FalleroModel[]) => {
+      this.falleros = fallerosResponse;
+    });
+
+  }
+
+  getPlaces(){
+    this._placesService.getPlace().subscribe((placesResponse: PlacesModel[]) => {
+      this.lugares = placesResponse;
+    });
   }
 
 
@@ -77,7 +102,6 @@ export class AgregarEditarActividadComponent implements OnInit {
       end: this.form.value.fechaFin.toISOString().slice(0, 10),
       id_Lugar: this.form.value.lugar,
       coordinador: this.form.value.coordinador
-
     }
 
 

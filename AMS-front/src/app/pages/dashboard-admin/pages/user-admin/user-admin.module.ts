@@ -18,7 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DashboardAdminRoutingModule } from '../../dashboard-admin-routing.module';
 import { UserAdminRoutingModule } from './user.admin.routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AgregarEditarFalleroModule } from '../../agregar-editar-fallero/agregar-editar-fallero.module';
+import { AgregarEditarFalleroModule } from '../../components/agregar-editar-fallero/agregar-editar-fallero.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 

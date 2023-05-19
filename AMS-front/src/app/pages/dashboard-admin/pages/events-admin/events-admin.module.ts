@@ -20,7 +20,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EventsAdminComponent } from './events-admin.component';
 import { EventsAdminRoutingModule } from './events-admin-routing.module';
-import { AgregarEditarActividadModule } from '../../agregar-editar-actividad/agregar-editar-actividad.module';
+import { AgregarEditarActividadModule } from '../../components/agregar-editar-actividad/agregar-editar-actividad.module';
 
 @NgModule({
   declarations: [EventsAdminComponent],
@@ -43,9 +43,9 @@ import { AgregarEditarActividadModule } from '../../agregar-editar-actividad/agr
     MatDialogModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AgregarEditarActividadModule
     
-
   ],
   providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }]
 })

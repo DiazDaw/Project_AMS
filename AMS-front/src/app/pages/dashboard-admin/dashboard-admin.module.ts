@@ -18,6 +18,9 @@ import { DashboardAdminRoutingModule } from './dashboard-admin-routing.module';
 import { UserAdminComponentModule } from './pages/user-admin/user-admin.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EventsAdminComponentModule } from './pages/events-admin/events-admin.module';
+import { PlacesAdminModule } from './pages/places-admin/places-admin.module';
+import { PartnersAdminModule } from './pages/partners-admin/partners-admin.module';
+import { AgregarEditarPartnerComponent } from './components/agregar-editar-partner/agregar-editar-partner.component';
 
 
 
@@ -40,6 +43,8 @@ import { EventsAdminComponentModule } from './pages/events-admin/events-admin.mo
     DashboardAdminRoutingModule,
     UserAdminComponentModule,
     EventsAdminComponentModule,
+    PlacesAdminModule,
+    PartnersAdminModule,
     MatDialogModule
 
   ]

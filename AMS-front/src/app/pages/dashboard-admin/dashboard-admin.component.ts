@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatPaginatorIntl } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +18,18 @@ export class DashboardAdminComponent {
 
   activitiesAdminNavigate() {
     this.route.navigate(['/admin/actividades']);
+  }
+
+  partnersAdminNavigate() {
+    this.route.navigate(['/admin/partners']);
+  }
+
+  placesAdminNavigate() {
+    this.route.navigate(['/admin/places']);
+  }
+
+  worksAdminNavigate() {
+    this.route.navigate(['/admin/works']);
   }
 }
 

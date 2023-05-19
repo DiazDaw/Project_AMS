@@ -1,11 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DNIResponse } from 'src/app/interfaces/dni.interface';
 import { FalleroResponse } from 'src/app/interfaces/fallero.interface';
+import { RolesFalleroModel } from 'src/app/models/rolesFallero.model';
+import { RolesGestionModel } from 'src/app/models/rolesGestion.model';
 import { FallerosService } from 'src/app/services/falleros.service';
+import { RolesFalleroService } from 'src/app/services/roles-fallero.service';
+import { RolesGestionService } from 'src/app/services/roles-gestion.service';
 
 
 
@@ -22,6 +26,13 @@ export class AgregarEditarFalleroComponent implements OnInit {
     'Ninguno'
   ]
 
+  selectedValue?: string;
+  selectedCar?: string;
+
+  rolesGestion: RolesGestionModel[] = [];
+  rolesFallero: RolesFalleroModel[] = [];
+
+
   form: FormGroup;
   maxDate = new Date();
 
@@ -36,8 +47,12 @@ export class AgregarEditarFalleroComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AgregarEditarFalleroComponent>,
-    private formBuilder: FormBuilder, private _falleroService: FallerosService,
-    private _snackBar: MatSnackBar, private dateAdapter: DateAdapter<any>,
+    private formBuilder: FormBuilder,
+    private _falleroService: FallerosService,
+    private _snackBar: MatSnackBar,
+    private dateAdapter: DateAdapter<any>,
+    private _rolesGestionService: RolesGestionService,
+    private _rolesFalleroService: RolesFalleroService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.form = this.formBuilder.group({
@@ -50,8 +65,8 @@ export class AgregarEditarFalleroComponent implements OnInit {
       fechaReg: ['', [Validators.required]],
       contrasenia: ['', [Validators.required, Validators.maxLength(20)]],
       confirmContrasenia: ['', [Validators.required, Validators.maxLength(20)]],
-      comision: ['', [Validators.required, Validators.maxLength(20)]],
-      gestion: ['', [Validators.required, Validators.maxLength(20)]],
+      comision: new FormControl(null),
+      gestion: new FormControl(null),
     })
 
     this.idModal = data.id;
@@ -62,6 +77,7 @@ export class AgregarEditarFalleroComponent implements OnInit {
   ngOnInit(): void {
     this.esEditar(this.idModal);
     this.getDNIS();
+    this.getRoles();
   }
 
 
@@ -91,6 +107,16 @@ export class AgregarEditarFalleroComponent implements OnInit {
     }
   }
 
+  getRoles() {
+    this._rolesGestionService.getRol().subscribe((roles: RolesGestionModel[]) => {
+      this.rolesGestion = roles;
+    });
+
+    this._rolesFalleroService.getRol().subscribe((roles: RolesFalleroModel[]) => {
+      this.rolesFallero = roles;
+    });
+  }
+
   agregarEditarPersona() {
 
     const newFallero: FalleroResponse = {
@@ -101,8 +127,8 @@ export class AgregarEditarFalleroComponent implements OnInit {
       fechaNac: this.form.value.fechaNac,
       fechaRegistro: this.form.value.fechaReg.toISOString().slice(0, 10),
       contrasenia: this.form.value.contrasenia,
-      id_Rol_Fallero: this.form.value.comision.toLowerCase() === 'adulto' ? 1 : 2,
-      id_Rol_Gestion: this.form.value.gestion.toLowerCase() === 'admin' ? 1 : 2,
+      id_Rol_Fallero: this.form.value.comision,
+      id_Rol_Gestion: this.form.value.gestion,
       rolFalleroText: this.form.value.comision === 1 ? 'Adulto' : 'Infantil'
     }
 
