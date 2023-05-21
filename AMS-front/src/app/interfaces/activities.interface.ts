@@ -1,8 +1,8 @@
 export interface Activities {
     idActividad?: number;
     title: string;
-    start: Date;
-    end: Date;
+    start: string;
+    end: string;
     color?: string;
     id_Lugar: number;
     coordinador: number;

@@ -33,9 +33,9 @@
 }
 
 /* :host ::ng-deep .fc .fc-daygrid-day {
-    background-color: #fefae0;
-} */
+    background-color: red;
+}
 
-/* :host ::ng-deep .fc .fc-daygrid-day.fc-day-today {
-    background-color:  #fefae0;
+ :host ::ng-deep .fc .fc-daygrid-day.fc-day-today {
+    background-color: aqua;
 } */

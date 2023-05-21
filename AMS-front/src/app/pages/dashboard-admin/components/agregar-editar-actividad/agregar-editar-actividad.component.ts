@@ -11,6 +11,7 @@ import { ActivitiesService } from 'src/app/services/activities.service';
 import { AsistantsService } from 'src/app/services/asistants.service';
 import { FallerosService } from 'src/app/services/falleros.service';
 import { PlacesService } from 'src/app/services/places.service';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-agregar-editar-actividad',
@@ -23,13 +24,13 @@ export class AgregarEditarActividadComponent implements OnInit {
     'DNI',
     'NIE',
     'Ninguno'
-  ]
+  ];
 
   form: FormGroup;
   maxDate = new Date();
 
   falleros: FalleroModel[] = [];
-  
+
   lugares: PlacesModel[] = [];
 
   loading: boolean = false;
@@ -50,16 +51,17 @@ export class AgregarEditarActividadComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private dateAdapter: DateAdapter<any>,
     private _fallerosService: FallerosService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     this.form = this.formBuilder.group({
       nombre: ['', Validators.required],
       fechaInicio: ['', Validators.required],
-      // documentType: ['', Validators.maxLength(20)],
+      horaInicio: ['', Validators.required],
       fechaFin: ['', Validators.required],
+      horaFin: ['', Validators.required],
       lugar: ['', Validators.required],
       coordinador: ['', Validators.required]
-    })
+    });
 
     this.idModal = data.id;
 
@@ -77,56 +79,54 @@ export class AgregarEditarActividadComponent implements OnInit {
     this._fallerosService.getFalleros().subscribe((fallerosResponse: FalleroModel[]) => {
       this.falleros = fallerosResponse;
     });
-
   }
 
-  getPlaces(){
+  getPlaces() {
     this._placesService.getPlace().subscribe((placesResponse: PlacesModel[]) => {
       this.lugares = placesResponse;
     });
   }
 
-
   esEditar(id: number | undefined) {
     if (id !== undefined) {
-      this.tipo = 'Editar '
+      this.tipo = 'Editar ';
       this.getFallero(id);
     }
   }
 
   agregarEditarPersona() {
+    const fechaInicio = dayjs(this.combineDateAndTime(this.form.value.fechaInicio, this.form.value.horaInicio)).format('YYYY-MM-DD HH:mm:ss');
+    const fechaFin = dayjs(this.combineDateAndTime(this.form.value.fechaFin, this.form.value.horaFin)).format('YYYY-MM-DD HH:mm:ss');
 
     const newActivity: Activities = {
       title: this.form.value.nombre,
-      start: this.form.value.fechaInicio.toISOString().slice(0, 10),
-      end: this.form.value.fechaFin.toISOString().slice(0, 10),
+      start: fechaInicio,
+      end: fechaFin,
       id_Lugar: this.form.value.lugar,
       coordinador: this.form.value.coordinador
-    }
-
+    };
 
     this.loading = true;
 
     if (this.idModal === undefined) {
-      //Ejecuta modal agregar fallero
+      // Ejecuta modal agregar fallero
       setTimeout(() => {
         this._activitiesService.addEvents(newActivity).subscribe(() => {
           this.loading = false;
           this.dialogRef.close(true);
           this.addExit('añadida');
-        })
+        });
       }, 1000);
     } else {
-      //Es editar el modal
+      // Es editar el modal
       setTimeout(() => {
         this._activitiesService.updateEvent(this.idModal, newActivity).subscribe(() => {
           this.loading = false;
           this.dialogRef.close(true);
           this.addExit('actualizada');
-        })
+        });
       }, 1000);
     }
-
   }
 
   cancelar() {
@@ -141,14 +141,19 @@ export class AgregarEditarActividadComponent implements OnInit {
 
   getFallero(id: number) {
     this._activitiesService.getOneActivity(id).subscribe(data => {
+      const fechaInicio = new Date(data.start);
+      const fechaFin = new Date(data.end);
+
       this.form.patchValue({
         nombre: data.title,
-        fechaInicio: new Date(data.start),
-        fechaFin: new Date(data.end),
+        fechaInicio: fechaInicio,
+        horaInicio: this.formatTime(fechaInicio),
+        fechaFin: fechaFin,
+        horaFin: this.formatTime(fechaFin),
         lugar: data.id_Lugar,
         coordinador: data.coordinador
-      })
-    })
+      });
+    });
   }
 
   getAsistantsByActivity(idActividad: number) {
@@ -162,5 +167,17 @@ export class AgregarEditarActividadComponent implements OnInit {
       console.log("ID no encontrado");
     }
   }
-}
 
+  combineDateAndTime(date: any, time: string): Date {
+    const timeParts = time.split(':');
+    const hours = Number(timeParts[0]);
+    const minutes = Number(timeParts[1]);
+
+    const combinedDateTime = dayjs(date).hour(hours).minute(minutes).toDate();
+    return combinedDateTime;
+  }
+
+  formatTime(date: Date): string {
+    return date.toISOString().slice(11, 16);
+  }
+}
