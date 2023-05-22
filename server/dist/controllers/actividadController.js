@@ -7,7 +7,7 @@ exports.updateActividad = exports.postActividad = exports.deleteActividad = expo
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ACTIVIDADES
 const getActividad = (req, res) => {
-    connection_1.default.query('SELECT actividad.*, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador, lugar.nombre AS nombre_lugar FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero INNER JOIN lugar ON actividad.id_Lugar = lugar.idLugar; ', (err, data) => {
+    connection_1.default.query('SELECT actividad.*, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador, lugar.nombre AS nombre_lugar, lugar.direccion AS direccion_lugar, lugar.aforo AS aforo FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero INNER JOIN lugar ON actividad.id_Lugar = lugar.idLugar; ', (err, data) => {
         if (err)
             throw err;
         res.json(data);
@@ -25,7 +25,7 @@ const getCoordinador = (req, res) => {
 exports.getCoordinador = getCoordinador;
 const getOneActividad = (req, res) => {
     const { id } = req.params;
-    connection_1.default.query('SELECT actividad.*, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero WHERE actividad.idActividad = ?', id, (err, data) => {
+    connection_1.default.query('SELECT actividad.*, lugar.nombre AS nombre_lugar, lugar.direccion AS direccion_lugar, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador, lugar.aforo AS aforo FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero INNER JOIN lugar ON actividad.id_Lugar = lugar.idLugar WHERE actividad.idActividad = ?', id, (err, data) => {
         if (err)
             throw err;
         res.json(data[0]);

@@ -1,12 +1,14 @@
 import { Post } from '../interfaces/post.interface';
 
 export class PostModel implements Post {
-    idBlog: number;
+    idBlog?: number;
     titulo: string;
     contenido: string;
-    autor: number;
-    fechaCreacion: Date;
+    autor?: number;
+    fechaCreacion: string;
     id_Estado: number;
+    nombre_autor?: string;
+    apellidos_autor?: string;
 
   constructor(post: Post) {
     this.idBlog = post.idBlog;
@@ -15,5 +17,7 @@ export class PostModel implements Post {
     this.autor = post.autor;
     this.fechaCreacion = post.fechaCreacion;
     this.id_Estado = post.id_Estado;
+    this.nombre_autor = post.nombre_autor;
+    this.apellidos_autor = post.apellidos_autor;
   }
 }

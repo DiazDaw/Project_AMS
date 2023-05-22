@@ -17,17 +17,21 @@ const getAsistente = (req, res) => {
 exports.getAsistente = getAsistente;
 const getOneAsistente = (req, res) => {
     const { id } = req.params;
-    connection_1.default.query('SELECT * FROM fallero_actividad WHERE id_Fallero = ?', id, (err, data) => {
+    connection_1.default.query('SELECT fa.id_Actividad, a.title, a.start, a.end FROM actividad a INNER JOIN fallero_actividad fa ON a.idActividad = fa.id_Actividad WHERE fa.id_Fallero = ?', id, (err, data) => {
         if (err)
             throw err;
-        res.json(data[0]);
+        res.json(data);
     });
 };
 exports.getOneAsistente = getOneAsistente;
 const deleteAsistente = (req, res) => {
-    res.json({
-        msg: "Metodo deleteAsistente",
-        id: req.params
+    const { actividadId, falleroId } = req.params;
+    connection_1.default.query('DELETE FROM fallero_actividad WHERE id_Actividad = ? AND id_Fallero = ?', [actividadId, falleroId], (err, data) => {
+        if (err)
+            throw err;
+        res.json({
+            msg: "Asistente eliminado con éxito."
+        });
     });
 };
 exports.deleteAsistente = deleteAsistente;

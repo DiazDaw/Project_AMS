@@ -1,14 +1,70 @@
 <mat-dialog-content>
-    <div>
+    <div *ngIf="showApuntarmeButton">
         <h2>¿Desea apuntarse a esta actividad?</h2>
+    </div>
+    <div *ngIf="!showApuntarmeButton">
+        <h2>Actividad</h2>
+    </div>
 
-        <div class="container-fluid">
+    <mat-tab-group fitInkBarToContent>
+        <mat-tab label="Información">
+            <div class="container-fluid">
+                <form class="row mt-3" [formGroup]="form">
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Actividad</mat-label>
+                            <input matInput type="text" formControlName="title" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Lugar</mat-label>
+                            <input matInput type="text" formControlName="lugar" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Dirección</mat-label>
+                            <input matInput type="text" formControlName="direccion" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Coordinador</mat-label>
+                            <input matInput type="text" formControlName="coordinador" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Fecha Inicio</mat-label>
+                            <input matInput type="text" formControlName="fechaInicio" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Fecha fin</mat-label>
+                            <input matInput type="text" formControlName="fechaFin" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Aforo disponible</mat-label>
+                            <input matInput type="text" formControlName="aforo" [readonly]="true">
+                        </mat-form-field>
+                        <h3 class="alert alert-danger" *ngIf="form.get('aforo')?.value === 0">¡Aforo completo!</h3>
+                    </div>
+                </form>
+            </div>
+        </mat-tab>
+        <mat-tab label="Asistentes">
             <div class="row justify-content-center align-content-center m-3">
-                <div class="col-auto">
+                <div class="col-2 text-center">
                     <h2>Asistentes</h2>
+
                 </div>
                 <div class="row justify-content-start align-content-start mt-3">
-                    <div class="col-12 asistantsDiv">
+                    <h3 *ngIf="asistants.length === 0" class="text-center">¡Sé el primero en apuntarte!</h3>
+                    <div *ngIf="asistants.length !== 0" class="col-12 asistantsDiv">
                         <div class="card mb-2" *ngFor="let asistente of asistants; let i = index">
                             <div class="card-header">
                                 <h5>{{ i + 1 }} - {{asistente.nombre}} {{asistente.apellidos}}</h5>
@@ -17,11 +73,17 @@
                     </div>
                 </div>
             </div>
-        </div>
-            <mat-dialog-actions align="end">
-                <button type="button" mat-button (click)="cancelar()">Cancelar</button>
-                <button type="submit"mat-button (click)="agregarEditarPersona()" cdkFocusInitial>Confirmar</button>
-            </mat-dialog-actions>
-        
-    </div>
+        </mat-tab>
+    </mat-tab-group>
+    <mat-dialog-actions align="end">
+        <button type="button" mat-raised-button color="primary" (click)="cancelar()" *ngIf="!showApuntarmeButton">Volver</button>
+        <button type="button" mat-button (click)="cancelar()" *ngIf="showApuntarmeButton">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="agregarEditarPersona()"
+            [disabled]="form.get('aforo')?.value === 0" *ngIf="showApuntarmeButton">Apuntarme</button>
+    </mat-dialog-actions>
+
+
+
+
+
 </mat-dialog-content>

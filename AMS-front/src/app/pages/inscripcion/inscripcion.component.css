@@ -12,6 +12,6 @@ p {
 
 
 .scrollOver {
-    overflow-x: scroll;
+    overflow-x: auto;
     scrollbar-width: none;
 }

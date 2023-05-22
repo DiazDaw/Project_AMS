@@ -23,8 +23,9 @@
                     <div class="col-6">
                         <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
                             <mat-label>Fecha de inicio</mat-label>
-                            <input autocomplete="off" matInput formControlName="fechaInicio"
-                                [matDatepicker]="pickerNacimiento">
+                            <input autocomplete="off" [min]="minDate" matInput formControlName="fechaInicio"
+                                [matDatepicker]="pickerNacimiento" (dateInput)="onFechaInicioChange($event)">
+
                             <mat-datepicker-toggle matIconSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
                             <mat-datepicker touchUi #pickerNacimiento></mat-datepicker>
                         </mat-form-field>
@@ -37,7 +38,7 @@
                     <div class="col-6">
                         <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
                             <mat-label>Fecha de fin</mat-label>
-                            <input autocomplete="off" matInput formControlName="fechaFin"
+                            <input autocomplete="off" [min]="minDateEnd" matInput formControlName="fechaFin"
                                 [matDatepicker]="pickerRegistro">
                             <mat-datepicker-toggle matIconSuffix [for]="pickerRegistro"></mat-datepicker-toggle>
                             <mat-datepicker touchUi #pickerRegistro></mat-datepicker>
@@ -54,10 +55,12 @@
                             <input matInput type="text" formControlName="horaInicio">
                         </mat-form-field>
                         <div class="error">
-                            <span *ngIf="form.get('horaInicio')?.hasError('required') && form.get('horaInicio')?.touched">Campo
+                            <span
+                                *ngIf="form.get('horaInicio')?.hasError('required') && form.get('horaInicio')?.touched">Campo
                                 obligatorio</span>
                             <span *ngIf="form.get('horaInicio')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                            <span *ngIf="form.get('horaInicio')?.hasError('pattern')">Este campo sólo admite letras</span>
+                            <span *ngIf="form.get('horaInicio')?.hasError('pattern')">Este campo sólo admite
+                                letras</span>
                         </div>
                     </div>
                     <div class="col-6">
@@ -66,21 +69,22 @@
                             <input matInput type="text" formControlName="horaFin">
                         </mat-form-field>
                         <div class="error">
-                            <span *ngIf="form.get('horaFin')?.hasError('required') && form.get('horaFin')?.touched">Campo
+                            <span
+                                *ngIf="form.get('horaFin')?.hasError('required') && form.get('horaFin')?.touched">Campo
                                 obligatorio</span>
                             <span *ngIf="form.get('horaFin')?.hasError('maxlength')">Máximo 20 caracteres</span>
                             <span *ngIf="form.get('horaFin')?.hasError('pattern')">Este campo sólo admite letras</span>
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field  appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
                             <mat-label>Lugar</mat-label>
                             <mat-select name="lugares" formControlName="lugar">
-                              <mat-option *ngFor="let lugar of lugares" [value]="lugar.idLugar">
-                                {{lugar.nombre}}
-                              </mat-option>
+                                <mat-option *ngFor="let lugar of lugares" [value]="lugar.idLugar">
+                                    {{lugar.nombre}}
+                                </mat-option>
                             </mat-select>
-                          </mat-form-field>
+                        </mat-form-field>
                         <div class="error">
                             <span
                                 *ngIf="form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched">Campo
@@ -89,14 +93,14 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field  appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
                             <mat-label>Coordinador</mat-label>
                             <mat-select name="rolesFallero" formControlName="coordinador">
-                              <mat-option *ngFor="let fallero of falleros" [value]="fallero.idFallero">
-                                {{fallero.nombre}} {{fallero.apellidos}}
-                              </mat-option>
+                                <mat-option *ngFor="let fallero of falleros" [value]="fallero.idFallero">
+                                    {{fallero.nombre}} {{fallero.apellidos}}
+                                </mat-option>
                             </mat-select>
-                          </mat-form-field>
+                        </mat-form-field>
                         <div class="error">
                             <span
                                 *ngIf="form.get('confirmContrasenia')?.hasError('required') && form.get('confirmContrasenia')?.touched">Campo
@@ -108,7 +112,7 @@
                                 contraseñas no coinciden</span>
                         </div>
                     </div>
-                    
+
                     <mat-dialog-actions align="end">
                         <button type="button" mat-button (click)="cancelar()">Cancelar</button>
                         <button type="submit" [disabled]="form.invalid" mat-button cdkFocusInitial>Confirmar</button>
@@ -131,14 +135,15 @@
                                             <h5>{{ i + 1 }} - {{asistente.nombre}} {{asistente.apellidos}}</h5>
                                         </div>
                                         <div class="col-1">
-                                            <mat-icon class="buttonDelete" matTooltip="Eliminar asistente">delete</mat-icon>
+                                            <mat-icon class="buttonDelete"
+                                                matTooltip="Eliminar asistente">delete</mat-icon>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <mat-dialog-actions align="end">

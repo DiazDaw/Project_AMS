@@ -1,12 +1,5 @@
 <div class="container-fluid">
-    <!-- <div *ngFor="let event of eventsModel">
-        <div class="card-header">
-            <h2><a href="#">{{ event.title }}</a></h2>
-            <p>Escrito por: {{ event.start}}</p>
-            <p>Escrito por: {{ event.end}}</p>
-        </div>
-    </div> -->
-
+    
     <div class="row m-3 mt-5">
         <div class="col-12 text-center">
             <h1>Calendario de actividades</h1>
@@ -17,7 +10,7 @@
     <full-calendar [options]="calendarOptions">
         <ng-template #eventContent let-arg>
             <div class="calendarContent" [backgroundColor]="getRandomColor()" (click)="apuntarEditar(arg.event.extendedProps.idActividad)" >
-                <h1>{{ arg.event.title }}: {{ arg.event.start | date:'HH:mm' }} - {{ arg.event.end | date:'HH:mm' }}</h1>
+                <h1>{{ arg.event.title }}: {{ arg.event.start | date:'dd/MM (HH:mm)' }} - {{ arg.event.end | date:'dd/MM (HH:mm)' }}</h1>
             </div>
         </ng-template>
     </full-calendar>

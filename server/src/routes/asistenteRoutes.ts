@@ -6,7 +6,7 @@ const router = Router();
 // RUTAS CRUD ASISTENTES
 router.get('/actividad/:id', getAsistente);
 router.get('/:id', getOneAsistente);
-router.delete('/:id', deleteAsistente);
+router.delete('/fallero/:actividadId/actividad/:falleroId', deleteAsistente);
 router.post('/', postAsistente);
 router.put('/:id', updateAsistente);
 

@@ -12,6 +12,8 @@ export class ActivitiesModel implements Activities {
     coordinador: number;
     nombre_coordinador?: string;
     nombre_lugar?: string;
+    direccion_lugar?:string;
+    aforo?: number;
 
     constructor(response: Activities) {
         this.idActividad= response.idActividad;
@@ -23,6 +25,8 @@ export class ActivitiesModel implements Activities {
         this.coordinador = response.coordinador;
         this.nombre_coordinador = response.nombre_coordinador;
         this.nombre_lugar = response.nombre_lugar;
+        this.direccion_lugar = response.direccion_lugar;
+        this.aforo = response.aforo;
     }
 
     

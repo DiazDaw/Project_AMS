@@ -91,7 +91,7 @@ export class ActivitiesComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalFalleroActivityComponent, {
       width: '50%',
       disableClose: true,
-      data: { id: id }
+      data: { id: id, boton: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {

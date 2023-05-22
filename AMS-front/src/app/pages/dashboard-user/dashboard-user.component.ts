@@ -8,6 +8,12 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { MatDialog } from '@angular/material/dialog';
 import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.component';
 import { FormGroup, Validators } from '@angular/forms';
+import { ActivitiesService } from 'src/app/services/activities.service';
+import { Activities } from 'src/app/interfaces/activities.interface';
+import { AsistantsService } from 'src/app/services/asistants.service';
+import { Asistants } from 'src/app/interfaces/asistants.interface';
+import { ActivityByUser } from 'src/app/interfaces/activityByUser.interface';
+import { ModalFalleroActivityComponent } from '../activities/modal-fallero-activity/modal-fallero-activity.component';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -22,14 +28,22 @@ export class DashboardUserComponent implements OnInit {
 
   postsBlog: Post[] = [];
 
+  activities: ActivityByUser[] = [];
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(private _snackBar: MatSnackBar, private _blogService: BlogService, public _infoUserService: InfoUserService, private router: Router, public dialog: MatDialog) { }
+  constructor(private _snackBar: MatSnackBar,
+    private _blogService: BlogService,
+    public _infoUserService: InfoUserService,
+    private router: Router,
+    public dialog: MatDialog,
+    private _asistantsService: AsistantsService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.getPostByUser(1);
+    this.getPostByUser(this.loginResponseModel?.usuario.idFallero);
+    this.getActivityByUser(this.loginResponseModel?.usuario.idFallero);
   }
 
   getUserInfo() {
@@ -42,6 +56,11 @@ export class DashboardUserComponent implements OnInit {
     }
   }
 
+  redirectToPost(id?: number) {
+    this.router.navigate(['/blog', id]);
+    console.log('hola');
+  }
+
   getPostByUser(id?: number) {
     if (id) {
       this._blogService.getByUser(id).subscribe(
@@ -52,6 +71,36 @@ export class DashboardUserComponent implements OnInit {
       console.log("ID no encontrado");
     }
   }
+
+  getActivityByUser(id?: number) {
+    if (id) {
+      this._asistantsService.getByUser(id).subscribe(
+        response => {
+          this.activities = response;
+        });
+    } else {
+      console.log("ID no encontrado");
+    }
+  }
+
+  deleteAsistant(id: number, idFallero?: number) {
+    if (idFallero) {
+      this._asistantsService.deleteAsistant(id, idFallero).subscribe(() => {
+        this.getActivityByUser(this.loginResponseModel?.usuario.idFallero);
+        this.deleteExit();
+      })
+    }
+  }
+
+  deleteExit() {
+    this._snackBar.open('Te has borrado de la actividad con éxito ', '', {
+      duration: 5000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition
+    });
+  }
+
+
 
   logoutSuccess() {
     this._snackBar.open('Has cerrado sesión con éxito ', '', {
@@ -82,5 +131,19 @@ export class DashboardUserComponent implements OnInit {
       // this.animal = result;
     });
   }
+
+  apuntarEditar(id?: number, showApuntarmeButton?: boolean) {
+    const idActividad = id
+    const buttons = showApuntarmeButton// Acceder al ID de la actividad
+    console.log('ID de la actividad:', idActividad);
+    const dialogRef = this.dialog.open(ModalFalleroActivityComponent, {
+      width: '50%',
+      disableClose: true,
+      data: { id: id, boton: false }
+    });
+
+  }
+
+
 }
 

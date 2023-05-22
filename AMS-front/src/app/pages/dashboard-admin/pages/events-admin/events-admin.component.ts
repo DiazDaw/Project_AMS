@@ -5,6 +5,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Activities } from 'src/app/interfaces/activities.interface';
+import { ActivitiesModel } from 'src/app/models/activities.model';
 import { AgregarEditarFalleroComponent } from '../../components/agregar-editar-fallero/agregar-editar-fallero.component';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { AgregarEditarActividadComponent } from '../../components/agregar-editar-actividad/agregar-editar-actividad.component';
@@ -21,14 +22,16 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  dataSource: MatTableDataSource<Activities>;
+  dataSource: MatTableDataSource<ActivitiesModel>;
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
+  
+
   displayedColumns: string[] = ['nombre', 'fechaInicio', 'fechaFin', 'lugar', 'coordinador', 'acciones'];
 
-  actividades: Activities[] = [];
+  actividades: ActivitiesModel[] = [];
 
   coordinadores: Coordinators[] = [];
 
@@ -67,7 +70,7 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
       this._activitiesService.getEvents().subscribe(
         response => {
           this.loading = false;
-          this.dataSource.data = response;
+          this.dataSource.data = response.map(activity => new ActivitiesModel(activity));
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         }

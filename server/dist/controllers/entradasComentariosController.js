@@ -7,7 +7,12 @@ exports.updateComentario = exports.postComentario = exports.deleteComentario = e
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ENTRADAS
 const getEntrada = (req, res) => {
-    connection_1.default.query('SELECT * FROM entrada', (err, data) => {
+    const query = `
+      SELECT entrada.*, fallero.nombre AS nombre_autor, fallero.apellidos AS apellidos_autor
+      FROM entrada
+      INNER JOIN fallero ON entrada.autor = fallero.idFallero
+    `;
+    connection_1.default.query(query, (err, data) => {
         if (err)
             throw err;
         res.json(data);
@@ -16,7 +21,7 @@ const getEntrada = (req, res) => {
 exports.getEntrada = getEntrada;
 const getOneEntrada = (req, res) => {
     const { id } = req.params;
-    connection_1.default.query('SELECT * FROM entrada WHERE idBlog = ?', id, (err, data) => {
+    connection_1.default.query('SELECT entrada.*, fallero.nombre AS nombre_autor, fallero.apellidos AS apellidos_autor FROM entrada INNER JOIN fallero ON entrada.autor = fallero.idFallero WHERE idBlog = ?', id, (err, data) => {
         if (err)
             throw err;
         res.json(data[0]);
@@ -78,7 +83,11 @@ const getAllComentario = (req, res) => {
 exports.getAllComentario = getAllComentario;
 const getComentarioFromEntrada = (req, res) => {
     const { id_Entrada } = req.params;
-    connection_1.default.query('SELECT * FROM comentario WHERE id_Entrada = ?', id_Entrada, (err, data) => {
+    connection_1.default.query(`SELECT c.*,f.apellidos as apellidos_autor, f.nombre as nombre_autor, e.nombre as nombre_estado 
+       FROM comentario c
+       INNER JOIN fallero f ON c.autor = f.idFallero
+       INNER JOIN estado e ON c.id_Estado = e.idEstado
+       WHERE c.id_Entrada = ?`, id_Entrada, (err, data) => {
         if (err)
             throw err;
         res.json(data);

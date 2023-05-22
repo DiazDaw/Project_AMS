@@ -26,12 +26,10 @@ export class ActivitiesService {
     );
   }
 
-  getOneActivity(id: number): Observable<ActivitiesModel> {
-    return this.http.get<Activities>(`${this.myAppUrl}${this.myApiUrl}/${id}`).pipe(
-      map((response: Activities) => new ActivitiesModel(response))
-    );
+  getOneActivity(id: number): Observable<Activities> {
+    return this.http.get<Activities>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
   }
-
+  
   getCoordinador(id: number): Observable<CoordinatorsModel[]> {
     return this.http.get<Coordinators[]>(`${this.myAppUrl}${this.myApiUrl}/coordinador/${id}`).pipe(
       map(response => response.map(coordinador => new CoordinatorsModel(coordinador)))

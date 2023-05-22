@@ -8,7 +8,7 @@ import connection from "../db/connection";
 export const getActividad = (req: Request, res: Response) => {
 
     connection.query(
-        'SELECT actividad.*, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador, lugar.nombre AS nombre_lugar FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero INNER JOIN lugar ON actividad.id_Lugar = lugar.idLugar; ', (err, data) => {
+        'SELECT actividad.*, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador, lugar.nombre AS nombre_lugar, lugar.direccion AS direccion_lugar, lugar.aforo AS aforo FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero INNER JOIN lugar ON actividad.id_Lugar = lugar.idLugar; ', (err, data) => {
         if (err) throw err;
         res.json(data);
     })
@@ -25,12 +25,10 @@ export const getCoordinador = (req: Request, res: Response) => {
 }
 
 export const getOneActividad = (req: Request, res: Response) => {
-
     const { id } = req.params;
 
-
     connection.query(
-        'SELECT actividad.*, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero WHERE actividad.idActividad = ?',
+        'SELECT actividad.*, lugar.nombre AS nombre_lugar, lugar.direccion AS direccion_lugar, CONCAT(fallero.nombre, " ", fallero.apellidos) AS nombre_coordinador, lugar.aforo AS aforo FROM actividad INNER JOIN fallero ON actividad.coordinador = fallero.idFallero INNER JOIN lugar ON actividad.id_Lugar = lugar.idLugar WHERE actividad.idActividad = ?',
         id,
         (err, data) => {
             if (err) throw err;
@@ -38,6 +36,7 @@ export const getOneActividad = (req: Request, res: Response) => {
         }
     );
 };
+
 
 
 export const deleteActividad = (req: Request, res: Response) => {

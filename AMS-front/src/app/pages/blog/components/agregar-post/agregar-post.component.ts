@@ -1,31 +1,37 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Activities } from 'src/app/interfaces/activities.interface';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import * as dayjs from 'dayjs';
 import { AsistantsByActivity } from 'src/app/interfaces/asistantsByActivity.interface';
+import { Coments } from 'src/app/interfaces/coments.interface';
+import { Post } from 'src/app/interfaces/post.interface';
 import { FalleroModel } from 'src/app/models/fallero.model';
+import { LoginResponseModel } from 'src/app/models/login.model';
 import { PlacesModel } from 'src/app/models/places.model';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { AsistantsService } from 'src/app/services/asistants.service';
+import { BlogService } from 'src/app/services/blog.service';
 import { FallerosService } from 'src/app/services/falleros.service';
 import { PlacesService } from 'src/app/services/places.service';
-import * as dayjs from 'dayjs';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { AgregarComentarioEntradaComponent } from '../agregar-comentario-entrada/agregar-comentario-entrada.component';
 
 @Component({
-  selector: 'app-agregar-editar-actividad',
-  templateUrl: './agregar-editar-actividad.component.html',
-  styleUrls: ['./agregar-editar-actividad.component.css']
+  selector: 'app-agregar-post',
+  templateUrl: './agregar-post.component.html',
+  styleUrls: ['./agregar-post.component.css']
 })
-export class AgregarEditarActividadComponent implements OnInit {
+export class AgregarPostComponent {
 
-  documentos: string[] = [
-    'DNI',
-    'NIE',
-    'Ninguno'
-  ];
+  sessionStorageResponse?: any;
+  loginResponseModel?: LoginResponseModel;
+
+  idModal?: number;
+
+  postsBlog?: Post;
 
   form: FormGroup;
   minDate = new Date();
@@ -37,7 +43,6 @@ export class AgregarEditarActividadComponent implements OnInit {
 
   loading: boolean = false;
   tipo: string = 'Agregar ';
-  idModal: number;
 
   dniIntroducido: any;
   disableButton: boolean = false;
@@ -45,7 +50,7 @@ export class AgregarEditarActividadComponent implements OnInit {
   asistants: AsistantsByActivity[] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<AgregarEditarActividadComponent>,
+    public dialogRef: MatDialogRef<AgregarComentarioEntradaComponent>,
     private formBuilder: FormBuilder,
     private _activitiesService: ActivitiesService,
     private _asistantsService: AsistantsService,
@@ -53,28 +58,43 @@ export class AgregarEditarActividadComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private dateAdapter: DateAdapter<any>,
     private _fallerosService: FallerosService,
+    private _blogService: BlogService,
+    private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      fechaInicio: ['', Validators.required],
-      horaInicio: ['', Validators.required],
-      fechaFin: ['', Validators.required],
-      horaFin: ['', Validators.required],
-      lugar: ['', Validators.required],
-      coordinador: ['', Validators.required]
+      titulo: ['', Validators.required],
+      contenido: ['', Validators.required],
     });
 
-    this.idModal = data.id;
-
-    dateAdapter.setLocale('es');
+    this.dateAdapter.setLocale('es');
   }
 
   ngOnInit(): void {
-    this.esEditar(this.idModal);
-    this.getAsistantsByActivity(this.idModal);
-    this.getFalleros();
-    this.getPlaces();
+    this.getUserInfo();
+    console.log(this.loginResponseModel?.usuario);
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.idModal = +idParam;
+
+        this.getOnePost(this.idModal);
+        this.getFalleros();
+        this.getPlaces();
+
+      }
+    });
+  }
+
+
+
+
+  getOnePost(id?: number) {
+    this._blogService.getOnePost(id).subscribe(
+      response => {
+        this.postsBlog = response;
+      });
   }
 
   getFalleros() {
@@ -96,39 +116,48 @@ export class AgregarEditarActividadComponent implements OnInit {
     }
   }
 
-  agregarEditarPersona() {
-    const fechaInicio = dayjs(this.combineDateAndTime(this.form.value.fechaInicio, this.form.value.horaInicio)).format('YYYY-MM-DD HH:mm:ss');
-    const fechaFin = dayjs(this.combineDateAndTime(this.form.value.fechaFin, this.form.value.horaFin)).format('YYYY-MM-DD HH:mm:ss');
+  getUserInfo() {
+    //Recuperamos la info del local storage
+    this.sessionStorageResponse = sessionStorage.getItem('loginResponse');
 
-    const newActivity: Activities = {
-      title: this.form.value.nombre,
-      start: fechaInicio,
-      end: fechaFin,
-      id_Lugar: this.form.value.lugar,
-      coordinador: this.form.value.coordinador
+    // Si se encontraron datos en local storage, convertirlos a un objeto LoginResponseModel
+    if (this.sessionStorageResponse) {
+      this.loginResponseModel = new LoginResponseModel(JSON.parse(this.sessionStorageResponse));
+    }
+  }
+
+  agregarEditarPersona() {
+    // const fechaInicio = dayjs(this.combineDateAndTime(this.form.value.fechaInicio, this.form.value.horaInicio)).format('YYYY-MM-DD HH:mm:ss');
+    // const fechaFin = dayjs(this.combineDateAndTime(this.form.value.fechaFin, this.form.value.horaFin)).format('YYYY-MM-DD HH:mm:ss');
+
+    const newPost: Post = {
+      titulo: this.form.value.titulo,
+      contenido: this.form.value.contenido,
+      fechaCreacion: new Date().toISOString().slice(0, 10),
+      autor: this.loginResponseModel?.usuario.idFallero,
+      id_Estado: 1
+
     };
 
-    this.loading = true;
 
-    if (this.idModal === undefined) {
-      // Ejecuta modal agregar fallero
-      setTimeout(() => {
-        this._activitiesService.addEvents(newActivity).subscribe(() => {
-          this.loading = false;
-          this.dialogRef.close(true);
-          this.addExit('añadida');
-        });
-      }, 1000);
-    } else {
-      // Es editar el modal
-      setTimeout(() => {
-        this._activitiesService.updateEvent(this.idModal, newActivity).subscribe(() => {
-          this.loading = false;
-          this.dialogRef.close(true);
-          this.addExit('actualizada');
-        });
-      }, 1000);
-    }
+    // if (this.idModal === undefined) {
+    // Ejecuta modal agregar fallero
+    setTimeout(() => {
+      this._blogService.addPost(newPost).subscribe(() => {
+        this.dialogRef.close(true);
+        this.addExit('añadida');
+      });
+    }, 1000);
+    // } else {
+    //   // Es editar el modal
+    //   setTimeout(() => {
+    //     this._activitiesService.updateEvent(this.idModal, newActivity).subscribe(() => {
+    //       this.loading = false;
+    //       this.dialogRef.close(true);
+    //       this.addExit('actualizada');
+    //     });
+    //   }, 1000);
+    // }
   }
 
   cancelar() {
@@ -136,7 +165,7 @@ export class AgregarEditarActividadComponent implements OnInit {
   }
 
   addExit(tipo: string) {
-    this._snackBar.open(`La actividad ha sido ${tipo} con éxito `, '', {
+    this._snackBar.open(`El post ha sido publicado con éxito `, '', {
       duration: 5000
     });
   }
@@ -145,7 +174,7 @@ export class AgregarEditarActividadComponent implements OnInit {
     this._activitiesService.getOneActivity(id).subscribe(data => {
       const fechaInicio = new Date(data.start);
       const fechaFin = new Date(data.end);
-  
+
       this.form.patchValue({
         nombre: data.title,
         fechaInicio: fechaInicio,
@@ -155,11 +184,11 @@ export class AgregarEditarActividadComponent implements OnInit {
         lugar: data.id_Lugar,
         coordinador: data.coordinador
       });
-      
+
       this.minDateEnd = fechaInicio; // Assign the value of fechaInicio to minDateEnd
     });
   }
-  
+
   formatTime(date: Date): string {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -173,7 +202,7 @@ export class AgregarEditarActividadComponent implements OnInit {
       this.form.get('fechaFin')?.updateValueAndValidity();
     }
   }
-  
+
 
   getAsistantsByActivity(idActividad: number) {
     if (idActividad) {
@@ -196,3 +225,4 @@ export class AgregarEditarActividadComponent implements OnInit {
     return combinedDateTime;
   }
 }
+

@@ -2,19 +2,16 @@
     <div class="row justify-content-center align-content-center m-3">
         <div class="col-auto">
             <h1>Blog</h1>
+            <button type="button" mat-raised-button color="primary" class="me-1" (click)="apuntarEditar()">Crear un post</button>
         </div>
         <div class="row justify-content-start align-content-start mt-3">
             <div class="col-12">
                 <div class="card mb-2" *ngFor="let post of postsBlog">
-                    <div class="card-header">
-                        <h2><a href="#">{{ post.titulo }}</a></h2>
-                        <p>Escrito por: {{ post.autor}}</p>
-                        <p *ngIf="sessionStorageResponse">El DNI del usuario es: {{loginResponseModel?.usuario?.dni}}
-                        </p>
+                    <div class="card-header blogDiv"  (click)="redirectToPost(post?.idBlog)">
+                        <h2>{{ post.titulo }}</h2>
+                        <p>Escrito por: {{ post.nombre_autor}} {{post.apellidos_autor}}</p>
+                        <p>Fecha: {{ post.fechaCreacion | date:'dd/MM/yyyy'}}</p>
                     </div>
-                    <!-- <div class="card-body">
-                        <p>{{ post.contenido }}</p>
-                    </div> -->
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatTooltipModule
   ]
 })
 export class DashboardUserModule { }

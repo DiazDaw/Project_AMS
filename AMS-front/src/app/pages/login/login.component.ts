@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserLoginService } from '../../services/user-login.service';
 
@@ -34,6 +34,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.login();
+    }
+  }
+
   login() {
 
     this._loginService.login(this.myForm.controls['dni'].value, this.myForm.controls['password'].value).subscribe(
@@ -54,7 +62,7 @@ export class LoginComponent implements OnInit {
           console.log(this.loginResponse.token);
           console.log(this.loginResponse.usuario.dni);
 
-          this.route.navigate(['']);
+          this.route.navigate(['/user']);
         }
       },
       error => {

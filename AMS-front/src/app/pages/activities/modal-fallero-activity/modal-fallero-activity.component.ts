@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Activities } from 'src/app/interfaces/activities.interface';
 import { Asistants } from 'src/app/interfaces/asistants.interface';
 import { AsistantsByActivity } from 'src/app/interfaces/asistantsByActivity.interface';
+import { ActivitiesModel } from 'src/app/models/activities.model';
 import { LoginResponseModel } from 'src/app/models/login.model';
 import { ActivitiesService } from 'src/app/services/activities.service';
 import { AsistantsService } from 'src/app/services/asistants.service';
@@ -21,9 +22,12 @@ export class ModalFalleroActivityComponent {
 
   asistants: AsistantsByActivity[] = [];
 
+  form: FormGroup;
 
   tipo: string = 'Agregar ';
+
   idActividad: number;
+  showApuntarmeButton: boolean;
 
   sessionStorageResponse?: any;
 
@@ -40,12 +44,26 @@ export class ModalFalleroActivityComponent {
 
     this.idActividad = data.id;
 
+    const boton = data.boton;
+    this.showApuntarmeButton = boton === true;
+
+    this.form = this.formBuilder.group({
+      title: ['', Validators.required],
+      lugar: ['', Validators.required],
+      direccion: ['', Validators.required],
+      coordinador: ['', Validators.required],
+      fechaInicio: ['', Validators.required],
+      fechaFin: ['', Validators.required],
+      aforo: ['', Validators.required]
+
+    })
   }
 
   ngOnInit(): void {
     // this.esEditar(this.idActividad);
     this.getUserInfo();
     this.getAsistantsByActivity(this.idActividad);
+    this.getInfoActivity(this.idActividad);
   }
 
   getUserInfo() {
@@ -70,6 +88,31 @@ export class ModalFalleroActivityComponent {
     }
   }
 
+  getInfoActivity(idActividad: number) {
+    if (idActividad) {
+      this._activitiesService.getOneActivity(idActividad).subscribe(data => {
+
+        this.form.patchValue({
+          title: data.title,
+          lugar: data.nombre_lugar,
+          direccion: data.direccion_lugar,
+          coordinador: data.nombre_coordinador,
+          fechaInicio: `${new Date(data.start).toLocaleDateString('es-ES')} (${this.formatTime(new Date(data.start))})`,
+          fechaFin: `${new Date(data.end).toLocaleDateString('es-ES')} (${this.formatTime(new Date(data.end))})`,
+          aforo: (data.aforo ?? 0) - this.asistants.length
+        });
+
+      });
+    } else {
+      console.log("ID no encontrado");
+    }
+  }
+
+  formatTime(date: Date): string {
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
 
   agregarEditarPersona() {
 
@@ -87,7 +130,7 @@ export class ModalFalleroActivityComponent {
         });
       }, 1000);
     } else {
-      const snackBarRef: MatSnackBarRef<any> = this._snackBar.open(`Ya estas apuntado a esta actividad.`, 'Borrarme', {
+      const snackBarRef: MatSnackBarRef<any> = this._snackBar.open(`Ya estas apuntado a esta actividad. Ve a la pestaña "Mis actividades"`, 'Borrarme', {
         duration: 5000
       });
 
@@ -97,13 +140,6 @@ export class ModalFalleroActivityComponent {
       });
     }
   }
-
-  // esEditar(id: number | undefined) {
-  //   if (id !== undefined) {
-  //     this.tipo = 'Editar '
-  //     this.getActivity(id);
-  //   }
-  // }
 
   cancelar() {
     this.dialogRef.close(false);

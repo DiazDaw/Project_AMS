@@ -8,4 +8,6 @@ export interface Activities {
     coordinador: number;
     nombre_coordinador?: string;
     nombre_lugar?: string;
+    direccion_lugar?: string;
+    aforo?: number;
 }

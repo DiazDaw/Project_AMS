@@ -6,6 +6,8 @@ import { Asistants } from '../interfaces/asistants.interface';
 import { AsistantsModel } from '../models/asistant.model';
 import { AsistantsByActivityModel } from '../models/asistantsByActivity.model';
 import { AsistantsByActivity } from '../interfaces/asistantsByActivity.interface';
+import { ActivityByUserModel } from '../models/activityByUser.model';
+import { ActivityByUser } from '../interfaces/activityByUser.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +27,18 @@ export class AsistantsService {
       map(response => response.map(asistentes => new AsistantsByActivityModel(asistentes)))
     );
   }
-  
 
+  getByUser(id: number): Observable<ActivityByUserModel[]> {
+    return this.http.get<ActivityByUser[]>(`${this.myAppUrl}${this.myApiUrl}/${id}`).pipe(
+      map(response => response.map(asistentes => new ActivityByUserModel(asistentes)))
+    );
+  }
+  
   postAsistant(asistant: Asistants ): Observable<void>{
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}/`, asistant);
+  }
+
+  deleteAsistant(id: number, idFallero: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/fallero/${id}/actividad/${idFallero}`);
   }
 }

@@ -1,10 +1,14 @@
-export interface Post{
-    idBlog?: number;
+export interface Coments {
+    
+    idComentario?: number;
     titulo: string;
     contenido: string;
-    autor?: number;
     fechaCreacion: string;
+    autor?: number;
     id_Estado: number;
+    id_Entrada?: number;
     nombre_autor?: string;
+    nombre_estado?: string;
     apellidos_autor?: string;
+    
 }

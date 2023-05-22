@@ -4,6 +4,9 @@ import { BlogService } from 'src/app/services/blog.service';
 import { Post } from 'src/app/interfaces/post.interface';
 import { InfoUserService } from 'src/app/services/infoUser.service';
 import { LoginResponseModel } from 'src/app/models/login.model';
+import { AgregarComentarioEntradaComponent } from './components/agregar-comentario-entrada/agregar-comentario-entrada.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AgregarPostComponent } from './components/agregar-post/agregar-post.component';
 
 @Component({
   selector: 'app-blog',
@@ -11,6 +14,8 @@ import { LoginResponseModel } from 'src/app/models/login.model';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
+
+  id?: number;
 
   postsBlog: Post[] = [];
   token = sessionStorage.getItem('token');
@@ -20,7 +25,12 @@ export class BlogComponent implements OnInit {
 
   loginResponseModel?: LoginResponseModel;
 
-  constructor(private _blogService: BlogService, private route: Router, public _infoUserService?: InfoUserService) { }
+  constructor(
+    private _blogService: BlogService,
+    private route: Router,
+    public dialog: MatDialog,
+    public _infoUserService?: InfoUserService,
+    ) { }
 
   ngOnInit(): void {
     this.getAllPost();
@@ -42,6 +52,25 @@ export class BlogComponent implements OnInit {
       response => {
         this.postsBlog = response;
       });
+  }
+
+  redirectToPost(id?: number) {
+    this.route.navigate(['/blog', id]);
+    console.log('hola');
+  }
+
+  apuntarEditar(id?: number) {
+    const dialogRef = this.dialog.open(AgregarPostComponent, {
+      width: '50%',
+      disableClose: true,
+      data: { id: this.id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllPost();
+      }
+    });
   }
 
 }
