@@ -36,10 +36,10 @@ export class ActivitiesService {
     );
   }
 
-  addEvents(activity: Activities): Observable<void> {
-    return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}/`, activity);
+  addEvents(activity: Activities): Observable<number> {
+    return this.http.post<number>(`${this.myAppUrl}${this.myApiUrl}/`, activity);
   }
-
+  
   updateEvent(id: number, fallero: Activities): Observable<void> {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, fallero);
   }

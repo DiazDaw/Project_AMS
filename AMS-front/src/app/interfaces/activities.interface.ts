@@ -10,4 +10,8 @@ export interface Activities {
     nombre_lugar?: string;
     direccion_lugar?: string;
     aforo?: number;
+    nombre_proveedor?: string;
+    id_Proveedor?: number;
+    idNuevaActividad?: number;
+    id_Relacion_Proveedor?: number;
 }

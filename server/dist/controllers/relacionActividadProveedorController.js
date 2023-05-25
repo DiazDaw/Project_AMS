@@ -37,11 +37,18 @@ exports.deleteRelacionActividadProveedor = deleteRelacionActividadProveedor;
 const postRelacionActividadProveedor = (req, res) => {
     const { body } = req;
     const { id } = req.params;
-    connection_1.default.query('INSERT INTO actividad_proveedor set ?', [body], (err, data) => {
+    connection_1.default.query('INSERT INTO actividad_proveedor SET ?', [body], (err, data) => {
         if (err)
             throw err;
-        res.json({
-            msg: "Relacion entre actividad y proveedor creada con éxito."
+        // Obtener el ID del registro insertado
+        const insertedId = data.insertId;
+        // Consultar el registro recién insertado en la base de datos
+        connection_1.default.query('SELECT * FROM actividad_proveedor WHERE idRelacion = ?', [insertedId], (err, result) => {
+            if (err)
+                throw err;
+            // Devolver el objeto creado
+            const createdRelacion = result[0];
+            res.json(createdRelacion);
         });
     });
 };

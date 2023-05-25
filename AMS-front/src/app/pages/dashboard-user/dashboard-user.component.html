@@ -128,10 +128,20 @@
                     <div class="container-fluid">
                         <div class="row justify-content-center mt-3">
                             <div class="col-12 divUserBlog">
-                                <div class="card mb-2" *ngFor="let post of postsBlog">
-                                    <div class="card-header postRedirect" (click)="redirectToPost(post.idBlog)">
-                                        <h2>{{ post.titulo }}</h2>
+                                <div class="card mb-2" *ngFor="let post of postsBlog; let i = index">
+                                    <div class="card-header activitiesDiv">
+                                        <div class="row justify-content-start align-content-start mt-3">
+                                            <div class="col-11" (click)="redirectToPost(post.idBlog)">
+                                                <h2>{{ i + 1}} - {{ post.titulo }}</h2>
+                                                <h5>Fecha de inicio: {{post.fechaCreacion | date: 'dd/MM'}}</h5>
+                                            </div>
+                                            <div class="col-1 text-end">
+                                                <mat-icon class="buttonDelete" matTooltip="Borrar post"
+                                                    (click)="deletePost(post.idBlog)">delete</mat-icon>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

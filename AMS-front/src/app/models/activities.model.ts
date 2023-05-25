@@ -14,6 +14,10 @@ export class ActivitiesModel implements Activities {
     nombre_lugar?: string;
     direccion_lugar?:string;
     aforo?: number;
+    nombre_proveedor?: string;
+    id_Proveedor?: number;
+    idNuevaActividad?: number;
+    id_Relacion_Proveedor?: number;
 
     constructor(response: Activities) {
         this.idActividad= response.idActividad;
@@ -27,6 +31,10 @@ export class ActivitiesModel implements Activities {
         this.nombre_lugar = response.nombre_lugar;
         this.direccion_lugar = response.direccion_lugar;
         this.aforo = response.aforo;
+        this.nombre_proveedor = response.nombre_proveedor;
+        this.id_Proveedor = response.id_Proveedor;
+        this.idNuevaActividad = response.idNuevaActividad;
+        this.id_Relacion_Proveedor = response.id_Relacion_Proveedor;
     }
 
     

@@ -39,20 +39,25 @@ export class BlogService {
   updatePost(id: number, post: Post): Observable<void> {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, post);
   }
+
+  deletePost(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
+  }
   
 
   addComent(coment: Coments): Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiUrl}/comentario`, coment);
   }
 
-  getOnePost(id?: number): Observable<Post> {
-    return this.http.get<Post>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
-  }
-
+  
   getComentsFromEntrada(id: number): Observable<ComentsModel[]> {
     return this.http.get<Coments[]>(`${this.myAppUrl}${this.myApiUrl}/${id}/comentario`).pipe(
       map(response => response.map(coment => new ComentsModel(coment)))
     );
+  }
+
+  getOnePost(id?: number): Observable<Post> {
+    return this.http.get<Post>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
   }
 
   deleteComent(id: number): Observable<void> {

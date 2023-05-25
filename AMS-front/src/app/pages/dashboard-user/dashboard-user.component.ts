@@ -87,13 +87,30 @@ export class DashboardUserComponent implements OnInit {
     if (idFallero) {
       this._asistantsService.deleteAsistant(id, idFallero).subscribe(() => {
         this.getActivityByUser(this.loginResponseModel?.usuario.idFallero);
+        this.deleteMeAsistant();
+      })
+    }
+  }
+
+  deletePost(id?: number) {
+    if (id) {
+      this._blogService.deletePost(id).subscribe(() => {
+        this.getPostByUser(this.loginResponseModel?.usuario.idFallero);
         this.deleteExit();
       })
     }
   }
 
   deleteExit() {
-    this._snackBar.open('Te has borrado de la actividad con éxito ', '', {
+    this._snackBar.open('Has borrado el post con éxito ', '', {
+      duration: 5000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition
+    });
+  }
+
+  deleteMeAsistant() {
+    this._snackBar.open('Te has borradoe la actividad con éxito ', '', {
       duration: 5000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition

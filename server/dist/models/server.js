@@ -50,7 +50,7 @@ class Server {
         this.app.use('/api/eventos', eventoRoutes_1.default);
         this.app.use('/api/actividades', actividadesRoutes_1.default);
         this.app.use('/api/actividades/tareas', relacionActividadTareaRoutes_1.default);
-        this.app.use('/api/actividades/proveedor', relacionActividadProveedorRoutes_1.default);
+        this.app.use('/api/actividad/proveedor', relacionActividadProveedorRoutes_1.default);
         this.app.use('/api/asistentes', asistenteRoutes_1.default);
         this.app.use('/api/tareas', tareaRoutes_1.default);
         this.app.use('/api/lugares', lugaresRoutes_1.default);

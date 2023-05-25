@@ -31,5 +31,9 @@ export class DashboardAdminComponent {
   worksAdminNavigate() {
     this.route.navigate(['/admin/works']);
   }
+
+  BlogAdminNavigate(){
+    this.route.navigate(['/admin/blog'])
+  }
 }
 

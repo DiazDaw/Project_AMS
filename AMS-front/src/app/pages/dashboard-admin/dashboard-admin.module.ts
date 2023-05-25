@@ -21,6 +21,8 @@ import { EventsAdminComponentModule } from './pages/events-admin/events-admin.mo
 import { PlacesAdminModule } from './pages/places-admin/places-admin.module';
 import { PartnersAdminModule } from './pages/partners-admin/partners-admin.module';
 import { AgregarEditarPartnerComponent } from './components/agregar-editar-partner/agregar-editar-partner.component';
+import { BlogAdminComponent } from './pages/blog-admin/blog-admin.component';
+import { BlogAdminModule } from './pages/blog-admin/blog-admin.module';
 
 
 
@@ -43,6 +45,7 @@ import { AgregarEditarPartnerComponent } from './components/agregar-editar-partn
     DashboardAdminRoutingModule,
     UserAdminComponentModule,
     EventsAdminComponentModule,
+    BlogAdminModule,
     PlacesAdminModule,
     PartnersAdminModule,
     MatDialogModule

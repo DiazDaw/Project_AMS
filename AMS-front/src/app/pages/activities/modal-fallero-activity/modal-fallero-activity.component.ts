@@ -54,7 +54,8 @@ export class ModalFalleroActivityComponent {
       coordinador: ['', Validators.required],
       fechaInicio: ['', Validators.required],
       fechaFin: ['', Validators.required],
-      aforo: ['', Validators.required]
+      aforo: ['', Validators.required],
+      proveedor: ['', Validators.required]
 
     })
   }
@@ -99,7 +100,8 @@ export class ModalFalleroActivityComponent {
           coordinador: data.nombre_coordinador,
           fechaInicio: `${new Date(data.start).toLocaleDateString('es-ES')} (${this.formatTime(new Date(data.start))})`,
           fechaFin: `${new Date(data.end).toLocaleDateString('es-ES')} (${this.formatTime(new Date(data.end))})`,
-          aforo: (data.aforo ?? 0) - this.asistants.length
+          aforo: (data.aforo ?? 0) - this.asistants.length,
+          proveedor: data.nombre_proveedor
         });
 
       });

@@ -112,6 +112,26 @@
                                 contraseñas no coinciden</span>
                         </div>
                     </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                            <mat-label>Proveedor</mat-label>
+                            <mat-select name="proveedor" formControlName="proveedor">
+                                <mat-option *ngFor="let partner of partners" [value]="partner.idProveedor">
+                                    {{partner.nombre}} - {{partner.producto}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="error">
+                            <span
+                                *ngIf="form.get('proveedor')?.hasError('required') && form.get('proveedor')?.touched">Campo
+                                obligatorio<br></span>
+                            <span *ngIf="form.get('proveedor')?.hasError('maxlength')">Máximo 20
+                                caracteres</span>
+                            <span
+                                *ngIf="(this.form.value.contrasenia !== this.form.value.confirmContrasenia) && form.get('proveedor')?.touched ">Las
+                                contraseñas no coinciden</span>
+                        </div>
+                    </div>
 
                     <mat-dialog-actions align="end">
                         <button type="button" mat-button (click)="cancelar()">Cancelar</button>

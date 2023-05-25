@@ -1,0 +1,20 @@
+.mat-mdc-form-field {
+    font-size: 14px;
+}
+
+.buttonEdit, .buttonDelete{
+    cursor: pointer;
+    margin: 10%;
+}
+
+.buttonDelete{
+    color: red;
+}
+
+h1{
+    font-size: 50px;
+}
+
+.badPost {
+    color: red;
+}

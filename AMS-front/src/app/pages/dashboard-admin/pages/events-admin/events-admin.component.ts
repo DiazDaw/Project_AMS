@@ -29,7 +29,7 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
 
   
 
-  displayedColumns: string[] = ['nombre', 'fechaInicio', 'fechaFin', 'lugar', 'coordinador', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'fechaInicio', 'fechaFin', 'lugar', 'coordinador','proveedor', 'acciones'];
 
   actividades: ActivitiesModel[] = [];
 

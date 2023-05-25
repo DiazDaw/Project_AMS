@@ -6,6 +6,7 @@ import { EventsAdminComponent } from './pages/events-admin/events-admin.componen
 import { PartnersAdminComponent } from './pages/partners-admin/partners-admin.component';
 import { PlacesAdminComponent } from './pages/places-admin/places-admin.component';
 import { WorksAdminComponent } from './pages/works-admin/works-admin.component';
+import { BlogAdminComponent } from './pages/blog-admin/blog-admin.component';
 
 const routes: Routes = [
   { path: '', component: DashboardAdminComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'partners', component: PartnersAdminComponent },
   { path: 'places', component: PlacesAdminComponent },
   { path: 'works', component: WorksAdminComponent },
+  { path: 'blog', component: BlogAdminComponent }
   
 ];
 

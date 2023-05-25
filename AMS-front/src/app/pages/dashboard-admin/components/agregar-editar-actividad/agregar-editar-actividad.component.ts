@@ -13,6 +13,12 @@ import { FallerosService } from 'src/app/services/falleros.service';
 import { PlacesService } from 'src/app/services/places.service';
 import * as dayjs from 'dayjs';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { Partners } from 'src/app/interfaces/partners.interface';
+import { PartnersModel } from 'src/app/models/partners.model';
+import { PartnersService } from 'src/app/services/partners.service';
+import { ActivityPartner } from 'src/app/interfaces/activityPartner.interface';
+import { ActivityPartnerService } from 'src/app/services/activity-partner.service';
+import { switchMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-agregar-editar-actividad',
@@ -35,6 +41,8 @@ export class AgregarEditarActividadComponent implements OnInit {
 
   lugares: PlacesModel[] = [];
 
+  partners: PartnersModel[] = [];
+
   loading: boolean = false;
   tipo: string = 'Agregar ';
   idModal: number;
@@ -44,15 +52,22 @@ export class AgregarEditarActividadComponent implements OnInit {
 
   asistants: AsistantsByActivity[] = [];
 
+  activityChanged?: Activities;
+
+  id_Relacion_Proveedor: any;
+
+
   constructor(
     public dialogRef: MatDialogRef<AgregarEditarActividadComponent>,
     private formBuilder: FormBuilder,
     private _activitiesService: ActivitiesService,
     private _asistantsService: AsistantsService,
     private _placesService: PlacesService,
+    private _partnersService: PartnersService,
     private _snackBar: MatSnackBar,
     private dateAdapter: DateAdapter<any>,
     private _fallerosService: FallerosService,
+    private _activityPartnersService: ActivityPartnerService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.formBuilder.group({
@@ -62,7 +77,8 @@ export class AgregarEditarActividadComponent implements OnInit {
       fechaFin: ['', Validators.required],
       horaFin: ['', Validators.required],
       lugar: ['', Validators.required],
-      coordinador: ['', Validators.required]
+      coordinador: ['', Validators.required],
+      proveedor: ['']
     });
 
     this.idModal = data.id;
@@ -75,6 +91,7 @@ export class AgregarEditarActividadComponent implements OnInit {
     this.getAsistantsByActivity(this.idModal);
     this.getFalleros();
     this.getPlaces();
+    this.getPartners();
   }
 
   getFalleros() {
@@ -89,6 +106,16 @@ export class AgregarEditarActividadComponent implements OnInit {
     });
   }
 
+  getPartners() {
+    this._partnersService.getPartner().subscribe((partnersModel: PartnersModel[]) => {
+      this.partners = partnersModel;
+    });
+  }
+
+  getOneActivity() {
+
+  }
+
   esEditar(id: number | undefined) {
     if (id !== undefined) {
       this.tipo = 'Editar ';
@@ -100,6 +127,7 @@ export class AgregarEditarActividadComponent implements OnInit {
     const fechaInicio = dayjs(this.combineDateAndTime(this.form.value.fechaInicio, this.form.value.horaInicio)).format('YYYY-MM-DD HH:mm:ss');
     const fechaFin = dayjs(this.combineDateAndTime(this.form.value.fechaFin, this.form.value.horaFin)).format('YYYY-MM-DD HH:mm:ss');
 
+
     const newActivity: Activities = {
       title: this.form.value.nombre,
       start: fechaInicio,
@@ -108,28 +136,85 @@ export class AgregarEditarActividadComponent implements OnInit {
       coordinador: this.form.value.coordinador
     };
 
+    const newActivityPartner: ActivityPartner = {
+      id_Proveedor: this.form.value.proveedor,
+      id_Actividad: 0 // ID de actividad se asignará más adelante
+    };
+
     this.loading = true;
 
     if (this.idModal === undefined) {
       // Ejecuta modal agregar fallero
-      setTimeout(() => {
-        this._activitiesService.addEvents(newActivity).subscribe(() => {
+      this._activitiesService.addEvents(newActivity).subscribe(
+        (activityId: any) => {
+          if (activityId !== undefined && activityId.idNuevaActividad !== undefined) {
+            newActivityPartner.id_Actividad = activityId.idNuevaActividad; // Asignar el ID de la actividad creada
+      
+            this._activityPartnersService.addRelation(newActivityPartner).subscribe(
+              (response: any) => {
+                this.id_Relacion_Proveedor = response.idRelacion;
+                this.loading = false;
+                this.dialogRef.close(true);
+                this.addExit('añadida');
+              },
+              (error: any) => {
+                this.loading = false;
+                console.error('Error al agregar la relación actividad-proveedor', error);
+                // Manejar el error aquí según tus necesidades
+              }
+            );
+          } else {
+            console.error('El activityId o idNuevaActividad es undefined');
+          }
+        },
+        (error: any) => {
           this.loading = false;
-          this.dialogRef.close(true);
-          this.addExit('añadida');
-        });
-      }, 1000);
-    } else {
+          console.error('Error al agregar la actividad', error);
+          // Manejar el error aquí según tus necesidades
+        }
+      );
+    } else if (this.activityChanged?.id_Relacion_Proveedor) {
       // Es editar el modal
-      setTimeout(() => {
-        this._activitiesService.updateEvent(this.idModal, newActivity).subscribe(() => {
-          this.loading = false;
-          this.dialogRef.close(true);
-          this.addExit('actualizada');
-        });
-      }, 1000);
+      if (this.idModal !== undefined) {
+
+        this._activitiesService.getOneActivity(this.idModal).pipe(
+          switchMap((response: any) => {
+            this.id_Relacion_Proveedor = response.id_Relacion_Proveedor;
+            newActivityPartner.id_Actividad = response.idActividad;
+            
+            return this._activitiesService.updateEvent(this.idModal, newActivity);
+          }),
+          switchMap(() => {
+            if (this.id_Relacion_Proveedor !== undefined) {
+              return this._activityPartnersService.updateRelation(this.id_Relacion_Proveedor, newActivityPartner);
+            } else {
+              console.error('El id_Relacion_Proveedor es undefined');
+              return throwError('El id_Relacion_Proveedor es undefined');
+            }
+          })
+        ).subscribe(
+          (response: any) => {
+            this.loading = false;
+            this.dialogRef.close(true);
+            
+            this.addExit('actualizada');
+          },
+          (error: any) => {
+            this.loading = false;
+            console.error('Error al agregar la relación actividad-proveedor', error);
+            // Manejar el error aquí según tus necesidades
+          }
+        );
+        
+      } else {
+        console.error('El idModal es undefined');
+      }
     }
-  }
+  }    
+
+
+
+
 
   cancelar() {
     this.dialogRef.close(false);
@@ -145,7 +230,8 @@ export class AgregarEditarActividadComponent implements OnInit {
     this._activitiesService.getOneActivity(id).subscribe(data => {
       const fechaInicio = new Date(data.start);
       const fechaFin = new Date(data.end);
-  
+      this.activityChanged = data;
+
       this.form.patchValue({
         nombre: data.title,
         fechaInicio: fechaInicio,
@@ -153,13 +239,14 @@ export class AgregarEditarActividadComponent implements OnInit {
         fechaFin: fechaFin,
         horaFin: this.formatTime(fechaFin),
         lugar: data.id_Lugar,
-        coordinador: data.coordinador
+        coordinador: data.coordinador,
+        proveedor: data.id_Proveedor
       });
-      
-      this.minDateEnd = fechaInicio; // Assign the value of fechaInicio to minDateEnd
+
+      this.minDateEnd = fechaInicio;
     });
   }
-  
+
   formatTime(date: Date): string {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -173,14 +260,13 @@ export class AgregarEditarActividadComponent implements OnInit {
       this.form.get('fechaFin')?.updateValueAndValidity();
     }
   }
-  
+
 
   getAsistantsByActivity(idActividad: number) {
     if (idActividad) {
       this._asistantsService.getByActivity(idActividad).subscribe(
         response => {
           this.asistants = response;
-          console.log(response);
         });
     } else {
       console.log("ID no encontrado");

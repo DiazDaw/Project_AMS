@@ -55,7 +55,7 @@ class Server {
         this.app.use('/api/eventos', routesEventos);
         this.app.use('/api/actividades', routesActividades);
         this.app.use('/api/actividades/tareas', routesRelacionActividadTarea);
-        this.app.use('/api/actividades/proveedor', routesRelacionActividadProveedor);
+        this.app.use('/api/actividad/proveedor', routesRelacionActividadProveedor);
         this.app.use('/api/asistentes', routesAsistentes);
         this.app.use('/api/tareas', routesTareas);
         this.app.use('/api/lugares', routesLugares);
