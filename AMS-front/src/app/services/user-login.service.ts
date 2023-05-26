@@ -45,9 +45,18 @@ export class UserLoginService {
 
   }
 
-  private readToken() {
+  getUserInfo(): LoginResponseModel | null {
+    // Recupera la información del usuario almacenada en sessionStorage
+    const sessionStorageResponse = sessionStorage.getItem('loginResponse');
 
+    // Si se encontraron datos en sessionStorage, conviértelos a un objeto LoginResponseModel
+    if (sessionStorageResponse) {
+      return new LoginResponseModel(JSON.parse(sessionStorageResponse));
+    }
+
+    return null; // Si no hay datos en sessionStorage, devuelve null
   }
+
 
   private handleError(err: { message: any; }): Observable<never> {
 

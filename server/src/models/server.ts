@@ -19,6 +19,7 @@ import routesFalleroTareas from '../routes/relacionFalleroTareasRoutes';
 import routesLogin from '../routes/loginRoutes';
 import routesDNI from '../routes/dniRoutes';
 import routesPassword from '../routes/changePasswordRoutes';
+import routesEmail from '../routes/emailRoutes';
 
 import connection from '../db/connection';
 
@@ -69,6 +70,9 @@ class Server {
 
         //RUTA PARA CAMBIAR PASSWORD
         this.app.use('/api/contrasenia', routesPassword);
+
+        //RUTA PARA ENVIO DE EMAILS
+        this.app.use('/api/email', routesEmail);
 
     }
 

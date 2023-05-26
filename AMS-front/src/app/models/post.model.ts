@@ -9,6 +9,7 @@ export class PostModel implements Post {
     id_Estado: number;
     nombre_autor?: string;
     apellidos_autor?: string;
+    nombre_estado?: string;
 
   constructor(post: Post) {
     this.idBlog = post.idBlog;
@@ -19,5 +20,6 @@ export class PostModel implements Post {
     this.id_Estado = post.id_Estado;
     this.nombre_autor = post.nombre_autor;
     this.apellidos_autor = post.apellidos_autor;
+    this.nombre_estado = post.nombre_estado;
   }
 }

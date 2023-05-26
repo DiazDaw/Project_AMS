@@ -3,14 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateComentario = exports.postComentario = exports.deleteComentario = exports.getOneComentario = exports.getComentarioFromEntrada = exports.getAllComentario = exports.updateEntrada = exports.postEntrada = exports.deleteEntrada = exports.getByUser = exports.getOneEntrada = exports.getEntrada = void 0;
+exports.updateComentario = exports.postComentario = exports.deleteComentario = exports.getOneComentario = exports.getComentarioFromEntrada = exports.getAllComentario = exports.updateEstadoEntrada = exports.updateEntrada = exports.postEntrada = exports.deleteEntrada = exports.getByUser = exports.getOneEntrada = exports.getEntrada = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 //METODOS ACCESO REST API TABLA DE ENTRADAS
 const getEntrada = (req, res) => {
     const query = `
-      SELECT entrada.*, fallero.nombre AS nombre_autor, fallero.apellidos AS apellidos_autor
+      SELECT entrada.*, fallero.nombre AS nombre_autor, fallero.apellidos AS apellidos_autor, estado.nombre AS nombre_estado
       FROM entrada
       INNER JOIN fallero ON entrada.autor = fallero.idFallero
+      INNER JOIN estado ON entrada.id_Estado = estado.idEstado
     `;
     connection_1.default.query(query, (err, data) => {
         if (err)
@@ -21,7 +22,7 @@ const getEntrada = (req, res) => {
 exports.getEntrada = getEntrada;
 const getOneEntrada = (req, res) => {
     const { id } = req.params;
-    connection_1.default.query('SELECT entrada.*, fallero.nombre AS nombre_autor, fallero.apellidos AS apellidos_autor FROM entrada INNER JOIN fallero ON entrada.autor = fallero.idFallero WHERE idBlog = ?', id, (err, data) => {
+    connection_1.default.query('SELECT entrada.*, fallero.nombre AS nombre_autor, fallero.apellidos AS apellidos_autor, estado.nombre AS nombre_estado FROM entrada INNER JOIN fallero ON entrada.autor = fallero.idFallero INNER JOIN estado ON entrada.id_Estado = estado.idEstado WHERE idBlog = ?', id, (err, data) => {
         if (err)
             throw err;
         res.json(data[0]);
@@ -72,6 +73,19 @@ const updateEntrada = (req, res) => {
     });
 };
 exports.updateEntrada = updateEntrada;
+const updateEstadoEntrada = (req, res) => {
+    const { id } = req.params;
+    const { id_Estado } = req.body; // Obtener el nuevo valor de id_Estado directamente
+    const updatedEstado = { id_Estado }; // Crear un objeto con el campo id_Estado actualizado
+    connection_1.default.query('UPDATE entrada SET ? WHERE idBlog = ?', [updatedEstado, id], (err, data) => {
+        if (err)
+            throw err;
+        res.json({
+            msg: "Entrada actualizada con éxito."
+        });
+    });
+};
+exports.updateEstadoEntrada = updateEstadoEntrada;
 //METODOS ACCESO REST API PARA LA TABLA DE COMENTARIO
 const getAllComentario = (req, res) => {
     connection_1.default.query('SELECT * FROM comentario', (err, data) => {

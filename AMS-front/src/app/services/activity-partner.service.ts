@@ -42,6 +42,10 @@ export class ActivityPartnerService {
   updateRelation(id: number, relation?: ActivityPartner): Observable<void> {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, relation);
   }
+
+  deleteRelation(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
+  }
   
 
   // getOneActivity(id: number): Observable<Activities> {
@@ -58,8 +62,6 @@ export class ActivityPartnerService {
 
 
 
-  // deleteActivity(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
-  // }
+ 
 }
 

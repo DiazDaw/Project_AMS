@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
 import { Post } from '../interfaces/post.interface';
-import { Observable, map } from 'rxjs';
+import { Observable, map, mergeMap } from 'rxjs';
 import { PostModel } from '../models/post.model';
 import { ComentsModel } from '../models/coments.model';
 import { Coments } from '../interfaces/coments.interface';
@@ -40,6 +40,15 @@ export class BlogService {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, post);
   }
 
+  updateEstadoEntrada(id: number, id_Estado: number): Observable<void> {
+    return this.http.get<Post>(`${this.myAppUrl}${this.myApiUrl}/${id}`).pipe(
+      mergeMap((post: Post) => {
+        post.id_Estado = id_Estado;
+        return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/estado/${id}`, post);
+      })
+    );
+  }
+  
   deletePost(id: number): Observable<void> {
     return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
   }

@@ -6,7 +6,7 @@ export class ActivityPartnerModel implements ActivityPartner {
 
     id_Relacion?: number;
     id_Actividad?: number;
-    id_Proveedor: number;
+    id_Proveedor: string;
 
     constructor(response: ActivityPartner) {
         this.id_Relacion = response.id_Relacion;

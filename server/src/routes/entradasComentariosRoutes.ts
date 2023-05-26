@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { deleteEntrada, getEntrada, getOneEntrada, postEntrada, updateEntrada, deleteComentario, getAllComentario, getComentarioFromEntrada, getOneComentario, postComentario, updateComentario, getByUser } from '../controllers/entradasComentariosController';
+import { deleteEntrada, getEntrada, getOneEntrada, postEntrada, updateEntrada, deleteComentario, getAllComentario, getComentarioFromEntrada, getOneComentario, postComentario, updateComentario, getByUser, updateEstadoEntrada } from '../controllers/entradasComentariosController';
 
 const router = Router();
 
@@ -10,6 +10,7 @@ router.get('/autores/:id', getByUser);
 router.delete('/:id', deleteEntrada);
 router.post('/', postEntrada);
 router.put('/:id', updateEntrada);
+router.put('/estado/:id', updateEstadoEntrada);
 
 //RUTAS CRUD COMENTARIOS
 

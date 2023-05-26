@@ -10,6 +10,7 @@ router.get('/autores/:id', entradasComentariosController_1.getByUser);
 router.delete('/:id', entradasComentariosController_1.deleteEntrada);
 router.post('/', entradasComentariosController_1.postEntrada);
 router.put('/:id', entradasComentariosController_1.updateEntrada);
+router.put('/estado/:id', entradasComentariosController_1.updateEstadoEntrada);
 //RUTAS CRUD COMENTARIOS
 router.get('/comentario', entradasComentariosController_1.getAllComentario); //NO FUNCIONA
 router.get('/:id_Entrada/comentario', entradasComentariosController_1.getComentarioFromEntrada); //Funcionara si pongo ? en id_Entrada

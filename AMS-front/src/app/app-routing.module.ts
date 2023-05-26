@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './guards/admin.guard';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
 
@@ -27,14 +29,21 @@ const routes: Routes = [
         path: 'login', loadChildren: () => import('../app/pages/login/login.module').then(m => m.LoginComponentModule)
     },
     {
-        path: 'admin', loadChildren: () => import('./pages/dashboard-admin/dashboard-admin.module').then(m => m.DashboardAdminComponentModule)
+        path: 'admin',
+        canActivate: [AdminGuard],
+        loadChildren: () => import('./pages/dashboard-admin/dashboard-admin.module').then(m => m.DashboardAdminComponentModule)
     },
     {
         path: 'user', loadChildren: () => import('./pages/dashboard-user/dashboard-user.module').then(m => m.DashboardUserModule)
     },
     {
         path: 'actividades', loadChildren: () => import('./pages/activities/activities.module').then(m => m.ActivitiesModule)
-    }
+    },
+    {
+        path: 'no-admin', loadChildren: () => import('./pages/withoutpermits/withoutpermits.module').then(m => m.WithoutpermitsComponentModule)
+    },
+    { path: '**', component: NotfoundComponent },
+
 ]
 @NgModule({
     declarations: [

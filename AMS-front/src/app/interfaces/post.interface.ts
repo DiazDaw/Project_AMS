@@ -7,4 +7,5 @@ export interface Post{
     id_Estado: number;
     nombre_autor?: string;
     apellidos_autor?: string;
+    nombre_estado?: string;
 }

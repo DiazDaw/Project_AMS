@@ -2,19 +2,24 @@
     font-size: 14px;
 }
 
-.buttonEdit, .buttonDelete{
+.buttonEdit,
+.buttonDelete {
     cursor: pointer;
     margin: 10%;
 }
 
-.buttonDelete{
+.buttonDelete {
     color: red;
 }
 
-h1{
+h1 {
     font-size: 50px;
 }
 
 .badPost {
     color: red;
+}
+
+.reviewPost {
+    cursor: pointer;
 }

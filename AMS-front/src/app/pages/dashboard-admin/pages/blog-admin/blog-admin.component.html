@@ -37,16 +37,37 @@
             </ng-container>
 
             <ng-container matColumnDef="estado">
-                <th mat-header-cell *matHeaderCellDef> Denuncias</th>
-                <td mat-cell *matCellDef="let element" [ngClass]="{'badPost': element.id_Estado === 3}">{{element.id_Estado}}</td>
-            </ng-container>
+                <th mat-header-cell *matHeaderCellDef> Denuncias </th>
+                <td mat-cell *matCellDef="let element" [ngClass]="{'badPost': element.id_Estado === 3}">
+                  {{ element.id_Estado === 4 ? 'Revisado' : element.id_Estado }}
+                </td>
+              </ng-container>
+              
 
             <ng-container matColumnDef="denunciado">
                 <th mat-header-cell *matHeaderCellDef> Revisar </th>
-                <td mat-cell *matCellDef="let element">
-                    <mat-icon class="warning" matTooltip="Posible post inadecuado" *ngIf="element.id_Estado === 3">warning</mat-icon>
+                <td mat-cell *matCellDef="let element" class="reviewPost" (click)="cambiarEstado(element)">
+                    <span *ngIf="element.id_Estado === 2" class="badge text-bg-danger p-2 d-inline-flex align-items-center"  matTooltip="Post denunciado varias veces">
+                        {{element.nombre_estado}}
+                        <mat-icon class="warning ms-2">warning</mat-icon>
+                    </span>
+                    <span *ngIf="element.id_Estado === 4" class="badge text-bg-info p-2 d-inline-flex align-items-center"  matTooltip="Revisado">
+                        Revisado
+                        <mat-icon class="info ms-2">info</mat-icon>
+                    </span>
+                    <span *ngIf="element.id_Estado === 3" class="badge text-bg-warning p-2 d-inline-flex align-items-center" matTooltip="Posible post inadecuado">
+                        {{element.nombre_estado}}
+                        <mat-icon class="warning ms-2">priority_high</mat-icon>
+                    </span>
+                    <span *ngIf="element.id_Estado === 1" class="badge text-bg-success p-2 d-inline-flex align-items-center" matTooltip="Post adecuado">
+                        {{element.nombre_estado}}
+                    </span>
                 </td>
             </ng-container>
+            
+            
+            
+            
 
 
             <ng-container matColumnDef="acciones">

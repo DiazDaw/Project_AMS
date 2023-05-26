@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InscripcionComponent } from '../inscripcion/inscripcion.component';
 import { InscripcionRoutingModule } from './inscripcion-routing.module';
 import { MatSelectModule } from '@angular/material/select';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { EmailService } from 'src/app/services/email.service';
 
 @NgModule({
   declarations: [InscripcionComponent],
@@ -20,7 +20,11 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     HttpClientModule,
     InscripcionRoutingModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    
+  ],
+  providers: [EmailService]
 })
 export class InscripcionComponentModule { }

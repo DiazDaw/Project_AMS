@@ -26,11 +26,13 @@ export class BlogAdminComponent implements OnInit, AfterViewInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  displayedColumns: string[] = ['titulo', 'autor', 'fecha', 'estado','denunciado', 'acciones'];
+  displayedColumns: string[] = ['titulo', 'autor', 'fecha', 'estado', 'denunciado', 'acciones'];
 
   lugares: Places[] = [];
 
   loading: boolean = true;
+
+  revisado: boolean = false;
 
   constructor(private _blogService: BlogService,
     public dialog: MatDialog,
@@ -93,5 +95,39 @@ export class BlogAdminComponent implements OnInit, AfterViewInit {
 
   goBack() {
     this.route.navigate(['/admin'])
+  }
+
+  cambiarEstado(element: Post) {
+    // Verificar si el elemento tiene un idBlog válido
+    if (element.idBlog !== undefined) {
+      // Cambiar el estado del elemento a 4
+      element.id_Estado = 4;
+  
+      // Llamar al método updatePost para actualizar el estado en el servidor
+      this._blogService.updateEstadoEntrada(element.idBlog, element.id_Estado).subscribe(
+        () => {
+          // El estado se ha actualizado correctamente
+          // Realizar cualquier otra acción necesaria
+  
+          // Por ejemplo, redirigir a otra página
+          this.redirectToPost(element.idBlog);
+        },
+        (error) => {
+          // Ocurrió un error al intentar actualizar el estado
+          console.error('Error al actualizar el estado del post:', error);
+          // Realizar cualquier manejo de errores necesario
+        }
+      );
+    } else {
+      console.error('El idBlog del elemento es undefined');
+      // Realizar cualquier manejo de errores necesario si el idBlog es undefined
+    }
+  }
+  
+
+
+  redirectToPost(id?: number) {
+    this.route.navigate(['/blog', id]);
+    this.revisado = true;
   }
 }
