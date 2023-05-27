@@ -71,7 +71,12 @@ exports.postFallero = postFallero;
 const updateFallero = (req, res) => {
     const { body } = req;
     const { id } = req.params;
-    connection_1.default.query('UPDATE fallero set ? WHERE idFallero = ?', [body, id], (err, data) => {
+    // Encriptar la contraseña
+    const saltRounds = 10;
+    const hashedPassword = bcrypt_1.default.hashSync(body.contrasenia, saltRounds);
+    // Actualizar la contraseña en el cuerpo de la solicitud
+    body.contrasenia = hashedPassword;
+    connection_1.default.query('UPDATE fallero SET ? WHERE idFallero = ?', [body, id], (err, data) => {
         if (err)
             throw err;
         res.json({
