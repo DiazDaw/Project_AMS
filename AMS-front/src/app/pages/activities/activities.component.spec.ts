@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+// Importa el módulo adecuado
 
 import { ActivitiesComponent } from './activities.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 describe('ActivitiesComponent', () => {
   let component: ActivitiesComponent;
@@ -8,7 +13,8 @@ describe('ActivitiesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActivitiesComponent ]
+      declarations: [ ActivitiesComponent ],
+      imports: [ MatSnackBarModule, MatDialogModule, HttpClientTestingModule, FullCalendarModule ] // Agrega el módulo de full-calendar aquí
     })
     .compileComponents();
 

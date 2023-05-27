@@ -1,6 +1,6 @@
 import { LoginResponse } from "../interfaces/login.interface";
 
-export class LoginResponseModel {
+export class LoginResponseModel implements LoginResponse {
     token: string;
     usuario: {
       idFallero: number;

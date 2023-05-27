@@ -1,6 +1,6 @@
 import { FalleroResponse } from "../interfaces/fallero.interface";
 
-export class FalleroModel {
+export class FalleroModel implements FalleroResponse {
 
   idFallero?: number;
   nombre: string;

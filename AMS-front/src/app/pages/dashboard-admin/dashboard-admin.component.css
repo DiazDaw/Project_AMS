@@ -22,27 +22,24 @@ border-bottom: 2px solid black;
 }
 
 .usersAdminDiv {
-  background: linear-gradient(#67c7ff, #e6f6ff);
+  background: linear-gradient(#e6f6ff, #e6f6ff);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .activitiesAdminDiv {
-  background: linear-gradient(#80d0ff, #e6f6ff);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#e6f6ff, #e6f6ff);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .placesAdminDiv {
-  background: linear-gradient(#9adaff, #e6f6ff);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#e6f6ff, #e6f6ff);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .partnersAdminDiv {
-  background: linear-gradient(#b3e3ff, #e6f6ff);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#e6f6ff, #e6f6ff);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .blogAdminDiv {
-  background: linear-gradient(#cdecff, #e6f6ff);
+  background: linear-gradient(#e6f6ff, #e6f6ff);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 

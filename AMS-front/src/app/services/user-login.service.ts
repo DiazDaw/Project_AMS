@@ -42,8 +42,10 @@ export class UserLoginService {
   }
 
   logout() {
-
+    this.isLoggedIn = false;
+    sessionStorage.removeItem('token');
   }
+  
 
   getUserInfo(): LoginResponseModel | null {
     // Recupera la información del usuario almacenada en sessionStorage

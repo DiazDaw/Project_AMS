@@ -34,7 +34,7 @@
 }
 
 .gradiente {
-    background: linear-gradient(to bottom, #fefae0, #ccd5ae);
+    background: linear-gradient(to bottom, #d5deef, #219ebc);
 }
 
 /* :host ::ng-deep .fc .fc-daygrid-day {
