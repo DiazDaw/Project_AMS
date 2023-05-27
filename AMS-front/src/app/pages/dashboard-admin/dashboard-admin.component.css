@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
+
+h1{
+    font-size: 50px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
+.h1Div{
+border-bottom: 2px solid black;
+}
+
+
+.gradiente {
+  background: linear-gradient(to bottom, #d5deef, #219ebc);
+}
+
+
+.adminText {
+  text-align: justify;
+}
+
+.usersAdminDiv {
+  background: linear-gradient(#67c7ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.activitiesAdminDiv {
+  background: linear-gradient(#80d0ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.placesAdminDiv {
+  background: linear-gradient(#9adaff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.partnersAdminDiv {
+  background: linear-gradient(#b3e3ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.blogAdminDiv {
+  background: linear-gradient(#cdecff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.emailAdminDiv {
+  background: linear-gradient(#e6f6ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}

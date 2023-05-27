@@ -57,7 +57,7 @@ export class ContactoComponentComponent implements OnInit {
 
     setTimeout(() => {
       this.emailSuccess();
-    }, 2000)
+    }, 500)
 
   }
 

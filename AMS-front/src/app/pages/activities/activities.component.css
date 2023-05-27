@@ -6,6 +6,7 @@
     cursor: pointer;
 }
 
+
 :host ::ng-deep .fc .fc-daygrid-day-number {
     padding: 8px;
     position: relative;
@@ -30,6 +31,10 @@
 :host ::ng-deep .fc-theme-standard th,
 :host ::ng-deep .fc-theme-standard .fc-scrollgrid {
     border: 1px solid black;
+}
+
+.gradiente {
+    background: linear-gradient(to bottom, #fefae0, #ccd5ae);
 }
 
 /* :host ::ng-deep .fc .fc-daygrid-day {

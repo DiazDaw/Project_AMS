@@ -70,6 +70,11 @@
                                             formControlName="message"></textarea>
                                     </mat-form-field>
                                 </div>
+                                <div class="error text-center">
+                                    <span
+                                        *ngIf="contactForm.get('message')?.hasError('required') && contactForm.get('message')?.touched">Campo
+                                        obligatorio</span>
+                                </div>
                                 <div class="d-flex justify-content-center">
                                     <button [disabled]="contactForm.invalid" class="btn btn-primary w-25" type="submit">Enviar</button>
                                 </div>

@@ -35,5 +35,9 @@ export class DashboardAdminComponent {
   BlogAdminNavigate(){
     this.route.navigate(['/admin/blog'])
   }
+
+  emailAdminNavigate(){
+    window.open('https://outlook.live.com/mail/0/', '_blank');
+  }
 }
 

@@ -1,18 +1,19 @@
-<div class="container-fluid">
+<div class="container-fluid gradiente">
     
-    <div class="row m-3 mt-5">
+    <div class="row">
         <div class="col-12 text-center">
             <h1>Calendario de actividades</h1>
         </div>
     </div>
+    <div class="container-fluid">
+        <full-calendar [options]="calendarOptions">
+            <ng-template #eventContent let-arg>
+                <div class="calendarContent" [backgroundColor]="getRandomColor()" (click)="apuntarEditar(arg.event.extendedProps.idActividad)" >
+                    <h1>{{ arg.event.title }}: {{ arg.event.start | date:'dd/MM (HH:mm)' }} - {{ arg.event.end | date:'dd/MM (HH:mm)' }}</h1>
+                </div>
+            </ng-template>
+        </full-calendar>
+    </div>
 </div>
-<div class="container-fluid">
-    <full-calendar [options]="calendarOptions">
-        <ng-template #eventContent let-arg>
-            <div class="calendarContent" [backgroundColor]="getRandomColor()" (click)="apuntarEditar(arg.event.extendedProps.idActividad)" >
-                <h1>{{ arg.event.title }}: {{ arg.event.start | date:'dd/MM (HH:mm)' }} - {{ arg.event.end | date:'dd/MM (HH:mm)' }}</h1>
-            </div>
-        </ng-template>
-    </full-calendar>
-</div>
+
 

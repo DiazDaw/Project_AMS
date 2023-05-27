@@ -71,11 +71,11 @@ export class AgregarEditarActividadComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.formBuilder.group({
-      nombre: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.maxLength(50)]],
       fechaInicio: ['', Validators.required],
-      horaInicio: ['', Validators.required],
+      horaInicio: ['', [Validators.required, Validators.pattern('^[0-9]{2}:[0-9]{2}$')]],
       fechaFin: ['', Validators.required],
-      horaFin: ['', Validators.required],
+      horaFin: ['', [Validators.required, Validators.pattern('^[0-9]{2}:[0-9]{2}$')]],
       lugar: ['', Validators.required],
       coordinador: ['', Validators.required],
       proveedor: ['']
@@ -145,9 +145,10 @@ export class AgregarEditarActividadComponent implements OnInit {
     if (this.idModal === undefined) {
       // Ejecutar modal agregar fallero
       this._activitiesService.addEvents(newActivity).subscribe(
-        (activityId: number) => {
+        (activityId: any) => {
+          console.log(activityId);
           if (activityId !== undefined) {
-            newActivityPartner.id_Actividad = activityId; // Asignar el ID de la actividad creada
+            newActivityPartner.id_Actividad = activityId.idNuevaActividad; // Asignar el ID de la actividad creada
   
             if (newActivityPartner.id_Proveedor !== '') {
               this._activityPartnersService.addRelation(newActivityPartner).subscribe(

@@ -32,9 +32,9 @@ export class AgregarEditarLugarComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.form = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      direccion: ['', Validators.required],
-      aforo: ['', Validators.required]
+      nombre: ['', [Validators.required, Validators.maxLength(20)]],
+      direccion: ['', [Validators.required, Validators.maxLength(100)]],
+      aforo: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]*$')]]
     })
 
     this.idModal = data.id;

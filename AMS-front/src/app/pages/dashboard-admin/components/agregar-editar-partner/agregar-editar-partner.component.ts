@@ -32,12 +32,12 @@ export class AgregarEditarPartnerComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.form = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      producto: ['', Validators.required],
-      cif: ['', Validators.required],
-      email: ['', Validators.required],
-      direccion: ['', Validators.required],
-      telefono: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.maxLength(50)]],
+      producto: ['', [Validators.required, Validators.maxLength(50)]],
+      cif: ['', [Validators.required, Validators.maxLength(9)]],
+      email: ['', [Validators.required,Validators.email, Validators.maxLength(50)]],
+      direccion: ['', [Validators.required, Validators.maxLength(50)]],
+      telefono: ['', [Validators.required, Validators.maxLength(9), Validators.pattern('^[0-9]*$')]],
     })
 
     this.idModal = data.id;

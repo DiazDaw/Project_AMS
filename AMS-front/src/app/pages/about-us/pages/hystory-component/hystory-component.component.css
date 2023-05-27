@@ -1,3 +1,7 @@
+.gradiente {
+    background: linear-gradient(to bottom, #ffffff, #cccccc);
+}
+
 h1 {
     font-size: 50px;
 }

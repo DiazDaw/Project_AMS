@@ -64,8 +64,8 @@ export class AgregarComentarioEntradaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      contenido: ['', Validators.required],
+      titulo: ['', [Validators.required, Validators.maxLength(50)]],
+      contenido: ['', [Validators.required, Validators.maxLength(255)]],
     });
 
     this.dateAdapter.setLocale('es');
@@ -87,9 +87,6 @@ export class AgregarComentarioEntradaComponent implements OnInit {
       }
     });
   }
-
-  
-
 
   getOnePost(id?: number) {
     this._blogService.getOnePost(id).subscribe(
@@ -128,8 +125,6 @@ export class AgregarComentarioEntradaComponent implements OnInit {
   }
 
   agregarEditarPersona() {
-    // const fechaInicio = dayjs(this.combineDateAndTime(this.form.value.fechaInicio, this.form.value.horaInicio)).format('YYYY-MM-DD HH:mm:ss');
-    // const fechaFin = dayjs(this.combineDateAndTime(this.form.value.fechaFin, this.form.value.horaFin)).format('YYYY-MM-DD HH:mm:ss');
 
     const newComent: Coments = {
       titulo: this.form.value.titulo,
@@ -140,26 +135,13 @@ export class AgregarComentarioEntradaComponent implements OnInit {
       id_Entrada: this.data.id,
 
     };
-
-
-    // if (this.idModal === undefined) {
-      // Ejecuta modal agregar fallero
       setTimeout(() => {
         this._blogService.addComent(newComent).subscribe(() => {
           this.dialogRef.close(true);
           this.addExit('añadida');
         });
       }, 1000);
-    // } else {
-    //   // Es editar el modal
-    //   setTimeout(() => {
-    //     this._activitiesService.updateEvent(this.idModal, newActivity).subscribe(() => {
-    //       this.loading = false;
-    //       this.dialogRef.close(true);
-    //       this.addExit('actualizada');
-    //     });
-    //   }, 1000);
-    // }
+
   }
 
   cancelar() {
@@ -171,6 +153,13 @@ export class AgregarComentarioEntradaComponent implements OnInit {
       duration: 5000
     });
   }
+
+  deleteExit(tipo: string) {
+    this._snackBar.open(`El comentario ha sido eliminado con éxito `, '', {
+      duration: 5000
+    });
+  }
+
 
   getFallero(id: number) {
     this._activitiesService.getOneActivity(id).subscribe(data => {

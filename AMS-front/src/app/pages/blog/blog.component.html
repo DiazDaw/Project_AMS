@@ -1,13 +1,18 @@
-<div class="container-fluid">
-    <div class="row justify-content-center align-content-center m-3">
-        <div class="col-auto">
-            <h1>Blog</h1>
-            <button type="button" mat-raised-button color="primary" class="me-1" (click)="apuntarEditar()">Crear un post</button>
+<div class="container-fluid gradiente">
+    <div class="row justify-content-center align-content-center">
+        <div class="row m-5 justify-content-between">
+            <div class="col-auto">
+                <h1>Blog de la falla</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <button type="button" mat-raised-button color="primary" class="me-1" *ngIf="loginResponseModel"
+                    (click)="apuntarEditar()">Crear un post</button>
+            </div>
         </div>
-        <div class="row justify-content-start align-content-start mt-3">
+        <div class="row justify-content-start align-content-start mt-3 mb-5">
             <div class="col-12">
                 <div class="card mb-2" *ngFor="let post of postsBlog">
-                    <div class="card-header blogDiv"  (click)="redirectToPost(post?.idBlog)">
+                    <div class="card-header blogDiv" (click)="redirectToPost(post?.idBlog)">
                         <h2>{{ post.titulo }}</h2>
                         <p>Escrito por: {{ post.nombre_autor}} {{post.apellidos_autor}}</p>
                         <p>Fecha: {{ post.fechaCreacion | date:'dd/MM/yyyy'}}</p>

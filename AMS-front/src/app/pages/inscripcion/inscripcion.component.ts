@@ -43,7 +43,6 @@ export class InscripcionComponent implements OnInit {
     this._correoService.enviarCorreo(correo).subscribe(
       response => {
         console.log('Correo enviado correctamente');
-        this.inscripcionForm.reset();
       },
       error => {
         console.error('Error al enviar el correo:', error);
@@ -60,7 +59,7 @@ export class InscripcionComponent implements OnInit {
 
     setTimeout(() => {
       this.emailSuccess();
-    }, 2000)
+    }, 500)
 
   }
 

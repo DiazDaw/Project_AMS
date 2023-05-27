@@ -19,12 +19,13 @@ p {
 .inscripcionForm{
     border: 2px solid gray;
     border-radius: 5%;
-    background-color: #bde0fe;
+    background: linear-gradient(to bottom, #ede0d4, #ddb892);
 }
 
 .error{
     color: red;
     margin-top: -1%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     font-size: 20px;
+    font-size: medium;
 }

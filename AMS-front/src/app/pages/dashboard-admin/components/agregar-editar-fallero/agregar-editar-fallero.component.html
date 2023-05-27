@@ -29,21 +29,6 @@
           <span *ngIf="form.get('apellidos')?.hasError('pattern')">Este campo sólo admite letras</span>
         </div>
       </div>
-      <!-- <div class="col-6" *ngIf="tipo == 'Agregar '">
-        <mat-form-field appearance="fill" class="mb-2 w-100">
-          <mat-label>Tipo de documento</mat-label>
-          <mat-select formControlName="documentType">
-            <mat-option *ngFor="let document of documentos" [value]="document">
-              {{document}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div class="error">
-          <span *ngIf="form.get('documentType')?.hasError('required') && form.get('documentType')?.touched">Campo
-            obligatorio</span>
-          <span *ngIf="form.get('documentType')?.hasError('maxlength')">Máximo 20 caracteres</span>
-        </div>
-      </div> -->
       <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Número de documento</mat-label>
@@ -54,7 +39,7 @@
           <span *ngIf="form.get('documento')?.hasError('pattern')">Este campo solo admite mayúsculas</span>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Contraseña</mat-label>
           <input autocomplete="off" matInput type="password" formControlName="contrasenia">
@@ -65,7 +50,7 @@
           <span *ngIf="form.get('contrasenia')?.hasError('maxlength')">Máximo 20 caracteres</span>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" *ngIf="tipo == 'Agregar '">
         <mat-form-field appearance="fill" class="mb-2 w-100">
           <mat-label>Repetir contraseña</mat-label>
           <input autocomplete="off" matInput type="password" formControlName="confirmContrasenia">

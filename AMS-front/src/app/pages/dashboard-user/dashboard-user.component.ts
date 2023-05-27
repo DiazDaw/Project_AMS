@@ -110,7 +110,7 @@ export class DashboardUserComponent implements OnInit {
   }
 
   deleteMeAsistant() {
-    this._snackBar.open('Te has borradoe la actividad con éxito ', '', {
+    this._snackBar.open('Te has borrado de la actividad con éxito ', '', {
       duration: 5000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition

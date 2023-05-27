@@ -63,8 +63,8 @@ export class AgregarPostComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      contenido: ['', Validators.required],
+      titulo: ['', [Validators.required, Validators.maxLength(50)]],
+      contenido: ['', [Validators.required,  Validators.maxLength(254)]],
     });
 
     this.dateAdapter.setLocale('es');

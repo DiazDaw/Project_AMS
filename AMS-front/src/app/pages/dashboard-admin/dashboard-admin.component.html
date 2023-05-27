@@ -1,36 +1,159 @@
-<div class="container-fluid">
-    <div class="row text-center justify-content-center">
-        <div class="col-2 m-4">
-            <button mat-raised-button color="primary" (click)="usersAdminNavigate()">Administrar falleros</button>
+<div class="p-5 text-center bg-image h1Div" style="
+        background-image: url('../../../assets/img/config.jpg');
+        height: 300px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: 40%;
+      ">
+</div>
+
+
+<div class="container-fluid gradiente">
+    <div class="row justify-content-center align-content-center">
+        <div class="text-center">
+            <h1><u>Administración</u></h1>
+        </div>
+        <div class="row justify-content-around">
+            <div class="card col-4 m-4 usersAdminDiv">
+                <div class="row justify-content-between">
+                    <div class="col-4 d-flex align-items-center ms-2">
+                        <button class="col-12" mat-raised-button color="primary"
+                            (click)="usersAdminNavigate()">Administrar falleros</button>
+                    </div>
+                    <div class="col-7 m-4 d-flex align-items-center">
+                        <p class="adminText">
+                            Administra los falleros de la Falla Díaz Murillo con un solo click. Podrás ver la
+                            información detallada de cada fallero, incluyendo su nombre, edad y participación en la
+                            comisión fallera. Además, tendrás la posibilidad de realizar modificaciones en los datos de
+                            los falleros, actualizar sus datos y registrar nuevos integrantes. También podrás dar de
+                            baja a aquellos falleros que ya no formen parte de la comisión o que hayan dejado de estar
+                            interesados en participar activamente en las actividades falleras.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-4 m-4 activitiesAdminDiv">
+                <div class="row text-center justify-content-between">
+                    <div class="col-4  d-flex align-items-center ms-2">
+                        <button class="col-12" mat-raised-button color="primary"
+                            (click)=" activitiesAdminNavigate()">Administrar
+                            actividades</button>
+                    </div>
+                    <div class="col-7 m-4 d-flex align-items-center">
+                        <p class="adminText">
+                            Controla las actividades de la Falla Díaz Murillo con un solo click. Podrás ver la
+                            información detallada de cada actividad, incluyendo su titulo, fecha de inicio y de fin,
+                            su coordinador, proveedor e incluso los asistentes de cada actividad. Controla el aforo para
+                            saber si es necesario
+                            cambiar el lugar de realización. Encargate de borrar aquellas actividades que ya hayan sido
+                            realizadas y sientete libre
+                            de modificarlas si se produce algun cambio e incluso de cancelarlas por algún infortunio.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-2 m-4">
-            <button mat-raised-button color="primary" (click)="activitiesAdminNavigate()">Administrar
-                Actividades</button>
+        <div class="row text-center justify-content-around">
+            <div class="card col-4 m-4 placesAdminDiv">
+                <div class="row text-center justify-content-between">
+                    <div class="col-4 d-flex align-items-center ms-2">
+                        <button class="col-12" mat-raised-button color="primary"
+                            (click)="placesAdminNavigate()">Administrar
+                            lugares</button>
+                    </div>
+                    <div class="col-7 m-4 d-flex align-items-center">
+                        <p class="adminText">
+                            Todas las actividades programadas necesitan un lugar en el que realizarse y desde aquí, el
+                            control de estos te será facilísimo.
+                            Añade nuevos lugares para los eventos, modifica los existentes, elimina aquellos que ya no
+                            se vayan a usar y lee toda la información que tienen almacenada.
+                            Algunos ejemplos de esta información son la dirección, el aforo e incluso un nombre para que
+                            los falleros tengan más fácil su identificación.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-4 m-4 partnersAdminDiv">
+                <div class="row text-center justify-content-between">
+                    <div class="col-4  d-flex align-items-center ms-2">
+                        <button class="col-12" mat-raised-button color="primary"
+                            (click)=" partnersAdminNavigate()">Administrar
+                            proveedores</button>
+                    </div>
+                    <div class="col-7 m-4 d-flex align-items-center">
+                        <p class="adminText">
+                            Administrar los proveedores es fundamental para mantener un registro completo y actualizado
+                            de
+                            todas las empresas y personas que suministran productos o servicios a la Falla Díaz Murillo.
+                            Desde aquí podrás ingresar la información relevante de cada proveedor, como su nombre,
+                            dirección, contacto, categoría de productos o servicios que ofrecen, y cualquier otra
+                            información adicional que sea importante. Con este sistema de administración, podrás tener a
+                            mano todos los detalles
+                            necesarios.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row text-center justify-content-around">
+            <div class="card col-4 m-4 blogAdminDiv">
+                <div class="row text-center justify-content-between">
+                    <div class="col-4 d-flex align-items-center ms-2">
+                        <button class="col-12" mat-raised-button color="primary"
+                            (click)="BlogAdminNavigate()">Administrar
+                            blog</button>
+                    </div>
+                    <div class="col-7 m-4 d-flex align-items-center">
+                        <p class="adminText">
+                            Con esta herramienta de administración de entradas del blog, tendrás la capacidad de leer
+                            las
+                            publicaciones, revisar aquellas que hayan sido denunciadas y eliminar aquellas que ya no
+                            sean relevantes o sean inapropiadas.
+
+                            La administración de las entradas del blog te brinda la oportunidad de interactuar con tus
+                            lectores a través de los comentarios. Podrás moderar y responder a los comentarios,
+                            fomentando la participación y generando un espacio de diálogo en torno a tus publicaciones.
+
+                            En resumen, la administración de las entradas de tu blog te brinda el control total sobre tu
+                            contenido, permitiéndote mantenerlo fresco, atractivo y actualizado.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-4 m-4 emailAdminDiv">
+                <div class="row text-center justify-content-between">
+                    <div class="col-4 d-flex align-items-center ms-2">
+                        <button class="col-12" mat-raised-button color="primary"
+                            (click)="emailAdminNavigate()">Administrar
+                            email </button>
+                    </div>
+                    <div class="col-7 m-4 d-flex align-items-center">
+                        <p class="adminText">
+                            El correo electrónico es esencial para mantener una comunicación
+                            efectiva y organizada. Desde esta plataforma de administración de email, podrás gestionar
+                            todos tus mensajes de manera eficiente y mantener un control total sobre tu bandeja de
+                            entrada.
+
+                            Podrás ver, enviar y organizar tus
+                            correos electrónicos de forma rápida y sencilla. Podrás responder y gestionar múltiples
+                            consultas
+                            de correo y acceder a ellas desde un único lugar.
+
+                            Es muy importante responder a estas dudas porque son posibles falleros en el futuro, asi que
+                            no dudes en revisar esta herramienta
+                            a diario para no olvidarte de responder a ninguna duda posible con respecto a la inscripción
+                            o a cualquier otro tema relacionado con la Falla Diaz Murillo.
 
 
-        <div class="col-2 m-4">
-            <button mat-raised-button color="primary" (click)="placesAdminNavigate()">Administrar Lugares</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-
-
-        <div class="col-2 m-4">
-            <button mat-raised-button color="primary" (click)="partnersAdminNavigate()">Administrar Proveedores</button>
-        </div>
-
-
-
-        <div class="col-2 m-4">
-            <button mat-raised-button color="primary" (click)="worksAdminNavigate()">Administrar Tareas</button>
-        </div>
-
-        <div class="col-2 m-4">
-            <button mat-raised-button color="primary" (click)="BlogAdminNavigate()">Administrar Blog</button>
-        </div>
-
     </div>
-
-
 </div>

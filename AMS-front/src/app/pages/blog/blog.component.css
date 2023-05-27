@@ -1,12 +1,19 @@
-h1{
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
+
+h1 {
     font-size: 50px;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
 
-.blogDiv{
+.blogDiv {
     cursor: pointer;
+}
+
+.gradiente {
+    background: linear-gradient(to bottom, #fefae0, #ccd5ae);
 }

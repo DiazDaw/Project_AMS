@@ -16,8 +16,7 @@
                         <div class="error">
                             <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">Campo
                                 obligatorio</span>
-                            <span *ngIf="form.get('nombre')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                            <span *ngIf="form.get('nombre')?.hasError('pattern')">Este campo sólo admite letras</span>
+                            <span *ngIf="form.get('nombre')?.hasError('maxlength')">Máximo 50 caracteres</span>
                         </div>
                     </div>
                     <div class="col-6">
@@ -58,9 +57,8 @@
                             <span
                                 *ngIf="form.get('horaInicio')?.hasError('required') && form.get('horaInicio')?.touched">Campo
                                 obligatorio</span>
-                            <span *ngIf="form.get('horaInicio')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                            <span *ngIf="form.get('horaInicio')?.hasError('pattern')">Este campo sólo admite
-                                letras</span>
+                            <span *ngIf="form.get('horaInicio')?.hasError('pattern')">Introduzca formato
+                                adecuado(HH:MM)</span>
                         </div>
                     </div>
                     <div class="col-6">
@@ -72,8 +70,8 @@
                             <span
                                 *ngIf="form.get('horaFin')?.hasError('required') && form.get('horaFin')?.touched">Campo
                                 obligatorio</span>
-                            <span *ngIf="form.get('horaFin')?.hasError('maxlength')">Máximo 20 caracteres</span>
-                            <span *ngIf="form.get('horaFin')?.hasError('pattern')">Este campo sólo admite letras</span>
+                            <span *ngIf="form.get('horaFin')?.hasError('pattern')">Introduzca formato
+                                adecuado(HH:MM)</span>
                         </div>
                     </div>
                     <div class="col-6">
