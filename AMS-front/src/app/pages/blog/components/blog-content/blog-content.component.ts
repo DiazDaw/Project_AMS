@@ -107,7 +107,7 @@ export class BlogContentComponent implements OnInit {
 
     if (!postDenunciado) {
       let idEstado = this.postsBlog.id_Estado;
-      if (idEstado !== 3) {
+      if (idEstado < 3) {
         idEstado += 1;
       }
 

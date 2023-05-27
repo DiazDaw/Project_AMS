@@ -56,8 +56,8 @@ export class AgregarEditarFalleroComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.form = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")]],
-      apellidos: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")]],
+      nombre: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$")]],
+      apellidos: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$")]],
       // documentType: ['', Validators.maxLength(20)],
       documento: ['', Validators.pattern("^[0-9A-Z]+$")],
       telefono: ['', [Validators.required, Validators.maxLength(9), Validators.pattern("^[0-9]*$")]],

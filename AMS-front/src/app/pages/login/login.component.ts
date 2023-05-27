@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { LoginResponseModel } from 'src/app/models/login.model';
 import { InfoUserService } from 'src/app/services/infoUser.service';
 
+import * as bcrypt from 'bcryptjs';
+
 
 @Component({
   selector: 'app-login',
@@ -43,26 +45,34 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
     this._loginService.login(this.myForm.controls['dni'].value, this.myForm.controls['password'].value).subscribe(
       response => {
         // Si el servidor da respuesta, el usuario se identificó correctamente
         if (response) {
           this.logueado = true;
-
+  
           // Pasamos los datos de la response a nuestro modelo para poder usarlos
           this.loginResponse = new LoginResponseModel(response);
-
-          //Almacenamos nuestro modelo en localstorage para que no se borre al recargar pagina
-          sessionStorage.setItem('loginResponse', JSON.stringify(this.loginResponse));
-
-          //Pasamos nuestro modelo al servicio para poder exportarlo a otros componentes
-          this._infoUserService.loginUser = this.loginResponse;
-
-          console.log(this.loginResponse.token);
-          console.log(this.loginResponse.usuario.dni);
-
-          this.route.navigate(['/user']);
+  
+          // Desencriptar la contraseña antes de almacenarla en el sessionStorage
+          const isPasswordValid = bcrypt.compareSync(this.myForm.controls['password'].value, this.loginResponse.usuario.contrasenia);
+          if (isPasswordValid) {
+            this.loginResponse.usuario.contrasenia = this.myForm.controls['password'].value;
+  
+            // Almacenamos nuestro modelo en el sessionStorage para que no se borre al recargar la página
+            sessionStorage.setItem('loginResponse', JSON.stringify(this.loginResponse));
+  
+            // Pasamos nuestro modelo al servicio para poder exportarlo a otros componentes
+            this._infoUserService.loginUser = this.loginResponse;
+  
+            console.log(this.loginResponse.token);
+            console.log(this.loginResponse.usuario.dni);
+  
+            this.route.navigate(['/user']);
+          } else {
+            console.log('Contraseña incorrecta');
+            this.logueado = false;
+          }
         }
       },
       error => {

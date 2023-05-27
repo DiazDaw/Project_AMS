@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutUsComponent } from './about-us.component';
 import { AboutUsRoutingModule } from './about-us-routing.module';
-import { TrophiesComponentModule } from './pages/trophies/trophies.module';
 
 
 
@@ -21,8 +20,7 @@ import { TrophiesComponentModule } from './pages/trophies/trophies.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AboutUsRoutingModule,
-    TrophiesComponentModule
+    AboutUsRoutingModule
   ]
 })
 export class AboutUsComponentModule { }

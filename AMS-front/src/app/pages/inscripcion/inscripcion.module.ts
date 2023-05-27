@@ -9,6 +9,7 @@ import { InscripcionRoutingModule } from './inscripcion-routing.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { EmailService } from 'src/app/services/email.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [InscripcionComponent],
@@ -23,6 +24,7 @@ import { EmailService } from 'src/app/services/email.service';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     
   ],
   providers: [EmailService]

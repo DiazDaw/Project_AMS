@@ -29,3 +29,9 @@ h1 {
 .divContact {
     background-color: #edede9;
 }
+
+.error{
+    color: red;
+    margin-top: -2%;    
+    margin-bottom: 1%;
+}

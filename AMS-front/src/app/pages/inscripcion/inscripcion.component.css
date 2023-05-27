@@ -16,22 +16,15 @@ p {
     scrollbar-width: none;
 }
 
-.drop-container {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
+.inscripcionForm{
+    border: 2px solid gray;
+    border-radius: 5%;
+    background-color: #bde0fe;
 }
 
-.drop-container:hover {
-    background-color: #f5f5f5;
-}
-
-.drop-container:active {
-    background-color: #eee;
-}
-
-.drop-container.drag-over {
-    border-color: #aaa;
-    background-color: #f0f0f0;
+.error{
+    color: red;
+    margin-top: -1%;
+    margin-bottom: 5%;
+    font-size: 20px;
 }
