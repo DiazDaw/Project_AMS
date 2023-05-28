@@ -7,7 +7,7 @@ import { EmailService } from 'src/app/services/email.service';
 @Component({
   selector: 'app-contacto-component',
   templateUrl: './contacto-component.component.html',
-  styleUrls: ['./contacto-component.component.css']
+  styleUrls: ['./contacto-component.component.css'],
 })
 export class ContactoComponentComponent implements OnInit {
 
@@ -23,7 +23,12 @@ export class ContactoComponentComponent implements OnInit {
   recipient: string = 'fdmcwdaw@hotmail.com';
   subject: string = 'Contacto Falla Diaz Murillo';
 
-  constructor(private _correoService: EmailService, private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(
+    private _correoService: EmailService,
+    private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.contactForm = this.formBuilder.group({
@@ -42,13 +47,12 @@ export class ContactoComponentComponent implements OnInit {
       sender: this.sender,
       recipient: this.recipient,
       subject: this.subject,
-      message: this.contactForm.get('message')?.value + '\nEnviado por: ' + this.contactForm.get('nombre')?.value + '\nEnviado desde: ' + this.contactForm.get('email')?.value 
+      message: this.contactForm.get('message')?.value + '\nEnviado por: ' + this.contactForm.get('nombre')?.value + '\nEnviado desde: ' + this.contactForm.get('email')?.value
     };
 
     this._correoService.enviarCorreo(correo).subscribe(
       response => {
         console.log('Correo enviado correctamente');
-        
       },
       error => {
         console.error('Error al enviar el correo:', error);
@@ -57,13 +61,16 @@ export class ContactoComponentComponent implements OnInit {
 
     setTimeout(() => {
       this.emailSuccess();
-    }, 500)
-
+    }, 500);
   }
 
-
   resetForm() {
-    this.contactForm.reset();
+    this.contactForm.reset({
+      nombre: '',
+      email: '',
+      message: ''
+    });
+
     this.updateFormValidity();
   }
 

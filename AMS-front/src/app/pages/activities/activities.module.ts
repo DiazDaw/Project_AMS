@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EventsAdminRoutingModule } from '../dashboard-admin/pages/events-admin/events-admin-routing.module';
 import { ModalFalleroActivityModule } from './modal-fallero-activity/modal-fallero-activity.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 

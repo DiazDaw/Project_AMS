@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,8 @@ import { BackgroundColorDirective } from './directives/background-color.directiv
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { EmailService } from './services/email.service';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,8 @@ import { EmailService } from './services/email.service';
     NotfoundComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    NoopAnimationsModule, 
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -43,7 +45,8 @@ import { EmailService } from './services/email.service';
     HeaderModule,
     MatDialogModule,
     FullCalendarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatInputModule,
   ],
   providers: [EmailService],
   bootstrap: [AppComponent]

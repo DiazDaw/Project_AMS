@@ -1,3 +1,17 @@
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+
+@media (max-width: 1007px) {
+  .mediaMovil {
+    display: none;
   }
+
+}
+
+@media(min-width: 1007px){
+  .menuMovil{
+    display:none;
+  }
+}

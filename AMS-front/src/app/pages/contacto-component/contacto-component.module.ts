@@ -18,7 +18,7 @@ import { ContactoRoutingModule } from './contacto-routing.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ContactoRoutingModule
+    ContactoRoutingModule,
   ]
 })
 export class ContactoComponentModule { }

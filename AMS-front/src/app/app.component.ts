@@ -13,21 +13,21 @@ export class AppComponent implements OnInit {
 
   dashboardIcon = "account_circle";
 
-  constructor(private _loginService: UserLoginService){}
+  constructor(private _loginService: UserLoginService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  getToken(){
+  getToken() {
     const token = sessionStorage.getItem('token');
 
-    if(token == undefined){
+    if (token == undefined) {
       this.dashboardIcon = "account_circle";
       return false;
     } else {
-      this.dashboardIcon = "menu";
+      this.dashboardIcon = "account_circle";
       return true;
     }
-    
+
   }
 
 }

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ModalFalleroActivityComponent } from './modal-fallero-activity/modal-fallero-activity.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-activities',
@@ -102,7 +103,6 @@ export class ActivitiesComponent implements OnInit {
 
   }
 
-
   deleteExit() {
     this._snackBar.open('La actividad ha sido eliminada con éxito ', '', {
       duration: 5000,
@@ -110,9 +110,4 @@ export class ActivitiesComponent implements OnInit {
       verticalPosition: this.verticalPosition
     });
   }
-
-
-
-
-
 };
