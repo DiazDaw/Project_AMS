@@ -1,5 +1,4 @@
-
-body{
+body {
     font-family: 'OpenSans';
 }
 
@@ -30,8 +29,61 @@ h1 {
     background-color: #edede9;
 }
 
-.error{
+.error {
     color: red;
-    margin-top: -2%;    
+    margin-top: -2%;
     margin-bottom: 1%;
+}
+
+@media (max-width: 1007px) {
+    h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .mapDiv {
+        display: none;
+    }
+
+    mat-form-field {
+        width: 90%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .nameForm {
+        margin-top: 7%;
+    }
+
+    .cardClass {
+        margin-bottom: 2%
+    }
+
+    button {
+        margin-bottom: 2%;
+    }
+
+    .h1Contact{
+        display: none;
+    }
+
+    .emailH1{
+        margin-top: 4%;
+    }
+}
+
+@media (min-width: 1007px) {
+    mat-form-field {
+        width: 60%;
+        margin-top: 2%;
+    }
+
+    button {
+        margin-bottom: 2%;
+    }
+
+    .emailH1{
+        margin-top: 4%;
+        margin-bottom: 5%;
+    }
 }

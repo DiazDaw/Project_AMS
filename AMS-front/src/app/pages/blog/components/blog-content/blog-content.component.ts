@@ -84,7 +84,7 @@ export class BlogContentComponent implements OnInit {
 
   apuntarEditar(id?: number) {
     const dialogRef = this.dialog.open(AgregarComentarioEntradaComponent, {
-      width: '50%',
+      width: '500%',
       disableClose: true,
       data: { id: this.id }
     });

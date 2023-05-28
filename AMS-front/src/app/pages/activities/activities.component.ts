@@ -90,7 +90,7 @@ export class ActivitiesComponent implements OnInit {
     const idActividad = id// Acceder al ID de la actividad
     console.log('ID de la actividad:', idActividad);
     const dialogRef = this.dialog.open(ModalFalleroActivityComponent, {
-      width: '50%',
+      width: '500%',
       disableClose: true,
       data: { id: id, boton: true }
     });

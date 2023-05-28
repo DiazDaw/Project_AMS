@@ -61,7 +61,7 @@ export class BlogComponent implements OnInit {
 
   apuntarEditar(id?: number) {
     const dialogRef = this.dialog.open(AgregarPostComponent, {
-      width: '50%',
+      width: '500%',
       disableClose: true,
       data: { id: this.id }
     });

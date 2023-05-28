@@ -22,9 +22,7 @@
   <span class="example-spacer"></span>
   <span class="example-spacer"></span>
 
-  <button mat-icon-button *ngIf="loginResponseModel?.usuario?.id_Rol_Gestion === 1" (click)="adminNavigate()">
-    <span class="material-icons">settings</span>
-  </button>
+ 
 
   <button mat-icon-button [matMenuTriggerFor]="belowMenuMovil" class="menuMovil">
     <span class="material-icons">
@@ -43,6 +41,10 @@
     <span class="material-icons-outlined">
       {{dashboardIcon}}
     </span>
+  </button>
+
+  <button mat-icon-button *ngIf="loginResponseModel?.usuario?.id_Rol_Gestion === 1" (click)="adminNavigate()">
+    <span class="material-icons">settings</span>
   </button>
 
 </mat-toolbar>

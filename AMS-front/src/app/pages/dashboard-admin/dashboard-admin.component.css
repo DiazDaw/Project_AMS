@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
 
-h1{
-    font-size: 50px;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+h1 {
+  font-size: 50px;
+  margin-bottom: 2%;
+  font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 
-.h1Div{
-border-bottom: 2px solid black;
+.h1Div {
+  border-bottom: 2px solid black;
 }
 
 
@@ -27,15 +26,18 @@ border-bottom: 2px solid black;
 }
 
 .activitiesAdminDiv {
-  background: linear-gradient(#e6f6ff, #e6f6ff);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#e6f6ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .placesAdminDiv {
-  background: linear-gradient(#e6f6ff, #e6f6ff);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#e6f6ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .partnersAdminDiv {
-  background: linear-gradient(#e6f6ff, #e6f6ff);  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(#e6f6ff, #e6f6ff);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .blogAdminDiv {
@@ -46,4 +48,35 @@ border-bottom: 2px solid black;
 .emailAdminDiv {
   background: linear-gradient(#e6f6ff, #e6f6ff);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 1500px) {
+
+  .desktopButtons {
+    display: none;
+  }
+
+  h1 {
+    font-size: 30px;
+    margin-bottom: 10%;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  }
+
+  .gradiente{
+    background: linear-gradient(to bottom, #d5deef, #219ebc);
+    padding-bottom: 20%;
+  }
+  
+}
+
+
+@media (min-width: 1500px) {
+  .movilButtons {
+    display: none;
+  }
+
+  .bg-image{
+    height: 300px;
+  }
+
 }

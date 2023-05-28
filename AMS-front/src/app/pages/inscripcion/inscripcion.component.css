@@ -29,3 +29,45 @@ p {
     font-size: 20px;
     font-size: medium;
 }
+
+
+@media (max-width: 1007px) {
+    h1{
+        font-size: 25px;
+        text-align: center;
+    }
+
+    p{
+        font-size: medium;
+        margin: 2%;
+    }
+
+    .bg-image{
+        height: 150px;
+    }
+
+    .downloadDiv{
+        margin: 5%;
+    }
+
+    .inscripcionDiv{
+        padding: 7%
+    }
+}
+
+@media (min-width: 1007px) {
+    .representacionMovil {
+        display: none;
+    }
+
+    .divMovil {
+        background-color: #f5f3f4;
+        padding-top: 2%;
+        padding-bottom: 3%;
+    
+    }
+
+    .bg-image{
+        height: 300px;
+    }
+}

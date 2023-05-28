@@ -1,6 +1,5 @@
 <div class="p-5 text-center bg-image h1Div" style="
         background-image: url('../../../assets/img/config.jpg');
-        height: 300px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position-y: 40%;
@@ -9,18 +8,19 @@
 
 
 <div class="container-fluid gradiente">
-    <div class="row justify-content-center align-content-center">
-        <div class="text-center">
-            <h1><u>Administración</u></h1>
-        </div>
+    <div class="text-center">
+        <h1 class="pt-3"><u>Administración</u></h1>
+    </div>
+    <div class="row justify-content-center align-content-center desktopButtons">
+
         <div class="row justify-content-around">
-            <div class="card col-4 m-4 usersAdminDiv">
+            <div class="card col-12 col-md-4 m-4 usersAdminDiv">
                 <div class="row justify-content-between">
                     <div class="col-4 d-flex align-items-center ms-2">
-                        <button class="col-12" mat-raised-button color="primary"
+                        <button class="col-12 col-xs-12" mat-raised-button color="primary"
                             (click)="usersAdminNavigate()">Administrar falleros</button>
                     </div>
-                    <div class="col-7 m-4 d-flex align-items-center">
+                    <div class="col-12 col-md-6 m-4 d-flex align-items-center">
                         <p class="adminText">
                             Administra los falleros de la Falla Díaz Murillo con un solo click. Podrás ver la
                             información detallada de cada fallero, incluyendo su nombre, edad y participación en la
@@ -33,14 +33,16 @@
                 </div>
             </div>
 
-            <div class="card col-4 m-4 activitiesAdminDiv">
+
+
+            <div class="card col-12 col-md-4 m-4 activitiesAdminDiv">
                 <div class="row text-center justify-content-between">
                     <div class="col-4  d-flex align-items-center ms-2">
                         <button class="col-12" mat-raised-button color="primary"
                             (click)=" activitiesAdminNavigate()">Administrar
                             actividades</button>
                     </div>
-                    <div class="col-7 m-4 d-flex align-items-center">
+                    <div class="col-12 col-md-6 m-4 d-flex align-items-center">
                         <p class="adminText">
                             Controla las actividades de la Falla Díaz Murillo con un solo click. Podrás ver la
                             información detallada de cada actividad, incluyendo su titulo, fecha de inicio y de fin,
@@ -56,14 +58,14 @@
         </div>
 
         <div class="row text-center justify-content-around">
-            <div class="card col-4 m-4 placesAdminDiv">
+            <div class="card col-12 col-md-4 m-4 placesAdminDiv">
                 <div class="row text-center justify-content-between">
                     <div class="col-4 d-flex align-items-center ms-2">
                         <button class="col-12" mat-raised-button color="primary"
                             (click)="placesAdminNavigate()">Administrar
                             lugares</button>
                     </div>
-                    <div class="col-7 m-4 d-flex align-items-center">
+                    <div class="col-12 col-md-6 m-4 d-flex align-items-center">
                         <p class="adminText">
                             Todas las actividades programadas necesitan un lugar en el que realizarse y desde aquí, el
                             control de estos te será facilísimo.
@@ -76,14 +78,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card col-4 m-4 partnersAdminDiv">
+            <div class="card col-12 col-md-4 m-4 partnersAdminDiv">
                 <div class="row text-center justify-content-between">
                     <div class="col-4  d-flex align-items-center ms-2">
                         <button class="col-12" mat-raised-button color="primary"
                             (click)=" partnersAdminNavigate()">Administrar
                             proveedores</button>
                     </div>
-                    <div class="col-7 m-4 d-flex align-items-center">
+                    <div class="col-12 col-md-6 m-4 d-flex align-items-center">
                         <p class="adminText">
                             Administrar los proveedores es fundamental para mantener un registro completo y actualizado
                             de
@@ -99,14 +101,14 @@
             </div>
         </div>
         <div class="row text-center justify-content-around">
-            <div class="card col-4 m-4 blogAdminDiv">
+            <div class="card col-12 col-md-4 m-4 blogAdminDiv">
                 <div class="row text-center justify-content-between">
                     <div class="col-4 d-flex align-items-center ms-2">
                         <button class="col-12" mat-raised-button color="primary"
                             (click)="BlogAdminNavigate()">Administrar
                             blog</button>
                     </div>
-                    <div class="col-7 m-4 d-flex align-items-center">
+                    <div class="col-12 col-md-6 m-4 d-flex align-items-center">
                         <p class="adminText">
                             Con esta herramienta de administración de entradas del blog, tendrás la capacidad de leer
                             las
@@ -124,14 +126,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card col-4 m-4 emailAdminDiv">
+            <div class="card col-12 col-md-4 m-4 emailAdminDiv">
                 <div class="row text-center justify-content-between">
                     <div class="col-4 d-flex align-items-center ms-2">
                         <button class="col-12" mat-raised-button color="primary"
                             (click)="emailAdminNavigate()">Administrar
                             email </button>
                     </div>
-                    <div class="col-7 m-4 d-flex align-items-center">
+                    <div class="col-12 col-md-6 m-4 d-flex align-items-center">
                         <p class="adminText">
                             El correo electrónico es esencial para mantener una comunicación
                             efectiva y organizada. Desde esta plataforma de administración de email, podrás gestionar
@@ -153,7 +155,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
+    </div>
+    <div class="movilButtons">
+        <button class="col-12 my-2" mat-raised-button color="primary" (click)="usersAdminNavigate()">Administrar
+            falleros</button>
+        <button class="col-12 my-2" mat-raised-button color="primary" (click)=" activitiesAdminNavigate()">Administrar
+            actividades</button>
+        <button class="col-12 my-2" mat-raised-button color="primary" (click)="placesAdminNavigate()">Administrar
+            lugares</button>
+        <button class="col-12 my-2" mat-raised-button color="primary" (click)=" partnersAdminNavigate()">Administrar
+            proveedores</button>
+        <button class="col-12 my-2" mat-raised-button color="primary" (click)="BlogAdminNavigate()">Administrar
+            blog</button>
+
+        <button class="col-12 my-2" mat-raised-button color="primary" (click)="emailAdminNavigate()">Administrar
+            email </button>
     </div>
 </div>

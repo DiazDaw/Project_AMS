@@ -1,4 +1,37 @@
-.asistantsDiv{
+.asistantsDiv {
     height: 300px;
     overflow-y: auto;
+}
+
+
+@media (max-width: 1007px) {
+    h2 {
+        font-size: 15px;
+    }
+
+    mat-form-field {
+        font-size: 12px;
+    }
+
+    mat-label {
+        font-size: 13px;
+    }
+
+    .tab-info .mat-tab-label {
+        font-size: 200px;
+        /* Tamaño de fuente deseado */
+    }
+
+    .modalDiv{
+        display: none;
+    }
+}
+
+@media(min-width: 1007px) {
+    .menuMovil {
+        display: none;
+    }
+
+
+    
 }

@@ -1,3 +1,19 @@
 h1{
     font-size: 50px;
 }
+
+
+
+@media (min-width: 300px) and (max-width: 2200px) {
+    .imgDiv{
+        margin-left:5%
+    }
+    
+}
+
+@media (max-width: 1800px) {
+    .imgDiv{
+        margin-left:5%
+    }
+    
+}

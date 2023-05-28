@@ -37,10 +37,41 @@
     background: linear-gradient(to bottom, #d5deef, #219ebc);
 }
 
-/* :host ::ng-deep .fc .fc-daygrid-day {
-    background-color: red;
+
+@media (max-width: 1007px) {
+
+    .h1Events{
+        font-size: 15px;
+    }
+
+    :host ::ng-deep div.fc-toolbar-chunk{
+       display: inline-flex;
+       height: min-content;
+       width: min-content;
+    }
+
+    :host ::ng-deep div.fc-button-group:nth-child(1) > button:nth-child(1){
+        display: none;
+    }
+    :host ::ng-deep div.fc-button-group:nth-child(1) > button:nth-child(2){
+        display: none;
+    }
+    :host ::ng-deep .fc-today-button{
+        display: none;
+    }
+
+    :host ::ng-deep #fc-dom-1{
+        width: max-content;
+    }
+
+    .calendarMain{
+        height: 650px;
+    }
 }
 
- :host ::ng-deep .fc .fc-daygrid-day.fc-day-today {
-    background-color: aqua;
+/* @media (min-width: 1007px) {
+    .buttonDiv {
+        justify-content: end;
+        align-items: end;
+    }
 } */

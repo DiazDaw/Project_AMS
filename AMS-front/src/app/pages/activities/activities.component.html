@@ -1,15 +1,15 @@
 <div class="container-fluid gradiente">
     
     <div class="row">
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mt-5">
             <h1>Calendario de actividades</h1>
         </div>
     </div>
-    <div class="container-fluid">
-        <full-calendar [options]="calendarOptions">
+    <div class="container-fluid calendarMain">
+        <full-calendar [options]="calendarOptions" class="calendarMain">
             <ng-template #eventContent let-arg>
                 <div class="calendarContent" [backgroundColor]="getRandomColor()" (click)="apuntarEditar(arg.event.extendedProps.idActividad)" >
-                    <h1>{{ arg.event.title }}: {{ arg.event.start | date:'dd/MM (HH:mm)' }} - {{ arg.event.end | date:'dd/MM (HH:mm)' }}</h1>
+                    <h1 class="h1Events">{{ arg.event.title }}</h1>
                 </div>
             </ng-template>
         </full-calendar>

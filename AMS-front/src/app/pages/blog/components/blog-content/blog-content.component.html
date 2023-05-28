@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="card m-5 bgBigCard">
+    <div class="card col-12 bgBigCard">
         <div class="row">
             <div class="col-12 text-end me-2">
                 <button mat-raised-button color="warn" class="m-1" (click)="goBack()">Volver</button><br>
@@ -10,11 +10,11 @@
                 <div class="card-header">
                     <div class="mt-3">
                         <h1 class="text-center">{{ this.postsBlog?.titulo }}</h1>
-                        <h4 class="text-center">Autor: {{this.postsBlog?.nombre_autor}}
+                        <h4 class="text-center nameAuthor">Autor: {{this.postsBlog?.nombre_autor}}
                             {{this.postsBlog?.apellidos_autor}}
                         </h4>
                     </div>
-                    <div class="row justify-content-center text-justify">
+                    <div class="row justify-content-center text-justify contenidoPost">
                         <div class="col-10">
                             <p>{{this.postsBlog?.contenido}}</p>
                         </div>
@@ -40,9 +40,9 @@
                 <div class="card col-8 m-3" *ngFor="let coment of coments">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <div class="mt-3 flex-grow-1">
-                                <h2 class="text-start">{{ coment.titulo }}</h2>
-                                <h5 class="text-start">Autor: {{ coment.nombre_autor }} {{coment.apellidos_autor}}</h5>
+                            <div class="mt-3 col-10 flex-grow-1 comentsDiv">
+                                <!-- <h2 class="text-start">{{ coment.titulo }}</h2> -->
+                                <h4 class="text-start"><strong>{{ coment.nombre_autor }} {{coment.apellidos_autor}}</strong></h4>
                             </div>
                             <div *ngIf="coment.autor === loginResponseModel?.usuario?.idFallero" class="ml-auto">
                                 <mat-icon class="buttonDelete" matTooltip="Eliminar comentario"
