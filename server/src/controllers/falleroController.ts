@@ -5,25 +5,10 @@ import bcrypt from 'bcrypt';
 // Métodos de acceso REST API para la tabla de falleros
 
 export const getFallero = (req: Request, res: Response) => {
-  connection.query('SELECT * FROM fallero', async (err, data) => {
-    if (err) throw err;
-
-    // Recorrer los datos obtenidos de la base de datos
-    const falleros = await Promise.all(
-      data.map(async (fallero: any) => {
-        // Desencriptar la contraseña utilizando bcrypt.compare
-        const contraseniaDesencriptada = await bcrypt.compare(fallero.contrasenia, '');
-
-        // Retornar un objeto con el campo contrasenia desencriptado
-        return {
-          ...fallero,
-          contrasenia: contraseniaDesencriptada,
-        };
-      })
-    );
-
-    res.json(falleros);
-  });
+  connection.query('SELECT * FROM fallero', (err,data) => {
+    if(err) throw err;
+    res.json(data);
+})
 };
 
 
