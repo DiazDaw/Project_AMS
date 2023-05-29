@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
 
+
 h1 {
     font-size: 50px;
     font-family: 'Sofia Sans Semi Condensed', sans-serif;
@@ -19,7 +20,7 @@ p {
 .inscripcionForm{
     border: 2px solid gray;
     border-radius: 5%;
-    background: linear-gradient(to bottom, #ede0d4, #ddb892);
+    background: linear-gradient(to bottom, #ffffff, #cccccc);
 }
 
 .error{

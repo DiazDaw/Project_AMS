@@ -42,6 +42,9 @@ const routes: Routes = [
     {
         path: 'no-admin', loadChildren: () => import('./pages/withoutpermits/withoutpermits.module').then(m => m.WithoutpermitsComponentModule)
     },
+    {
+        path: 'privacy', loadChildren: () => import('./pages/privacy/privacy.module').then(m => m.PrivacyModule)
+    },
     { path: '**', component: NotfoundComponent },
 
 ]

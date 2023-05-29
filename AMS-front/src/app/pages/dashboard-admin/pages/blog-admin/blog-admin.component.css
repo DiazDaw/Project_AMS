@@ -5,7 +5,7 @@
 .buttonEdit,
 .buttonDelete {
     cursor: pointer;
-    margin: 10%;
+
 }
 
 .buttonDelete {
@@ -22,4 +22,11 @@ h1 {
 
 .reviewPost {
     cursor: pointer;
+}
+
+@media (max-width:1007px) {
+    h1{
+        font-size: 30px;
+    }
+
 }

@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-between">
+<div class="container d-flex justify-content-center">
     <h1 class=" mt-2" mat-dialog-title>{{ tipo }} actividad </h1>
     <mat-spinner *ngIf="loading" [diameter]="50" class="me-4 mt-3"></mat-spinner>
 </div>
@@ -9,7 +9,7 @@
             <div class="tab-content">
                 <form [formGroup]="form" class="row mt-3" (ngSubmit)="agregarEditarPersona()">
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Nombre</mat-label>
                             <input matInput type="text" formControlName="nombre">
                         </mat-form-field>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
+                        <mat-form-field class="example-full-width" appearance="fill" class="w-100">
                             <mat-label>Fecha de inicio</mat-label>
                             <input autocomplete="off" [min]="minDate" matInput formControlName="fechaInicio"
                                 [matDatepicker]="pickerNacimiento" (dateInput)="onFechaInicioChange($event)">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field class="example-full-width" appearance="fill" class="mb-2 w-100">
+                        <mat-form-field class="example-full-width" appearance="fill" class="w-100">
                             <mat-label>Fecha de fin</mat-label>
                             <input autocomplete="off" [min]="minDateEnd" matInput formControlName="fechaFin"
                                 [matDatepicker]="pickerRegistro">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Hora de inicio</mat-label>
                             <input matInput type="text" formControlName="horaInicio">
                         </mat-form-field>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Hora de fin</mat-label>
                             <input matInput type="text" formControlName="horaFin">
                         </mat-form-field>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Lugar</mat-label>
                             <mat-select name="lugares" formControlName="lugar">
                                 <mat-option *ngFor="let lugar of lugares" [value]="lugar.idLugar">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Coordinador</mat-label>
                             <mat-select name="rolesFallero" formControlName="coordinador">
                                 <mat-option *ngFor="let fallero of falleros" [value]="fallero.idFallero">
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <mat-form-field appearance="fill" class="mb-2 w-100">
+                        <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Proveedor</mat-label>
                             <mat-select name="proveedor" formControlName="proveedor">
                                 <mat-option *ngFor="let partner of partners" [value]="partner.idProveedor">

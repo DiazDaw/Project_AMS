@@ -65,7 +65,7 @@ export class AgregarComentarioEntradaComponent implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       titulo: ['', [Validators.required, Validators.maxLength(50)]],
-      contenido: ['', [Validators.required, Validators.maxLength(255)]],
+      contenido: ['', [Validators.required, Validators.maxLength(254)]],
     });
 
     this.dateAdapter.setLocale('es');

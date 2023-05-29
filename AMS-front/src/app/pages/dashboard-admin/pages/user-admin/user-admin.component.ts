@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FalleroResponse } from 'src/app/interfaces/fallero.interface';
@@ -31,7 +31,7 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
   loading: boolean = true;
 
   constructor(private _falleroService: FallerosService, public dialog: MatDialog, private _snackBar: MatSnackBar, private route: Router) {
-    this.dataSource = new MatTableDataSource();
+    this.dataSource = new MatTableDataSource<any>;
     this.dataSource.sort = this.sort;
   }
 
@@ -40,6 +40,7 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log(this.sort);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -61,19 +62,20 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
         response => {
           this.loading = false;
           this.dataSource.data = response;
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
         }
       );
     }, 500);
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
   }
 
   apuntarEditar(id?: number) {
     const dialogRef = this.dialog.open(AgregarEditarFalleroComponent, {
-      width: '50%',
+      width: '100%',
       disableClose: true,
-      data: { id: id}
+      data: { id: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -100,7 +102,7 @@ export class UserAdminComponent implements OnInit, AfterViewInit {
     });
   }
 
-  goBack(){
+  goBack() {
     this.route.navigate(['/admin'])
   }
 

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
+
+.gradiente {
+    background: linear-gradient(to bottom, #ffffff, #cccccc);
+}
+
+.mainTitle{
+    font-size: 50px;
+}
+
+h1 {
+    font-size: 35px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
+h2 {
+    font-size: 25px;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
+p{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+@media (min-width: 1007px) {
+    .bg-image {
+        height: 300px;
+    }
+
+}
+
+@media (max-width: 1007px) {
+    .mainTitle{
+        font-size: 25px;
+    }
+    
+    h1 {
+        font-size: 20px;
+        font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    }
+    
+    h2 {
+        font-size: 15px;
+        font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    }
+}

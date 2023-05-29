@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
+
+
+h2{
+    font-size: 30px;
+}
+
 .calendarContent {
     color: black;
     overflow: hidden;
@@ -12,7 +19,6 @@
     position: relative;
     z-index: 4;
     color: black;
-    /* Agrega aquí tus estilos personalizados */
 }
 
 :host ::ng-deep .fc .fc-col-header-cell-cushion {
@@ -22,10 +28,6 @@
     text-decoration: none;
 }
 
-/* :host ::ng-deep .fc, .fc *, .fc ::after, .fc ::before {
-    box-sizing: border-box;
-    background-color: bisque;
-  } */
 
 :host ::ng-deep .fc-theme-standard td,
 :host ::ng-deep .fc-theme-standard th,
@@ -34,13 +36,18 @@
 }
 
 .gradiente {
-    background: linear-gradient(to bottom, #d5deef, #219ebc);
+    background: linear-gradient(to bottom, #ffffff, #cccccc);
 }
 
 
 @media (max-width: 1007px) {
 
-    .h1Events{
+    h1{
+        font-size: 30px;
+        font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    }
+
+    h2{
         font-size: 15px;
     }
 
@@ -69,9 +76,9 @@
     }
 }
 
-/* @media (min-width: 1007px) {
-    .buttonDiv {
-        justify-content: end;
-        align-items: end;
+@media (min-width: 1007px) {
+    h1{
+        font-size: 50px;
+        font-family: 'Sofia Sans Semi Condensed', sans-serif;
     }
-} */
+}

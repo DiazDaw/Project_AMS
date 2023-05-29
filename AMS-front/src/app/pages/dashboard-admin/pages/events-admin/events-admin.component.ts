@@ -82,7 +82,7 @@ export class EventsAdminComponent implements OnInit, AfterViewInit {
   
   apuntarEditar(id?: number) {
     const dialogRef = this.dialog.open(AgregarEditarActividadComponent, {
-      width: '50%',
+      width: '100%',
       disableClose: true,
       data: { id: id}
     });

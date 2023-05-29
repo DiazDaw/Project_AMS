@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
+
+.gradiente {
+    background: linear-gradient(to bottom, #ffffff, #cccccc);
+  }
+  
+
 body {
     font-family: 'OpenSans';
 }
@@ -17,7 +24,15 @@ body {
 }
 
 h1 {
-    font-size: 2.48832em;
+    font-size: 50px;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    
+}
+
+h2 {
+    font-size: 30px;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    
 }
 
 .h1Contact {

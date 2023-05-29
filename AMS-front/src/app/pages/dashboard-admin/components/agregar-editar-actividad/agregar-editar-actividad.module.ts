@@ -13,6 +13,8 @@ import { AgregarEditarActividadComponent } from './agregar-editar-actividad.comp
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -36,6 +38,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTabsModule,
     MatIconModule,
     MatTooltipModule,
+    MatSortModule,
+    MatPaginatorModule
   ]
 })
 export class AgregarEditarActividadModule { }

@@ -25,25 +25,25 @@
             </ng-container> -->
 
             <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de la actividad </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Actividad</th>
                 <td mat-cell *matCellDef="let element">{{element.title}}</td>
             </ng-container>
 
 
             <ng-container matColumnDef="fechaInicio">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de inicio </th>
-                <td mat-cell *matCellDef="let element"> {{element.start | date: 'dd/MM/yyyy - HH:mm' }} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header  class="d-none d-md-table-cell"> Fecha de inicio </th>
+                <td mat-cell *matCellDef="let element"  class="d-none d-md-table-cell"> {{element.start | date: 'dd/MM/yyyy - HH:mm' }} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="fechaFin">
-                <th mat-header-cell *matHeaderCellDef> Fecha de fin </th>
-                <td mat-cell *matCellDef="let element"> {{element.end | date: 'dd/MM/yyyy - HH:mm' }} </td>
+                <th mat-header-cell *matHeaderCellDef  class="d-none d-md-table-cell"> Fecha de fin </th>
+                <td mat-cell *matCellDef="let element"  class="d-none d-md-table-cell"> {{element.end | date: 'dd/MM/yyyy - HH:mm' }} </td>
             </ng-container>
 
             <ng-container matColumnDef="lugar">
-                <th mat-header-cell *matHeaderCellDef> Lugar </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombre_lugar}} </td>
+                <th mat-header-cell *matHeaderCellDef  class="d-none d-md-table-cell"> Lugar </th>
+                <td mat-cell *matCellDef="let element"  class="d-none d-md-table-cell"> {{element.nombre_lugar}} </td>
             </ng-container>
 
             <ng-container matColumnDef="coordinador">
@@ -52,8 +52,8 @@
             </ng-container>
 
             <ng-container matColumnDef="proveedor">
-                <th mat-header-cell *matHeaderCellDef> Proveedor </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombre_proveedor }} </td>
+                <th mat-header-cell *matHeaderCellDef  class="d-none d-md-table-cell"> Proveedor </th>
+                <td mat-cell *matCellDef="let element"  class="d-none d-md-table-cell"> {{element.nombre_proveedor }} </td>
             </ng-container>
 
 
@@ -76,9 +76,9 @@
     </mat-card>
 
     <div class="row justify-content-end align-content-end">
-        <div class="col-2 text-end mt-5">
-            <button mat-raised-button color="primary" (click)="apuntarEditar()" >Añadir una actividad nueva</button>
-            <button mat-raised-button color="warn" class="m-1" (click)="goBack()">Volver</button><br>
+        <div class="col-md-5 text-end mt-3 mt-md-5">
+            <button mat-raised-button color="primary" (click)="apuntarEditar()" class="col-12 col-sm-3 col-md-7 col-lg-5 col-xl-5 col-xxl-3">Añadir una actividad nueva</button>
+            <button mat-raised-button color="warn" class="m-1" (click)="goBack()" class="col-12 col-sm-3 col-md-7 col-lg-5 col-xl-5 col-xxl-3 my-1 mx-xl-1 mx-xxl-1">Volver</button><br>
         </div>
     </div>
 

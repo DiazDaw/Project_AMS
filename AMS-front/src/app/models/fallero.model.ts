@@ -26,11 +26,11 @@ export class FalleroModel implements FalleroResponse {
     this.telefono = response.telefono;
   }
 
-  get rolFalleroText(): string {
-    if (this.id_Rol_Fallero === 1) {
-      return 'Adulto';
-    } else {
-      return 'Infantil';
+    get rolFalleroText(): string {
+      if (this.id_Rol_Fallero === 1) {
+        return 'Adulto';
+      } else {
+        return 'Infantil';
+      }
     }
-  }
 }

@@ -64,7 +64,7 @@ export class AgregarPostComponent {
   ) {
     this.form = this.formBuilder.group({
       titulo: ['', [Validators.required, Validators.maxLength(50)]],
-      contenido: ['', [Validators.required,  Validators.maxLength(254)]],
+      contenido: ['', [Validators.required]],
     });
 
     this.dateAdapter.setLocale('es');

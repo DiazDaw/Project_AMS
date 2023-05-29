@@ -52,7 +52,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     
 
   ],
-  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }]
+  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator}]
 })
 export class UserAdminComponentModule { }
 

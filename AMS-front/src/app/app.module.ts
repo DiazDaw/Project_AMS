@@ -21,6 +21,8 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { EmailService } from './services/email.service';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { MatSortModule } from '@angular/material/sort';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     ActivitiesComponent,
     BackgroundColorDirective,
-    NotfoundComponent
+    NotfoundComponent,
+    PrivacyComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +50,7 @@ import { CommonModule } from '@angular/common';
     FullCalendarModule,
     MatSnackBarModule,
     MatInputModule,
+    MatSortModule
   ],
   providers: [EmailService],
   bootstrap: [AppComponent]

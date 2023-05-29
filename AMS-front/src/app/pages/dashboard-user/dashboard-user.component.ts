@@ -154,7 +154,7 @@ export class DashboardUserComponent implements OnInit {
     const buttons = showApuntarmeButton// Acceder al ID de la actividad
     console.log('ID de la actividad:', idActividad);
     const dialogRef = this.dialog.open(ModalFalleroActivityComponent, {
-      width: '50%',
+      width: '100%',
       disableClose: true,
       data: { id: id, boton: false }
     });

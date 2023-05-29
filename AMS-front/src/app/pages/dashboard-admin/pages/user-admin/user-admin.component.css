@@ -1,10 +1,10 @@
-.mat-mdc-form-field {
+/* .mat-mdc-form-field {
     font-size: 14px;
-}
+} */
 
 .buttonEdit, .buttonDelete{
     cursor: pointer;
-    margin: 5%;
+
 }
 
 .buttonDelete{
@@ -13,4 +13,14 @@
 
 h1{
     font-size: 50px;
+}
+
+@media (max-width:1007px) {
+    h1{
+        font-size: 30px;
+    }
+
+    .ng-container{
+        width: 2px;
+    }
 }
