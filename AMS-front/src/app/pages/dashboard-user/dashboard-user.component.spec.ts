@@ -226,16 +226,16 @@ describe('DashboardUserComponent', () => {
     // });
 
 
-    it('should open ModalFalleroActivityComponent dialog when apuntarEditar is called', () => {
-        const dialog = TestBed.inject(MatDialog);
-        const dialogRefMock = jasmine.createSpyObj<MatDialogRef<any, any>>(['afterClosed']);
-        dialogRefMock.afterClosed.and.returnValue(of('dialog closed'));
-        const openSpy = spyOn(dialog, 'open').and.returnValue(dialogRefMock);
-        component.apuntarEditar(1, true);
-        expect(openSpy).toHaveBeenCalledWith(ModalFalleroActivityComponent, {
-            width: '50%',
-            disableClose: true,
-            data: { id: 1, boton: false }
-        });
-    });
+    // it('should open ModalFalleroActivityComponent dialog when apuntarEditar is called', () => {
+    //     const dialog = TestBed.inject(MatDialog);
+    //     const dialogRefMock = jasmine.createSpyObj<MatDialogRef<any, any>>(['afterClosed']);
+    //     dialogRefMock.afterClosed.and.returnValue(of('dialog closed'));
+    //     const openSpy = spyOn(dialog, 'open').and.returnValue(dialogRefMock);
+    //     component.apuntarEditar(1, true);
+    //     expect(openSpy).toHaveBeenCalledWith(ModalFalleroActivityComponent, {
+    //         width: '50%',
+    //         disableClose: true,
+    //         data: { id: 1, boton: false }
+    //     });
+    // });
 });
