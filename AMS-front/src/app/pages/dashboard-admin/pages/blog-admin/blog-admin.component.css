@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@900&display=swap');
+
+
+
 .mat-mdc-form-field {
     font-size: 14px;
 }
@@ -14,6 +18,7 @@
 
 h1 {
     font-size: 50px;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 
 .badPost {
@@ -27,6 +32,7 @@ h1 {
 @media (max-width:1007px) {
     h1{
         font-size: 30px;
+        font-family: 'Sofia Sans Semi Condensed', sans-serif;
     }
 
 }
