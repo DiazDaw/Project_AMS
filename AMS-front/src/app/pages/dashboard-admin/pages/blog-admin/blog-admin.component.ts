@@ -6,8 +6,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Places } from 'src/app/interfaces/places.interface';
-import { PlacesService } from 'src/app/services/places.service';
-import { AgregarEditarLugarComponent } from '../../components/agregar-editar-lugar/agregar-editar-lugar.component';
 import { BlogService } from 'src/app/services/blog.service';
 import { Post } from 'src/app/interfaces/post.interface';
 
@@ -27,8 +25,6 @@ export class BlogAdminComponent implements OnInit, AfterViewInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   displayedColumns: string[] = ['titulo', 'autor', 'fecha', 'estado', 'denunciado', 'acciones'];
-
-  lugares: Places[] = [];
 
   loading: boolean = true;
 
@@ -107,20 +103,17 @@ export class BlogAdminComponent implements OnInit, AfterViewInit {
       this._blogService.updateEstadoEntrada(element.idBlog, element.id_Estado).subscribe(
         () => {
           // El estado se ha actualizado correctamente
-          // Realizar cualquier otra acción necesaria
   
-          // Por ejemplo, redirigir a otra página
           this.redirectToPost(element.idBlog);
         },
         (error) => {
           // Ocurrió un error al intentar actualizar el estado
           console.error('Error al actualizar el estado del post:', error);
-          // Realizar cualquier manejo de errores necesario
+
         }
       );
     } else {
       console.error('El idBlog del elemento es undefined');
-      // Realizar cualquier manejo de errores necesario si el idBlog es undefined
     }
   }
   

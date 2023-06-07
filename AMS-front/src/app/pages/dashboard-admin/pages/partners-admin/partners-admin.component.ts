@@ -4,8 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Places } from 'src/app/interfaces/places.interface';
-import { AgregarEditarLugarComponent } from '../../components/agregar-editar-lugar/agregar-editar-lugar.component';
 import { PartnersService } from 'src/app/services/partners.service';
 import { Partners } from 'src/app/interfaces/partners.interface';
 import { AgregarEditarPartnerComponent } from '../../components/agregar-editar-partner/agregar-editar-partner.component';

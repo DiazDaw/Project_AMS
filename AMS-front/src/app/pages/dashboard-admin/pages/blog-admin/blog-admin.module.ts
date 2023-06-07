@@ -9,7 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
@@ -18,6 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AgregarEditarLugarModule } from '../../components/agregar-editar-lugar/agregar-editar-lugar.module';
 import { DashboardAdminRoutingModule } from '../../dashboard-admin-routing.module';
 import { PlacesAdminRoutingModule } from '../places-admin/places-admin-routing.module';
+import { BlogAdminRoutingModule } from './blog-admin-routing.module';
 
 
 
@@ -34,29 +35,28 @@ import { PlacesAdminRoutingModule } from '../places-admin/places-admin-routing.m
     MatButtonModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule,
     MatSortModule,
     MatIconModule,
     MatTooltipModule,
-    PlacesAdminRoutingModule,
+    BlogAdminRoutingModule,
     MatDialogModule,
     MatFormFieldModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    AgregarEditarLugarModule
+    MatPaginatorModule
   ],
-  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }]
+  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginatorBlog() }]
 })
 export class BlogAdminModule { }
 
-export function CustomPaginator() {
+export function CustomPaginatorBlog(): MatPaginatorIntl {
   const customPaginatorIntl = new MatPaginatorIntl();
 
-  customPaginatorIntl.itemsPerPageLabel = 'Falleros por página';
+  customPaginatorIntl.itemsPerPageLabel = 'Post por página';
   customPaginatorIntl.nextPageLabel = 'Página siguiente';
-  customPaginatorIntl.previousPageLabel = 'Página anterior'
+  customPaginatorIntl.previousPageLabel = 'Página anterior';
   customPaginatorIntl.firstPageLabel = 'Primera página';
-  customPaginatorIntl.lastPageLabel = 'Última página'
+  customPaginatorIntl.lastPageLabel = 'Última página';
 
   return customPaginatorIntl;
 }

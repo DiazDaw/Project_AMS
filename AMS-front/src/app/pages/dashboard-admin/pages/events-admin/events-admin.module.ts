@@ -54,7 +54,7 @@ export class EventsAdminComponentModule { }
 export function CustomPaginator() {
   const customPaginatorIntl = new MatPaginatorIntl();
 
-  customPaginatorIntl.itemsPerPageLabel = 'Falleros por página';
+  customPaginatorIntl.itemsPerPageLabel = 'Actividades por página';
   customPaginatorIntl.nextPageLabel = 'Página siguiente';
   customPaginatorIntl.previousPageLabel = 'Página anterior'
   customPaginatorIntl.firstPageLabel = 'Primera página';

@@ -54,7 +54,7 @@ export class PlacesAdminModule { }
 export function CustomPaginator() {
   const customPaginatorIntl = new MatPaginatorIntl();
 
-  customPaginatorIntl.itemsPerPageLabel = 'Falleros por página';
+  customPaginatorIntl.itemsPerPageLabel = 'Lugares por página';
   customPaginatorIntl.nextPageLabel = 'Página siguiente';
   customPaginatorIntl.previousPageLabel = 'Página anterior'
   customPaginatorIntl.firstPageLabel = 'Primera página';
