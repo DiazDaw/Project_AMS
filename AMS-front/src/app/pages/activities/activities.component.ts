@@ -81,7 +81,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   getRandomColor(): string {
-    const arrayColors: string[] = ['#cdb4db', '#ffc8dd', '#ffafcc', '#bde0fe', '#a2d2ff'];
+    const arrayColors: string[] = ['#cdb4db', '#ffc8dd', '#ffafcc', '#bde0fe', '#a2d2ff', '#0fa3b1','#8e7dbe','#ff7477','#95d387', '#eddea4', '#f7a072'];
     const randomIndex = Math.floor(Math.random() * arrayColors.length);
     return arrayColors[randomIndex];
   }

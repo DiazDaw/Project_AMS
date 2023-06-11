@@ -143,7 +143,7 @@ export class BlogContentComponent implements OnInit {
           }
         );
       } else {
-        this._snackBar.open('Ya has denunciado este post anteriormente', '', {
+        this._snackBar.open('Este post ya ha sido denunciado', '', {
           duration: 5000,
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition
