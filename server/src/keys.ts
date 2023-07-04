@@ -1,7 +1,7 @@
 const database = {
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: 'password', 
     database: 'ams_db'
 }
 
