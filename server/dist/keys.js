@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const database = {
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: 'Fallerio24',
     database: 'ams_db'
 };
 exports.default = database;
