@@ -30,6 +30,7 @@
     "@syncfusion/ej2-material-theme": "~21.2.4",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.3",
+    "dayjs": "^1.11.10",
     "jquery": "^3.6.4",
     "ngx-file-drop": "^15.0.0",
     "ngx-file-upload": "^0.0.1",
